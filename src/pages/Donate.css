@@ -42,6 +42,19 @@
   stroke: var(--color-white);
 }
 
+.donate-seal__badge--image {
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  animation: none;
+}
+
+.donate-seal__badge--image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
 .donate-seal__text h2 {
   font-size: var(--fs-xl);
   margin-bottom: var(--space-2);

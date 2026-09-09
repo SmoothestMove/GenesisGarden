@@ -1,0 +1,45 @@
+/* =========================================
+   Summer Meals To-Go Page
+   ========================================= */
+
+.summer-notice {
+  max-width: 760px;
+  margin: 0 auto var(--space-8);
+  padding: var(--space-5);
+  background: var(--color-accent-light);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  color: var(--color-gray-800);
+}
+
+.summer-notice strong {
+  color: var(--color-primary-dark);
+}
+
+.summer-sites {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .summer-sites {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.summer-site-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-gray-200);
+  border-top: 3px solid var(--color-primary);
+}
+
+.summer-site-card__address {
+  font-size: var(--fs-sm);
+  color: var(--color-gray-600);
+  margin-bottom: var(--space-2);
+}

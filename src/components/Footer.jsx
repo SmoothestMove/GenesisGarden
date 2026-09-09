@@ -4,7 +4,9 @@ import './Footer.css';
 
 const footerLinks = {
   services: [
-    { to: '/housing-services', label: 'Housing Services' },
+    { to: '/housing-services', label: 'Housing' },
+    { to: '/job-openings', label: 'Job Openings' },
+    { to: '/summer-meals', label: 'Summer Meals To-Go' },
     { to: '/about-us', label: 'About Us' },
     { to: '/partners', label: 'Partners' },
   ],
@@ -39,7 +41,7 @@ function Footer() {
               />
             </Link>
             <p className="footer__tagline">
-              Cultivating hope, nurturing dreams, empowering community.
+              Cultivating Hope, Empowering Dreams.
             </p>
             <div className="footer__social">
               <a
@@ -90,7 +92,7 @@ function Footer() {
           <div className="footer__contact">
             <h3 className="footer__heading">Contact</h3>
             <address className="footer__address">
-              <p>112 W. Jackson St.</p>
+              <p>307 E Carroll St</p>
               <p>Macomb, IL 61455</p>
               <p>
                 <a href="tel:3093263075" className="footer__link">309-326-3075</a>

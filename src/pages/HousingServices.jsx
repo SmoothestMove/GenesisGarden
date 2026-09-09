@@ -176,8 +176,12 @@ function HousingServices() {
               </div>
               <h3 className="card__title">Summer Meals for Kids</h3>
               <p className="card__text">
-                Ensuring children in our community have access to nutritious meals during the summer months.
+                Free summer meals for children and youth ages 1–18 at sites across McDonough
+                County, June through mid-August.
               </p>
+              <Link to="/summer-meals" className="footer__link" style={{ color: 'var(--color-primary)', fontWeight: 600 }}>
+                Summer Meals To-Go &rarr;
+              </Link>
             </div>
           </div>
         </div>
