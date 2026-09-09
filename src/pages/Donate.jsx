@@ -49,16 +49,19 @@ function Donate() {
       <section className="section" ref={sealRef}>
         <div className="container">
           <div className={`donate-seal reveal--scale${sealInView ? ' reveal--visible' : ''}`}>
-            <div className="donate-seal__badge" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" width="40" height="40">
-                <circle cx="12" cy="8" r="7" />
-                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
-              </svg>
+            <div className="donate-seal__badge donate-seal__badge--image" aria-hidden="true">
+              <img
+                src="https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/9277884/svg"
+                alt="Candid Silver Seal of Transparency 2026"
+                width="64"
+                height="64"
+                loading="lazy"
+              />
             </div>
             <div className="donate-seal__text">
-              <h2>2025 Candid Silver Seal of Transparency</h2>
+              <h2>2026 Candid Silver Seal of Transparency</h2>
               <p>
-                We earned the 2025 Candid Silver Seal of Transparency — demonstrating
+                We earned the 2026 Candid Silver Seal of Transparency — demonstrating
                 our commitment to accountability and openness.
               </p>
             </div>

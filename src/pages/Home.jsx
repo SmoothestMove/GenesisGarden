@@ -83,7 +83,7 @@ function Home() {
             </div>
             <h1 className="hero__title animate-fade-in-up">
               Cultivating Hope,<br />
-              <span className="hero__title-accent">Nurturing Dreams</span>
+              <span className="hero__title-accent">Empowering Dreams</span>
             </h1>
             <p className="hero__subtitle animate-fade-in-up delay-1">
               Empowering our community with safe, stable, and affordable housing options
@@ -192,10 +192,10 @@ function Home() {
             </div>
             <div className="impact-stat">
               <div className="impact-stat__number gradient-text">
-                <AnimatedCounter end={15} suffix="+" />
+                <AnimatedCounter end={new Date().getFullYear() - 2010} suffix="+" />
               </div>
               <p className="impact-stat__label">Years of Service</p>
-              <p className="impact-stat__detail">Founded in 2010 by concerned citizens</p>
+              <p className="impact-stat__detail">Founded in 2010 after the Shade Tree Mobile Park evictions</p>
             </div>
             <div className="impact-stat">
               <div className="impact-stat__number gradient-text">
