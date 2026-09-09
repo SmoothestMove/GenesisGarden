@@ -1,0 +1,137 @@
+BRANDING SHEET — Genesis Garden
+1. Brand Identity Overview
+
+Organization Name
+Genesis Garden
+
+Tagline / Core Promise
+Cultivating Hope, Empowering Dreams
+
+Mission
+To eliminate the effects of poverty by providing safe, stable housing solutions, individualized support, and community-centered resources that empower families to thrive.
+
+Vision
+A resilient and hopeful community where everyone has access to stable housing and the support needed to flourish.
+
+Core Values
+• Empowerment
+• Compassion
+• Strengths-focused support
+• Community partnership and dignity-centered services
+
+Target Audiences
+• Individuals and families experiencing housing instability
+• Donors and volunteers
+• Partner agencies (social services, housing networks)
+• Local community members
+
+2. Program Pillars
+
+Housing Stability & Support
+• Eviction prevention
+• Emergency shelter
+• Rapid re-housing
+• Permanent supportive housing
+• Wrap-around case management
+
+Community & Relationship Strengthening
+• Summer Meals for Kids program
+• Family Dinner Project
+• Open Table volunteer support partnerships
+
+Community Engagement
+• Donation drives (furniture, household goods)
+• Volunteer pathways (housing support, meals, mentoring)
+
+3. Brand Voice & Messaging
+
+Brand Voice Attributes
+• Compassionate
+• Empowering and uplifting
+• Straightforward and supportive
+• Community-centric
+
+Primary Messaging Example
+“Everyone deserves a safe, stable place to call home. Genesis Garden walks with families on the path from crisis to stability — offering practical support, compassionate guidance, and community-rooted resources designed for lasting resilience.”
+
+Secondary Messaging Example
+“Together, we cultivate not just housing, but belonging — nurturing hope, building connections, and empowering dreams.”
+
+4. Logo Concepts (descriptions to guide design)
+A. Primary / Hybrid Logo
+
+Concept
+A garden motif blending a stylized house silhouette with leaf/growth elements rising upward like tender shoots — symbolizing growth, shelter, and hope.
+Typography
+Modern, clean sans-serif for strong readability (e.g., Montserrat or Open Sans) with a warm accent color in the tagline.
+Color Palette
+• Deep Forest Green (trust, stability) #2A5F3E
+• Warm Earth Brown (grounded support) #7A5A3C
+• Golden Yellow Accent (hope, optimism) #EDB84E
+
+B. Wordmark (Text-Based)
+
+GenesisGarden
+With a subtle leaf element emerging from a letter (like the “G”) to communicate growth and renewal without heavy graphic elements.
+
+C. Logo Symbol / Favicon
+
+Standalone Mark
+A simplified icon of a sprouting seed/house silhouette combo.
+Should be legible at tiny sizes (favicon, social profile icons).
+
+5. Visual System & Usage
+
+Primary Colors
+
+Name	Hex
+Forest Green	#2A5F3E
+Earth Brown	#7A5A3C
+Warm Gold	#EDB84E
+Neutral Charcoal	#333333
+Light Off-White	#F7F7F7
+
+Typography
+• Headlines: Montserrat Bold
+• Body Copy: Open Sans Regular
+• Accent/Tagline: Open Sans Italic
+
+Logo Use Cases
+• Fundraising campaigns
+• Shelter and housing program signage
+• Website header and print collateral
+• Volunteer and donor merchandise
+
+6. Iconography & Style
+
+Icon Style
+• Line-based with meaningful simplicity
+• Icons representing home, growth, hands/helping, community circle, meal sharing
+
+Imagery Style
+• Real community photos with natural lighting
+• Candid images of people engaging (meals, housing support, shared moments)
+• Consistent color warmth across photography
+
+7. Favicon & Scalable Assets
+
+Favicon
+• Simplified sprout-house icon on solid deep green (#2A5F3E) background
+
+Logo Variants
+
+Primary Full Logo: Graphic + Brand Wordmark + Tagline
+
+Secondary Lockup: Wordmark + small sprout icon (for banners)
+
+Favicon / App Icon: Sprout-house symbol
+
+8. Usage Guidelines
+
+Clear Space Rule
+• Keep a minimum buffer zone around the logo equal to the height of the “G” in Genesis Garden.
+
+Incorrect Usage
+• Don’t distort or stretch the logo
+• Avoid using unrelated colors outside the approved palette
+• Don’t place logo on busy backgrounds — ensure legibility

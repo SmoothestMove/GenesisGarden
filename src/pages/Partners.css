@@ -1,0 +1,48 @@
+/* =========================================
+   Partners Page — Glassmorphism Style
+   ========================================= */
+
+.partners-grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .partners-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .partners-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.partner-card {
+  border-left: 4px solid var(--color-primary);
+  transition: all var(--transition-base);
+}
+
+.partner-card:hover {
+  border-left-color: var(--color-accent);
+}
+
+.partner-card__icon {
+  margin-bottom: var(--space-4);
+}
+
+.partner-card__name {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-semibold);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-2);
+  line-height: var(--lh-snug);
+}
+
+.partner-card__desc {
+  font-size: var(--fs-sm);
+  color: var(--color-gray-600);
+  line-height: var(--lh-relaxed);
+}
