@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import useInView from '../hooks/useInView';
+import site from '../content/site.json';
 import './Footer.css';
 
 const footerLinks = {
@@ -39,14 +40,14 @@ function Footer() {
                 height="200"
                 loading="lazy"
               />
-              <span className="footer__logo-text">Genesis Garden</span>
+              <span className="footer__logo-text">{site.orgName}</span>
             </Link>
             <p className="footer__tagline">
-              Cultivating Hope, Empowering Dreams.
+              {site.tagline}
             </p>
             <div className="footer__social">
               <a
-                href="https://www.facebook.com/GenesisGarden1"
+                href={site.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer__social-link"
@@ -93,13 +94,13 @@ function Footer() {
           <div className="footer__contact">
             <h3 className="footer__heading">Contact</h3>
             <address className="footer__address">
-              <p>307 E Carroll St</p>
-              <p>Macomb, IL 61455</p>
+              <p>{site.address.street}</p>
+              <p>{site.address.cityStateZip}</p>
               <p>
-                <a href="tel:3093263075" className="footer__link">309-326-3075</a>
+                <a href={site.phoneHref} className="footer__link">{site.phone}</a>
               </p>
               <p>
-                <a href="mailto:info@genesis-garden.org" className="footer__link">info@genesis-garden.org</a>
+                <a href={`mailto:${site.email}`} className="footer__link">{site.email}</a>
               </p>
             </address>
           </div>
@@ -121,7 +122,7 @@ function Footer() {
       {/* Copyright bar */}
       <div className="footer__bottom">
         <div className="container footer__bottom-inner">
-          <p>&copy; {currentYear} Genesis Garden. All rights reserved.</p>
+          <p>&copy; {currentYear} {site.orgName}. All rights reserved.</p>
           <p className="footer__501">A 501(c)(3) nonprofit organization</p>
         </div>
       </div>

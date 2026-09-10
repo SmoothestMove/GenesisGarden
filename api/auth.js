@@ -1,0 +1,22 @@
+// Step 1 of Decap CMS's GitHub OAuth flow: redirect the popup window to
+// GitHub's authorize screen. GitHub then redirects back to /api/callback.
+export default function handler(req, res) {
+  const clientId = process.env.GITHUB_OAUTH_CLIENT_ID;
+  if (!clientId) {
+    res.status(500).send('Missing GITHUB_OAUTH_CLIENT_ID environment variable');
+    return;
+  }
+
+  const host = req.headers['x-forwarded-host'] || req.headers.host;
+  const protocol = req.headers['x-forwarded-proto'] || 'https';
+  const redirectUri = `${protocol}://${host}/api/callback`;
+
+  const params = new URLSearchParams({
+    client_id: clientId,
+    redirect_uri: redirectUri,
+    scope: 'repo,user',
+  });
+
+  res.writeHead(302, { Location: `https://github.com/login/oauth/authorize?${params.toString()}` });
+  res.end();
+}
