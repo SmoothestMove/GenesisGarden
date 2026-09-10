@@ -276,3 +276,27 @@
 .about-block p {
   line-height: var(--lh-relaxed);
 }
+
+/* Volunteers history */
+.about-volunteers-history {
+  margin-top: var(--space-6);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  max-width: 760px;
+}
+
+.about-volunteers-history summary {
+  cursor: pointer;
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+}
+
+.about-volunteers-history__body {
+  margin-top: var(--space-4);
+}
+
+.about-volunteers-history__body p {
+  line-height: var(--lh-relaxed);
+  color: var(--color-gray-700);
+}

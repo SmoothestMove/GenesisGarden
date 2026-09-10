@@ -156,7 +156,10 @@ function AboutUs() {
                 ))}
               </ul>
               <p style={{ fontStyle: 'italic', color: 'var(--color-gray-600)', marginTop: 'var(--space-3)' }}>
-                In memory of Crystal Brothe.
+                In memory of{' '}
+                <a href="http://crystalbrothe.com/" target="_blank" rel="noopener noreferrer">
+                  Crystal Brothe
+                </a>.
               </p>
 
               <h2 style={{ marginTop: 'var(--space-8)' }}>Directors</h2>
@@ -246,6 +249,49 @@ function AboutUs() {
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <SectionDivider shape="curve" color="var(--color-cream)" />
+
+      {/* Service Members & Volunteers */}
+      <section className="section">
+        <div className="container">
+          <div className="section-header">
+            <h2>Service Members &amp; Volunteers</h2>
+          </div>
+          <p>
+            <strong>2026–2027 AmeriCorps VISTA Volunteers</strong> through Housing Action
+            Illinois and Recovery Corps: Amber, Hayley, Justin, Richie.
+          </p>
+
+          <details className="about-volunteers-history">
+            <summary>View past interns, VISTA volunteers &amp; Peace Corps Fellows (2020–2024)</summary>
+            <div className="about-volunteers-history__body">
+              <p><strong>2024 Macomb High Intern:</strong> Josie Calvert</p>
+              <p>
+                <strong>2023–2024 AmeriCorps VISTA Volunteer</strong> through Housing Action
+                Illinois: Mariam Antoine
+              </p>
+              <p>
+                <strong>2020–21 Interns, Peace Corps Fellows, and AmeriCorps VISTA Volunteers:</strong>{' '}
+                Miranda Lambert (2020–21), Sydney Dewees (2020–21), Alexander Benishek (2021),
+                Cortnie Schierman (2020–21), Zac Green (2021)
+              </p>
+              <p>Cindy Guzman, Intern, WIU Social Work Department (Spring 2021)</p>
+              <p><strong>Summer 2020 Volunteers/Staff</strong></p>
+              <p>
+                AmeriCorps Summer VISTA: Adrienne Graham, Grace Merrett, Lily Mansfield, Ethan
+                La Prad, Ethan Fogg, Gibby Blankenship, Devon Simpson, Jessica Moncrieff,
+                Iliyana Olds, Marco Narvaez, Desi Blanken
+              </p>
+              <p>
+                Peace Corps Fellows/AmeriCorps: Camden Arnold, Brianne Nichols, Meghan Elgee,
+                Miranda Lambert, Gaothajying Her, Cortnie Schierman, Katie Colon
+              </p>
+              <p>Summer Meals Assistants: Annie Powell, Noah La Prad, Aiden Necak</p>
+            </div>
+          </details>
         </div>
       </section>
     </>
