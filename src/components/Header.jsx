@@ -8,6 +8,7 @@ const navLinks = [
   { to: '/job-openings', label: 'Job Openings' },
   { to: '/summer-meals', label: 'Summer Meals To-Go' },
   { to: '/about-us', label: 'About Us' },
+  { to: '/partners', label: 'Partners' },
   { to: '/contact-us', label: 'Contact' },
 ];
 

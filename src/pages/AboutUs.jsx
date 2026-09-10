@@ -1,5 +1,6 @@
 import SEOHead from '../components/SEOHead';
 import SectionDivider from '../components/SectionDivider';
+import AnimatedCounter from '../components/AnimatedCounter';
 import useInView from '../hooks/useInView';
 import './AboutUs.css';
 
@@ -177,6 +178,21 @@ function AboutUs() {
                   See our partners &rarr;
                 </a>
               </p>
+
+              <div className="about-team-stats">
+                <div className="about-team-stat">
+                  <span className="about-team-stat__number gradient-text">
+                    <AnimatedCounter end={new Date().getFullYear() - 2010} suffix="+" />
+                  </span>
+                  <span className="about-team-stat__label">Years Active</span>
+                </div>
+                <div className="about-team-stat">
+                  <span className="about-team-stat__number gradient-text">
+                    <AnimatedCounter end={4} suffix="" />
+                  </span>
+                  <span className="about-team-stat__label">Counties</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
