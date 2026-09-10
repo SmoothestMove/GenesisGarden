@@ -48,11 +48,14 @@ function Header() {
         <Link to="/" className="header__logo" aria-label="Genesis Garden Home">
           <img
             src="/logo/Logo-Hybrid.png"
-            alt="Genesis Garden"
+            alt=""
             className="header__logo-img"
             width="164"
             height="176"
           />
+          <span className="header__logo-text">
+            Genesis<span className="header__logo-text-accent"> Garden</span>
+          </span>
         </Link>
 
         <nav className={`header__nav${menuOpen ? ' header__nav--open' : ''}`} aria-label="Main navigation">

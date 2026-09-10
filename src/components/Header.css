@@ -34,6 +34,7 @@
 .header__logo {
   display: flex;
   align-items: center;
+  gap: var(--space-3);
   text-decoration: none;
   flex-shrink: 0;
   transition: opacity var(--transition-fast);
@@ -44,14 +45,31 @@
 }
 
 .header__logo-img {
-  height: 44px;
+  height: 40px;
   width: auto;
   object-fit: contain;
 }
 
+.header__logo-text {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: 1.15rem;
+  line-height: 1;
+  color: var(--color-primary-dark);
+  white-space: nowrap;
+}
+
+.header__logo-text-accent {
+  color: var(--color-accent-dark);
+}
+
 @media (min-width: 768px) {
   .header__logo-img {
-    height: 52px;
+    height: 48px;
+  }
+
+  .header__logo-text {
+    font-size: 1.35rem;
   }
 }
 

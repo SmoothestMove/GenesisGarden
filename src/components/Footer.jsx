@@ -33,12 +33,13 @@ function Footer() {
             <Link to="/" className="footer__logo" aria-label="Genesis Garden Home">
               <img
                 src="/logo/Logo-Full.png"
-                alt="Genesis Garden"
+                alt=""
                 className="footer__logo-img"
                 width="187"
                 height="200"
                 loading="lazy"
               />
+              <span className="footer__logo-text">Genesis Garden</span>
             </Link>
             <p className="footer__tagline">
               Cultivating Hope, Empowering Dreams.
