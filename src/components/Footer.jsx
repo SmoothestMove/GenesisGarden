@@ -35,8 +35,8 @@ function Footer() {
                 src="/logo/Logo-Full.png"
                 alt="Genesis Garden"
                 className="footer__logo-img"
-                width="180"
-                height="80"
+                width="187"
+                height="200"
                 loading="lazy"
               />
             </Link>

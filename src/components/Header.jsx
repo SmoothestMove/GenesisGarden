@@ -50,8 +50,8 @@ function Header() {
             src="/logo/Logo-Hybrid.png"
             alt="Genesis Garden"
             className="header__logo-img"
-            width="180"
-            height="60"
+            width="164"
+            height="176"
           />
         </Link>
 
