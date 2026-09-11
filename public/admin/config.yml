@@ -2,8 +2,8 @@ backend:
   name: github
   repo: SmoothestMove/GenesisGarden
   branch: main
-  base_url: /api
-  auth_endpoint: auth
+  base_url: https://genesisgarden.vercel.app
+  auth_endpoint: api/auth
 
 # Runs locally with `npm run cms` (decap-server), reading/writing the
 # working tree directly instead of going through GitHub OAuth.
