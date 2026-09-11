@@ -181,3 +181,299 @@ collections:
               - { label: "Text", name: "text", widget: "text" }
               - { label: "Button Label", name: "secondaryButtonLabel", widget: "string" }
               - { label: "Button Link", name: "secondaryButtonTo", widget: "string" }
+
+      - file: "src/content/about.json"
+        label: "About Us Page"
+        name: "about"
+        fields:
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            fields:
+              - { label: "Page Title", name: "title", widget: "string" }
+              - { label: "Page Description", name: "description", widget: "text" }
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+          - label: "Mission & Vision"
+            name: "missionVision"
+            widget: "object"
+            fields:
+              - { label: "Mission Label", name: "missionLabel", widget: "string" }
+              - { label: "Mission Statement", name: "missionHeading", widget: "string" }
+              - { label: "Vision Label", name: "visionLabel", widget: "string" }
+              - { label: "Vision Statement", name: "visionHeading", widget: "string" }
+          - label: "Core Values Section"
+            name: "values"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - label: "Values"
+                name: "items"
+                widget: "list"
+                fields:
+                  - label: "Icon"
+                    name: "icon"
+                    widget: "select"
+                    options: ["plus", "people", "heart", "shield", "leaf"]
+                  - { label: "Title", name: "title", widget: "string" }
+              - { label: "Note", name: "note", widget: "text" }
+          - label: "Team Section"
+            name: "team"
+            widget: "object"
+            fields:
+              - { label: "Photo", name: "image", widget: "image" }
+              - { label: "Staff Heading", name: "staffHeading", widget: "string" }
+              - label: "Staff"
+                name: "staff"
+                widget: "list"
+                fields:
+                  - { label: "Name", name: "name", widget: "string" }
+                  - { label: "Role", name: "role", widget: "string", required: false }
+              - { label: "In Memory Of (Name)", name: "inMemoryName", widget: "string" }
+              - { label: "In Memory Of (Link)", name: "inMemoryUrl", widget: "string" }
+              - { label: "Directors Heading", name: "directorsHeading", widget: "string" }
+              - label: "Directors"
+                name: "directors"
+                widget: "list"
+                fields:
+                  - { label: "Name", name: "name", widget: "string" }
+                  - { label: "Role", name: "role", widget: "string", required: false }
+              - { label: "Founding President Line", name: "foundingPresident", widget: "string" }
+              - { label: "Partners Link Label", name: "partnersLinkLabel", widget: "string" }
+          - label: "History Section"
+            name: "history"
+            widget: "object"
+            fields:
+              - label: "Timeline Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - label: "Icon"
+                    name: "icon"
+                    widget: "select"
+                    options: ["clock", "house", "calendar", "person"]
+                  - { label: "Heading", name: "heading", widget: "string" }
+                  - { label: "Text", name: "text", widget: "text" }
+          - label: "Volunteers Section"
+            name: "volunteers"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Current Volunteers", name: "current", widget: "text", hint: "You can wrap text in ** ** to make it bold." }
+              - { label: "Past Volunteers Summary (collapsed link text)", name: "pastSummary", widget: "string" }
+              - { label: "Past Volunteers (expanded list)", name: "pastBody", widget: "text", hint: "Separate paragraphs with a blank line. Wrap text in ** ** to make it bold." }
+
+      - file: "src/content/partners.json"
+        label: "Partners Page"
+        name: "partners"
+        fields:
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            fields:
+              - { label: "Page Title", name: "title", widget: "string" }
+              - { label: "Page Description", name: "description", widget: "text" }
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+          - label: "Partners"
+            name: "partners"
+            widget: "list"
+            fields:
+              - label: "Icon"
+                name: "icon"
+                widget: "select"
+                options: ["bell", "globe", "book", "building", "people", "house"]
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Description", name: "description", widget: "text", required: false }
+
+      - file: "src/content/donate.json"
+        label: "Donate Page"
+        name: "donate"
+        fields:
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            fields:
+              - { label: "Page Title", name: "title", widget: "string" }
+              - { label: "Page Description", name: "description", widget: "text" }
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+          - label: "Transparency Seal"
+            name: "seal"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Seal Image URL", name: "imageUrl", widget: "string", hint: "Usually provided by Candid/GuideStar, not an uploaded image" }
+              - { label: "Seal Image Alt Text", name: "imageAlt", widget: "string" }
+          - label: "Financial Donations"
+            name: "financial"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Intro Text", name: "intro", widget: "text" }
+              - { label: "Button Label", name: "buttonLabel", widget: "string" }
+              - { label: "Button URL", name: "buttonUrl", widget: "string" }
+          - label: "Goods Donations"
+            name: "goods"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Intro Text", name: "intro", widget: "text" }
+              - { label: "Note", name: "note", widget: "string" }
+              - { label: "Wish List Heading", name: "wishHeading", widget: "string" }
+              - label: "Wish List Items"
+                name: "wishItems"
+                widget: "list"
+                field: { label: "Item", name: "item", widget: "string" }
+              - { label: "Shelter Items Heading", name: "shelterHeading", widget: "string" }
+              - label: "Shelter Items"
+                name: "shelterItems"
+                widget: "list"
+                field: { label: "Item", name: "item", widget: "string" }
+              - { label: "Decline Heading", name: "declineHeading", widget: "string" }
+              - label: "Items We Don't Accept"
+                name: "dontAccept"
+                widget: "list"
+                field: { label: "Item", name: "item", widget: "string" }
+
+      - file: "src/content/contact.json"
+        label: "Contact Us Page"
+        name: "contact"
+        fields:
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            fields:
+              - { label: "Page Title", name: "title", widget: "string" }
+              - { label: "Page Description", name: "description", widget: "text" }
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+          - label: "Info Cards"
+            name: "cards"
+            widget: "object"
+            fields:
+              - { label: "Mailing Address Card Heading", name: "mailingHeading", widget: "string" }
+              - { label: "Call Card Heading", name: "callHeading", widget: "string" }
+              - { label: "Email Card Heading", name: "emailHeading", widget: "string" }
+              - { label: "Email Card Note", name: "emailNote", widget: "text" }
+              - { label: "Emergency Card Heading", name: "emergencyHeading", widget: "string" }
+              - { label: "Emergency Card Note", name: "emergencyNote", widget: "text" }
+          - label: "Message Form"
+            name: "form"
+            widget: "object"
+            fields:
+              - { label: "Form Heading", name: "heading", widget: "string" }
+              - { label: "Success Heading", name: "successHeading", widget: "string" }
+              - { label: "Success Text", name: "successText", widget: "text" }
+
+      - file: "src/content/job-openings.json"
+        label: "Job Openings Page"
+        name: "job-openings"
+        fields:
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            fields:
+              - { label: "Page Title", name: "title", widget: "string" }
+              - { label: "Page Description", name: "description", widget: "text" }
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+          - label: "Jobs"
+            name: "jobs"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - label: "Status"
+                name: "status"
+                widget: "select"
+                options: ["open", "closed"]
+              - { label: "Status Label", name: "statusLabel", widget: "string" }
+              - { label: "Description", name: "description", widget: "text", required: false }
+              - label: "Bullet Points"
+                name: "bullets"
+                widget: "list"
+                required: false
+                field: { label: "Bullet", name: "bullet", widget: "string" }
+              - { label: "Apply URL", name: "applyUrl", widget: "string", required: false }
+          - { label: "Closed Positions Notice", name: "noticeText", widget: "text" }
+
+      - file: "src/content/summer-meals.json"
+        label: "Summer Meals Page"
+        name: "summer-meals"
+        fields:
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            fields:
+              - { label: "Page Title", name: "title", widget: "string" }
+              - { label: "Page Description", name: "description", widget: "text" }
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+          - { label: "Content Note", name: "contentNote", widget: "text", hint: "Shown at the top of the page as a reminder to keep this page current" }
+          - { label: "Intro Paragraph", name: "intro", widget: "text" }
+          - { label: "Sites Heading", name: "sitesHeading", widget: "string" }
+          - label: "Pickup Sites"
+            name: "sites"
+            widget: "list"
+            fields:
+              - { label: "Site Name", name: "name", widget: "string" }
+              - { label: "Address", name: "address", widget: "string", required: false }
+              - { label: "Schedule", name: "schedule", widget: "string" }
+          - { label: "Sign-up Note", name: "signupNote", widget: "string" }
+          - label: "Call-to-Action Section"
+            name: "cta"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+
+      - file: "src/content/nav.json"
+        label: "Site Navigation"
+        name: "nav"
+        description: "Header menu and footer links. Editing the link target requires knowing the site's page paths (e.g. /donate) — a typo here can create a broken link."
+        fields:
+          - label: "Header Menu"
+            name: "header"
+            widget: "list"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Link", name: "to", widget: "string", hint: "internal page path, e.g. /donate" }
+          - label: "Footer — Our Work Links"
+            name: "footerWork"
+            widget: "list"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Link", name: "to", widget: "string", hint: "internal page path, e.g. /donate" }
+          - label: "Footer — Support Links"
+            name: "footerSupport"
+            widget: "list"
+            fields:
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Link", name: "to", widget: "string", hint: "internal page path, or a full https:// URL if External is checked" }
+              - { label: "External Link?", name: "external", widget: "boolean", default: false, required: false }

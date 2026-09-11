@@ -1,0 +1,80 @@
+{
+  "seo": {
+    "title": "Job Openings | Genesis Garden",
+    "description": "Current AmeriCorps VISTA and Recovery Corps openings at Genesis Garden in Macomb, Illinois."
+  },
+  "hero": {
+    "heading": "Job Openings",
+    "text": "We host AmeriCorps VISTA and Recovery Corps service positions supporting housing counseling, recovery navigation, fundraising, and more."
+  },
+  "jobs": [
+    {
+      "title": "Housing Counseling",
+      "subtitle": "AmeriCorps VISTA, Sept 2026-2027 · Part of Housing Action Illinois' Housing Counseling Corps",
+      "status": "open",
+      "statusLabel": "Applications close July 31, 2026",
+      "description": "Receive custom training, support, networking, and post-service employment opportunities in the housing counseling field, in addition to the traditional benefits of AmeriCorps VISTA. Ideal candidate takes initiative and demonstrates a strengths-based view of all people. Well-organized, eager to learn, and solution-oriented. Well-suited for those with an interest and long-term career goals in housing counseling and low-to-moderate income homeownership.",
+      "bullets": [
+        "Earn a HUD housing counseling certification",
+        "Pivotal role in the launch of Genesis Garden's housing counseling services",
+        "Develop and lead sessions such as financial education, budgeting, credit counseling, renting, home repair, and homeownership preparation"
+      ],
+      "applyUrl": "https://my.americorps.gov/mp/listing/viewListing.do?id=128971"
+    },
+    {
+      "title": "Recovery Navigator",
+      "subtitle": "Recovery Corps AmeriCorps VISTA, Sept 2026-2027",
+      "status": "closed",
+      "statusLabel": "Final candidates have been selected for this position",
+      "description": "Help others build a healthy life in recovery as part of Recovery Corps! Provide peer support to those in recovery from substance use disorders. Recovery Navigators are peers who work 1-on-1 with the people they are serving, offering individual support and mentoring as someone with lived experience in recovery.",
+      "bullets": [],
+      "applyUrl": ""
+    },
+    {
+      "title": "Recovery Project Coordinator",
+      "subtitle": "Recovery Corps AmeriCorps VISTA, Sept 2026-2027",
+      "status": "closed",
+      "statusLabel": "This position has been filled",
+      "description": "Help make recovery possible for more people! Support project management, data collection and analysis, and education outreach with great training and coaching. Individuals who have lived experience with recovery are encouraged to apply for future openings.",
+      "bullets": [],
+      "applyUrl": ""
+    },
+    {
+      "title": "Fundraising & Volunteer Development",
+      "subtitle": "AmeriCorps VISTA, Sept 2026-2027 · Part of Housing Action Illinois' Housing Action Corps",
+      "status": "closed",
+      "statusLabel": "This position has been filled",
+      "description": "Receive custom training, support, and networking in housing and community development, in addition to the traditional benefits of AmeriCorps VISTA. Develop and implement fundraising tools and strategies, raise funds to construct a tiny home or other residential property development, and develop a structured volunteer program.",
+      "bullets": [],
+      "applyUrl": ""
+    },
+    {
+      "title": "Summer Meals",
+      "subtitle": "",
+      "status": "closed",
+      "statusLabel": "This position has been filled",
+      "description": "",
+      "bullets": [],
+      "applyUrl": ""
+    },
+    {
+      "title": "Office Professional",
+      "subtitle": "",
+      "status": "closed",
+      "statusLabel": "This position has been filled",
+      "description": "",
+      "bullets": [],
+      "applyUrl": ""
+    },
+    {
+      "title": "Outreach & Permanent Supportive Housing (PSH)",
+      "subtitle": "",
+      "status": "closed",
+      "statusLabel": "This position has been filled",
+      "description": "",
+      "bullets": [],
+      "applyUrl": ""
+    }
+  ],
+  "noticeText": "Positions not currently accepting applications are shown so you can see the range of roles Genesis Garden hosts."
+}
