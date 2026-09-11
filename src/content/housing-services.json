@@ -1,0 +1,73 @@
+{
+  "seo": {
+    "title": "Housing Services | Genesis Garden",
+    "description": "Genesis Garden provides emergency shelter, eviction prevention, rapid re-housing, and permanent supportive housing in Western Illinois."
+  },
+  "hero": {
+    "backgroundImage": "/images/GGHouseFrontEdit.png",
+    "heading": "Housing Supports & Services",
+    "text": "Everyone needs a safe and stable place to call home. Home is more than a place — home ignites hope and fuels dreams for healthy people and resilient families."
+  },
+  "intro": {
+    "heading": "What Happens Without Housing?",
+    "paragraph1": "When there aren't enough safe, stable, affordable places for everyone to live? Skipping crucial medications and meals. Doubling up. Eviction. Homelessness.",
+    "highlight": "But homelessness doesn't have to be hopeless.",
+    "paragraph2": "If you're struggling with safe, stable housing, have a conversation with us. Together, we'll work toward a solution."
+  },
+  "services": {
+    "heading": "Our Solutions",
+    "subtitle": "We offer a range of housing support services tailored to your situation.",
+    "items": [
+      {
+        "icon": "exchange",
+        "title": "Diversion",
+        "description": "Finding out what it would take for you to stay where you are now. Or re-connecting with family or friends who could house you for at least 30 days."
+      },
+      {
+        "icon": "shield",
+        "title": "Eviction Prevention",
+        "description": "Working with you and/or your landlord, providing financial resources, or referring you to the CBRAP program. In most cases, financial support requires an eviction notice and documentation of means to pay rent going forward."
+      },
+      {
+        "icon": "house",
+        "title": "Emergency Shelter",
+        "description": "Our primary location, Genesis House, is a large remodeled Victorian era house with private bedrooms and bathrooms, plus shared living, laundry, and kitchen. Leighty House offers similar space. We also use motel rooms when at capacity."
+      },
+      {
+        "icon": "target",
+        "title": "Rapid Re-Housing",
+        "description": "Financial assistance and support services to move families from no housing into permanent housing as quickly as possible. Support tapers down over several months as the family regains stability."
+      },
+      {
+        "icon": "heart",
+        "title": "Permanent Supportive Housing",
+        "description": "For families with documented long-term disabilities who have lost housing, PSH offers more supportive services and rent subsidies without a specific time limit."
+      }
+    ]
+  },
+  "eligibility": {
+    "heading": "Who Can We Help?",
+    "intro": "Most of these options for regaining housing stability are open to:",
+    "items": [
+      "Multi-generational families",
+      "Large families",
+      "Self-defined households",
+      "Returning citizens",
+      "Those who are justice-involved but may not be eligible for other housing supports"
+    ]
+  },
+  "otherActivities": {
+    "heading": "Other Activities",
+    "icon": "calendar",
+    "title": "Summer Meals for Kids",
+    "text": "Free summer meals for children and youth ages 1–18 at sites across McDonough County, June through mid-August.",
+    "linkLabel": "Summer Meals To-Go",
+    "linkTo": "/summer-meals"
+  },
+  "cta": {
+    "heading": "Need Housing Help?",
+    "text": "Call Genesis Garden to talk about your housing needs. We're here to listen and work with you toward a solution.",
+    "secondaryButtonLabel": "Contact Us",
+    "secondaryButtonTo": "/contact-us"
+  }
+}

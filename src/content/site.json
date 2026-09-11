@@ -1,0 +1,15 @@
+{
+  "orgName": "Genesis Garden",
+  "tagline": "Cultivating Hope, Empowering Dreams.",
+  "phone": "309-326-3075",
+  "phoneHref": "tel:3093263075",
+  "email": "info@genesis-garden.org",
+  "address": {
+    "street": "307 E Carroll St",
+    "cityStateZip": "Macomb, IL 61455"
+  },
+  "social": {
+    "facebook": "https://www.facebook.com/GenesisGarden1"
+  },
+  "foundedYear": 2010
+}
