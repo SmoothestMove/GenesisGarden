@@ -1,22 +1,8 @@
 import { Link } from 'react-router-dom';
 import useInView from '../hooks/useInView';
 import site from '../content/site.json';
+import nav from '../content/nav.json';
 import './Footer.css';
-
-const footerLinks = {
-  services: [
-    { to: '/housing-services', label: 'Housing' },
-    { to: '/job-openings', label: 'Job Openings' },
-    { to: '/summer-meals', label: 'Summer Meals To-Go' },
-    { to: '/about-us', label: 'About Us' },
-    { to: '/partners', label: 'Partners' },
-  ],
-  support: [
-    { to: '/donate', label: 'Donate' },
-    { to: '/contact-us', label: 'Contact Us' },
-    { href: 'https://www.genesis-garden.org/privacy-policy/', label: 'Privacy Policy', external: true },
-  ],
-};
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -64,7 +50,7 @@ function Footer() {
           <div className="footer__links-group">
             <h3 className="footer__heading">Our Work</h3>
             <ul className="footer__link-list">
-              {footerLinks.services.map((link) => (
+              {nav.footerWork.map((link) => (
                 <li key={link.to}>
                   <Link to={link.to} className="footer__link">{link.label}</Link>
                 </li>
@@ -76,10 +62,10 @@ function Footer() {
           <div className="footer__links-group">
             <h3 className="footer__heading">Support</h3>
             <ul className="footer__link-list">
-              {footerLinks.support.map((link) => (
-                <li key={link.to || link.href}>
+              {nav.footerSupport.map((link) => (
+                <li key={link.to}>
                   {link.external ? (
-                    <a href={link.href} target="_blank" rel="noopener noreferrer" className="footer__link">
+                    <a href={link.to} target="_blank" rel="noopener noreferrer" className="footer__link">
                       {link.label}
                     </a>
                   ) : (

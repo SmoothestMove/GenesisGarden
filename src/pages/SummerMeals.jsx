@@ -1,13 +1,9 @@
 import SEOHead from '../components/SEOHead';
 import SectionDivider from '../components/SectionDivider';
 import useInView from '../hooks/useInView';
+import content from '../content/summer-meals.json';
+import site from '../content/site.json';
 import './SummerMeals.css';
-
-const sites = [
-  { name: 'Colchester City Hall', address: '500 E Roberts St, Colchester', schedule: 'June to mid-August. Days and times to be announced.' },
-  { name: 'Bushnell and Bardolph', address: '', schedule: 'June to mid-August. Days and times to be announced.' },
-  { name: 'Macomb Middle School', address: '1500 S Johnson, Macomb', schedule: 'June 26 – mid-August. Days and times to be announced.' },
-];
 
 function SummerMeals() {
   const [gridRef, gridInView] = useInView();
@@ -15,16 +11,15 @@ function SummerMeals() {
   return (
     <>
       <SEOHead
-        title="Summer Meals To-Go | Genesis Garden"
-        description="Free summer meals for children and youth ages 1-18 in McDonough County, Illinois, through the ISBE/USDA Summer Food Service Program."
+        title={content.seo.title}
+        description={content.seo.description}
       />
 
       <section className="page-hero">
         <div className="container">
-          <h1 className="animate-fade-in-up">Summer Meals To-Go</h1>
+          <h1 className="animate-fade-in-up">{content.hero.heading}</h1>
           <p className="animate-fade-in-up delay-1">
-            Free meals for children and youth ages 1–18 through the ISBE/USDA Summer Food
-            Service Program (SFSP).
+            {content.hero.text}
           </p>
         </div>
       </section>
@@ -34,34 +29,27 @@ function SummerMeals() {
       <section className="section" ref={gridRef}>
         <div className="container">
           <div className="summer-notice">
-            <strong>Content note:</strong> Genesis Garden's own site still lists each pickup
-            site's days and times as "to be announced" and the sign-up form and menus as
-            "coming soon" — that live copy is reproduced below unchanged rather than filled in
-            or guessed at. Genesis Garden should update this page each spring with confirmed
-            schedules before the season begins.
+            <strong>Content note:</strong> {content.contentNote}
           </div>
 
           <p>
-            From June through August 2026, Genesis Garden offered free summer meals for
-            children and youth ages 1–18 through the ISBE/USDA SFSP program. Multiple days of
-            breakfasts and lunches were available at several sites in McDonough County,
-            Illinois for pickup by children, or by parents, guardians, and caregivers.
+            {content.intro}
           </p>
 
           <h2 style={{ marginTop: 'var(--space-8)', marginBottom: 'var(--space-5)' }}>
-            Tentative 2026 sites
+            {content.sitesHeading}
           </h2>
           <div className={`summer-sites${gridInView ? ' summer-sites--visible' : ''}`}>
-            {sites.map((site) => (
-              <div className="card summer-site-card" key={site.name}>
-                <h3 className="card__title">{site.name}</h3>
-                {site.address && <p className="summer-site-card__address">{site.address}</p>}
-                <p>{site.schedule}</p>
+            {content.sites.map((mealSite) => (
+              <div className="card summer-site-card" key={mealSite.name}>
+                <h3 className="card__title">{mealSite.name}</h3>
+                {mealSite.address && <p className="summer-site-card__address">{mealSite.address}</p>}
+                <p>{mealSite.schedule}</p>
               </div>
             ))}
           </div>
 
-          <p style={{ marginTop: 'var(--space-6)' }}>Sign-up form and menus coming soon.</p>
+          <p style={{ marginTop: 'var(--space-6)' }}>{content.signupNote}</p>
         </div>
       </section>
 
@@ -72,11 +60,11 @@ function SummerMeals() {
           <div className="cta-section__bg-overlay" />
         </div>
         <div className="container cta-section__content cta-section__content--visible">
-          <h2>Questions about Summer Meals?</h2>
-          <p>Call or text Genesis Garden and we'll get back to you.</p>
+          <h2>{content.cta.heading}</h2>
+          <p>{content.cta.text}</p>
           <div className="cta-section__actions">
-            <a href="tel:3093263075" className="btn btn--accent btn--lg btn--glow">
-              309-326-3075
+            <a href={site.phoneHref} className="btn btn--accent btn--lg btn--glow">
+              {site.phone}
             </a>
           </div>
         </div>

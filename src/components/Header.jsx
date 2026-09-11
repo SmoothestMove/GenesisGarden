@@ -1,16 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import nav from '../content/nav.json';
 import './Header.css';
 
-const navLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/housing-services', label: 'Housing' },
-  { to: '/job-openings', label: 'Job Openings' },
-  { to: '/summer-meals', label: 'Summer Meals To-Go' },
-  { to: '/about-us', label: 'About Us' },
-  { to: '/partners', label: 'Partners' },
-  { to: '/contact-us', label: 'Contact' },
-];
+const navLinks = nav.header;
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);

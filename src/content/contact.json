@@ -1,0 +1,23 @@
+{
+  "seo": {
+    "title": "Contact Us | Genesis Garden",
+    "description": "Contact Genesis Garden by calling or texting 309-326-3075, or by mail at 307 E Carroll St, Macomb, IL 61455."
+  },
+  "hero": {
+    "heading": "Contact Us",
+    "text": "We'd love to hear from you. Reach out with questions, or if you need housing assistance."
+  },
+  "cards": {
+    "mailingHeading": "Mailing Address",
+    "callHeading": "Call Us",
+    "emailHeading": "Email",
+    "emailNote": "Not listed on the main Contact page, but published by Genesis Garden in its SMS messaging terms as a way to reach the organization.",
+    "emergencyHeading": "Emergency Housing Line",
+    "emergencyNote": "Please leave a message if we can't answer the phone, and we will call or text you in response."
+  },
+  "form": {
+    "heading": "Send Us a Message",
+    "successHeading": "Thank You!",
+    "successText": "Your message has been received. We'll get back to you as soon as possible."
+  }
+}

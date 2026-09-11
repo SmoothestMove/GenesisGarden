@@ -1,0 +1,42 @@
+{
+  "seo": {
+    "title": "Partners | Genesis Garden",
+    "description": "Genesis Garden partners with local and regional organizations including Empower, ROSC, Continuum of Care, and Housing Action Illinois."
+  },
+  "hero": {
+    "heading": "Our Partners",
+    "text": "Genesis Garden is part of several networks connected to our activities. These formal and informal engagements make it possible to do what we do!"
+  },
+  "partners": [
+    {
+      "icon": "bell",
+      "name": "Empower",
+      "description": "The Empower deflection initiative supports people with resources and referrals to housing or treatment, offering area law enforcement alternatives to arrest."
+    },
+    {
+      "icon": "globe",
+      "name": "McDonough-Fulton Regional System of Care (ROSC)",
+      "description": "ROSCs are …."
+    },
+    {
+      "icon": "book",
+      "name": "ROE 26 IRIS and YES/ networks",
+      "description": ""
+    },
+    {
+      "icon": "building",
+      "name": "McDonough County InterAgency Council",
+      "description": ""
+    },
+    {
+      "icon": "people",
+      "name": "West Central Illinois Continuum of Care, IL-519",
+      "description": ""
+    },
+    {
+      "icon": "house",
+      "name": "Housing Action Illinois",
+      "description": ""
+    }
+  ]
+}
