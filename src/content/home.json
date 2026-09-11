@@ -1,0 +1,67 @@
+{
+  "seo": {
+    "title": "Genesis Garden | Safe, Stable Housing in Western Illinois",
+    "description": "Genesis Garden provides emergency shelter, eviction prevention, and permanent housing solutions in McDonough, Hancock, Henderson, and Warren Counties in Western Illinois."
+  },
+  "hero": {
+    "backgroundImage": "/images/Enhanced-Family_Hero.webp",
+    "badge": "Serving Western Illinois",
+    "titleLine1": "Cultivating Hope,",
+    "titleAccent": "Empowering Dreams",
+    "subtitle": "Empowering our community with safe, stable, and affordable housing options for individuals and families across McDonough, Hancock, Henderson, and Warren Counties.",
+    "primaryButtonLabel": "Our Services",
+    "primaryButtonTo": "/housing-services"
+  },
+  "missionStrip": [
+    { "icon": "house", "title": "Emergency Shelter", "text": "Immediate safe housing when you need it most" },
+    { "icon": "people", "title": "Eviction Prevention", "text": "Resources and support to keep you in your home" },
+    { "icon": "shield", "title": "Permanent Housing", "text": "Long-term solutions for lasting stability" }
+  ],
+  "thingsToKnow": {
+    "heading": "Things to Know",
+    "intro": "If you are considering seeking assistance, here are some important things to keep in mind.",
+    "items": [
+      {
+        "number": "01",
+        "title": "Explore All Options First",
+        "text": "The best long-term outcomes happen when you don't enter emergency shelter. If you have SAFE housing now, what would it take for you to stay there? We'll talk with you about that, and whether family or friends could house you for 30 days."
+      },
+      {
+        "number": "02",
+        "title": "Shelter Is Temporary",
+        "text": "Everyone should have a safe, stable place to live. Emergency shelter is a band-aid and is time-limited. The underlying cause of a lot of homelessness is that there is not enough permanent housing at the right price or configuration to meet demand."
+      },
+      {
+        "number": "03",
+        "title": "We Focus on Permanent Outcomes",
+        "text": "During your time in emergency shelter with Genesis Garden, you will focus on how to gain a safe, permanent place to live. This is your work, and we will support you in identifying and applying your strengths."
+      },
+      {
+        "number": "04",
+        "title": "Definitions Matter",
+        "text": "Couch-surfing and living doubled up is not the same as \"homeless.\" Homeless, as used at Genesis Garden, means you are sleeping on the street, living in a vehicle, or an abandoned building. Domestic violence situations are also addressed."
+      },
+      {
+        "number": "05",
+        "title": "Be Open With Us",
+        "text": "When you call to be added to our list, please be upfront and honest about your situation and history. We know it can be hard to talk about, but we are best able to support you when we understand your story. We care about what's happened to you."
+      }
+    ]
+  },
+  "impact": {
+    "heading": "Our Impact",
+    "subtitle": "Making a difference across Western Illinois since 2010.",
+    "stats": [
+      { "end": 4, "suffix": "", "label": "Counties Served", "detail": "McDonough, Hancock, Henderson & Warren" },
+      { "label": "Years of Service", "detail": "Founded in 2010 after the Shade Tree Mobile Park evictions" },
+      { "end": 5, "suffix": "", "label": "Housing Programs", "detail": "From emergency shelter to permanent housing" }
+    ]
+  },
+  "cta": {
+    "backgroundImage": "/images/Geness_House_Winter.png",
+    "heading": "Ready to Talk?",
+    "text": "To talk with us about your housing issues — emergency housing, eviction prevention, diversion, and more — call Genesis Garden. Please leave a message if we can't answer, and we will call or text you in response.",
+    "secondaryButtonLabel": "Contact Us",
+    "secondaryButtonTo": "/contact-us"
+  }
+}

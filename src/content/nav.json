@@ -1,0 +1,23 @@
+{
+  "header": [
+    { "label": "Home", "to": "/" },
+    { "label": "Housing", "to": "/housing-services" },
+    { "label": "Job Openings", "to": "/job-openings" },
+    { "label": "Summer Meals To-Go", "to": "/summer-meals" },
+    { "label": "About Us", "to": "/about-us" },
+    { "label": "Partners", "to": "/partners" },
+    { "label": "Contact", "to": "/contact-us" }
+  ],
+  "footerWork": [
+    { "label": "Housing", "to": "/housing-services" },
+    { "label": "Job Openings", "to": "/job-openings" },
+    { "label": "Summer Meals To-Go", "to": "/summer-meals" },
+    { "label": "About Us", "to": "/about-us" },
+    { "label": "Partners", "to": "/partners" }
+  ],
+  "footerSupport": [
+    { "label": "Donate", "to": "/donate" },
+    { "label": "Contact Us", "to": "/contact-us" },
+    { "label": "Privacy Policy", "to": "https://www.genesis-garden.org/privacy-policy/", "external": true }
+  ]
+}

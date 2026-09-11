@@ -1,0 +1,33 @@
+{
+  "seo": {
+    "title": "Donate | Genesis Garden",
+    "description": "Support Genesis Garden with tax-deductible donations. We accept financial contributions and gently used household goods to help families find stable housing."
+  },
+  "hero": {
+    "heading": "Support Our Mission",
+    "text": "We hope you'll help us do this work! Genesis Garden is an IRS-registered 501(c)(3), so your contributions are tax deductible."
+  },
+  "seal": {
+    "heading": "2026 Candid Silver Seal of Transparency",
+    "text": "We earned the 2026 Candid Silver Seal of Transparency — demonstrating our commitment to accountability and openness.",
+    "imageUrl": "https://widgets.guidestar.org/prod/v1/pdp/transparency-seal/9277884/svg",
+    "imageAlt": "Candid Silver Seal of Transparency 2026"
+  },
+  "financial": {
+    "heading": "Financial Support",
+    "intro": "We accept monetary donations online and by check payable to Genesis Garden, mailed to:",
+    "buttonLabel": "Donate Online",
+    "buttonUrl": "https://www.zeffy.com/en-US/donation-form/donate-to-support-stable-housing-in-macomb-and-western-illinois"
+  },
+  "goods": {
+    "heading": "Donating Goods",
+    "intro": "Purchase an item from our wish lists at Amazon or Walmart, or donate gently used household goods and some furniture to help families settle into new homes.",
+    "note": "We are selective about furniture — please contact us ahead of time.",
+    "wishHeading": "Items We Need",
+    "wishItems": ["Pots, pans, kitchen utensils", "Dining tables and chairs", "Dressers"],
+    "shelterHeading": "For Our Shelters",
+    "shelterItems": ["Patio furniture", "Outdoor chairs", "Umbrella bases & umbrellas"],
+    "declineHeading": "What We Don't Accept",
+    "dontAccept": ["Clothing or shoes (unless we make a specific request)", "Mattresses"]
+  }
+}

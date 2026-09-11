@@ -161,6 +161,33 @@
   margin-bottom: var(--space-6);
 }
 
+/* Staff / Directors list */
+.about-team-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.about-team-list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-gray-200);
+}
+
+.about-team-list li strong {
+  color: var(--color-primary-dark);
+}
+
+.about-team-list li span {
+  color: var(--color-gray-600);
+  font-size: var(--fs-sm);
+}
+
 /* Team stats */
 .about-team-stats {
   display: flex;
@@ -203,6 +230,8 @@
 
 .about-history-grid--visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0s; }
 .about-history-grid--visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.15s; }
+.about-history-grid--visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+.about-history-grid--visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.45s; }
 
 @media (min-width: 768px) {
   .about-history-grid {
@@ -246,4 +275,28 @@
 
 .about-block p {
   line-height: var(--lh-relaxed);
+}
+
+/* Volunteers history */
+.about-volunteers-history {
+  margin-top: var(--space-6);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  max-width: 760px;
+}
+
+.about-volunteers-history summary {
+  cursor: pointer;
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+}
+
+.about-volunteers-history__body {
+  margin-top: var(--space-4);
+}
+
+.about-volunteers-history__body p {
+  line-height: var(--lh-relaxed);
+  color: var(--color-gray-700);
 }

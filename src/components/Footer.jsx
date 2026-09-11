@@ -1,19 +1,8 @@
 import { Link } from 'react-router-dom';
 import useInView from '../hooks/useInView';
+import site from '../content/site.json';
+import nav from '../content/nav.json';
 import './Footer.css';
-
-const footerLinks = {
-  services: [
-    { to: '/housing-services', label: 'Housing Services' },
-    { to: '/about-us', label: 'About Us' },
-    { to: '/partners', label: 'Partners' },
-  ],
-  support: [
-    { to: '/donate', label: 'Donate' },
-    { to: '/contact-us', label: 'Contact Us' },
-    { href: 'https://www.genesis-garden.org/privacy-policy/', label: 'Privacy Policy', external: true },
-  ],
-};
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -31,19 +20,20 @@ function Footer() {
             <Link to="/" className="footer__logo" aria-label="Genesis Garden Home">
               <img
                 src="/logo/Logo-Full.png"
-                alt="Genesis Garden"
+                alt=""
                 className="footer__logo-img"
-                width="180"
-                height="80"
+                width="187"
+                height="200"
                 loading="lazy"
               />
+              <span className="footer__logo-text">{site.orgName}</span>
             </Link>
             <p className="footer__tagline">
-              Cultivating hope, nurturing dreams, empowering community.
+              {site.tagline}
             </p>
             <div className="footer__social">
               <a
-                href="https://www.facebook.com/GenesisGarden1"
+                href={site.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer__social-link"
@@ -60,7 +50,7 @@ function Footer() {
           <div className="footer__links-group">
             <h3 className="footer__heading">Our Work</h3>
             <ul className="footer__link-list">
-              {footerLinks.services.map((link) => (
+              {nav.footerWork.map((link) => (
                 <li key={link.to}>
                   <Link to={link.to} className="footer__link">{link.label}</Link>
                 </li>
@@ -72,10 +62,10 @@ function Footer() {
           <div className="footer__links-group">
             <h3 className="footer__heading">Support</h3>
             <ul className="footer__link-list">
-              {footerLinks.support.map((link) => (
-                <li key={link.to || link.href}>
+              {nav.footerSupport.map((link) => (
+                <li key={link.to}>
                   {link.external ? (
-                    <a href={link.href} target="_blank" rel="noopener noreferrer" className="footer__link">
+                    <a href={link.to} target="_blank" rel="noopener noreferrer" className="footer__link">
                       {link.label}
                     </a>
                   ) : (
@@ -90,13 +80,13 @@ function Footer() {
           <div className="footer__contact">
             <h3 className="footer__heading">Contact</h3>
             <address className="footer__address">
-              <p>112 W. Jackson St.</p>
-              <p>Macomb, IL 61455</p>
+              <p>{site.address.street}</p>
+              <p>{site.address.cityStateZip}</p>
               <p>
-                <a href="tel:3093263075" className="footer__link">309-326-3075</a>
+                <a href={site.phoneHref} className="footer__link">{site.phone}</a>
               </p>
               <p>
-                <a href="mailto:info@genesis-garden.org" className="footer__link">info@genesis-garden.org</a>
+                <a href={`mailto:${site.email}`} className="footer__link">{site.email}</a>
               </p>
             </address>
           </div>
@@ -118,7 +108,7 @@ function Footer() {
       {/* Copyright bar */}
       <div className="footer__bottom">
         <div className="container footer__bottom-inner">
-          <p>&copy; {currentYear} Genesis Garden. All rights reserved.</p>
+          <p>&copy; {currentYear} {site.orgName}. All rights reserved.</p>
           <p className="footer__501">A 501(c)(3) nonprofit organization</p>
         </div>
       </div>

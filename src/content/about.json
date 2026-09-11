@@ -1,0 +1,79 @@
+{
+  "seo": {
+    "title": "About Us | Genesis Garden",
+    "description": "Learn about Genesis Garden, a 501(c)(3) nonprofit serving McDonough County and Western Illinois with safe, stable, and affordable housing."
+  },
+  "hero": {
+    "heading": "About Genesis Garden",
+    "text": "Genesis Garden is a 501(c)(3) nonprofit based in Macomb, Illinois, founded as a grassroots organization dedicated to addressing and eliminating the effects of poverty through a proactive, preventative, and compassionate approach."
+  },
+  "missionVision": {
+    "missionLabel": "Our Mission",
+    "missionHeading": "Cultivating hope, nurturing community, empowering dreams.",
+    "visionLabel": "Our Vision",
+    "visionHeading": "A resilient and hopeful community."
+  },
+  "values": {
+    "heading": "Our Core Values",
+    "items": [
+      { "icon": "plus", "title": "Empowerment" },
+      { "icon": "people", "title": "Community" },
+      { "icon": "heart", "title": "Compassion" },
+      { "icon": "shield", "title": "Strengths-focused" },
+      { "icon": "leaf", "title": "Asset-based" }
+    ],
+    "note": "In 2021, Genesis Garden's directors participated in a series of trainings to focus efforts more on transformational change and development using a lens of asset-based and holistic community development."
+  },
+  "team": {
+    "image": "/images/campus_wide.jpg",
+    "staffHeading": "Staff",
+    "staff": [
+      { "name": "Jeanetta Thorpe", "role": "Genesis Housing Director" },
+      { "name": "Chaka Donald", "role": "Property Manager" },
+      { "name": "Amanda Bolte", "role": "Outreach & PSH Care Manager" },
+      { "name": "Anita Brown", "role": "Office Professional & SOAR Specialist" }
+    ],
+    "inMemoryName": "Crystal Brothe",
+    "inMemoryUrl": "http://crystalbrothe.com/",
+    "directorsHeading": "Directors",
+    "directors": [
+      { "name": "Melissa Calhoun", "role": "President" },
+      { "name": "David Monninger", "role": "Vice President" },
+      { "name": "Mark Merrill", "role": "Treasurer" },
+      { "name": "Kathy Stoner-Lasala", "role": "" },
+      { "name": "Marie Blome", "role": "" }
+    ],
+    "foundingPresident": "Founding President: Brooks Olds",
+    "partnersLinkLabel": "See our partners"
+  },
+  "history": {
+    "items": [
+      {
+        "icon": "clock",
+        "heading": "Our History",
+        "text": "Our inception was inspired by the rapid eviction of Shade Tree Mobile Park residents in 2010. This event exposed the lack of emergency and rapid re-housing in Macomb and McDonough County for families who suddenly find themselves without a place to live."
+      },
+      {
+        "icon": "house",
+        "heading": "Our Housing Work",
+        "text": "Ranging from emergency shelter to rapid re-housing, eviction prevention to scattered-site permanent supportive housing, we work to meet people where they are, hold awareness of their lived experience, and assist with achieving stable housing — from getting a new state ID to arranging child care, food and medical benefits, employment, schooling, or transportation to safe housing with family or friends out of state."
+      },
+      {
+        "icon": "calendar",
+        "heading": "Summer Meals",
+        "text": "Summer Meals for Kids began in 2016 as a fixed-site meal service, then went on the road during the COVID-19 pandemic, taking advantage of USDA waivers, to deliver breakfast and lunch each day of the week. Between summers, our food focus turns to relationship-building while sharing meals — we believe shared meals at a table increase resilience."
+      },
+      {
+        "icon": "person",
+        "heading": "West Central Illinois Open Table",
+        "text": "In partnership with the West Central Illinois Open Table project, we support volunteer community members who walk alongside individuals or families (\"friends\") who would like support achieving their life goals. Friends and volunteers meet weekly for a year, developing relationships as the friends tackle and achieve milestones on the way to their goal."
+      }
+    ]
+  },
+  "volunteers": {
+    "heading": "Service Members & Volunteers",
+    "current": "**2026–2027 AmeriCorps VISTA Volunteers** through Housing Action Illinois and Recovery Corps: Amber, Hayley, Justin, Richie.",
+    "pastSummary": "View past interns, VISTA volunteers & Peace Corps Fellows (2020–2024)",
+    "pastBody": "**2024 Macomb High Intern:** Josie Calvert\n\n**2023–2024 AmeriCorps VISTA Volunteer** through Housing Action Illinois: Mariam Antoine\n\n**2020–21 Interns, Peace Corps Fellows, and AmeriCorps VISTA Volunteers:** Miranda Lambert (2020–21), Sydney Dewees (2020–21), Alexander Benishek (2021), Cortnie Schierman (2020–21), Zac Green (2021)\n\nCindy Guzman, Intern, WIU Social Work Department (Spring 2021)\n\n**Summer 2020 Volunteers/Staff**\n\nAmeriCorps Summer VISTA: Adrienne Graham, Grace Merrett, Lily Mansfield, Ethan La Prad, Ethan Fogg, Gibby Blankenship, Devon Simpson, Jessica Moncrieff, Iliyana Olds, Marco Narvaez, Desi Blanken\n\nPeace Corps Fellows/AmeriCorps: Camden Arnold, Brianne Nichols, Meghan Elgee, Miranda Lambert, Gaothajying Her, Cortnie Schierman, Katie Colon\n\nSummer Meals Assistants: Annie Powell, Noah La Prad, Aiden Necak"
+  }
+}

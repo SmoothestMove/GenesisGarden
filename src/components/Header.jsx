@@ -1,14 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import nav from '../content/nav.json';
 import './Header.css';
 
-const navLinks = [
-  { to: '/', label: 'Home' },
-  { to: '/housing-services', label: 'Housing Services' },
-  { to: '/about-us', label: 'About Us' },
-  { to: '/partners', label: 'Partners' },
-  { to: '/contact-us', label: 'Contact' },
-];
+const navLinks = nav.header;
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -46,11 +41,14 @@ function Header() {
         <Link to="/" className="header__logo" aria-label="Genesis Garden Home">
           <img
             src="/logo/Logo-Hybrid.png"
-            alt="Genesis Garden"
+            alt=""
             className="header__logo-img"
-            width="180"
-            height="60"
+            width="164"
+            height="176"
           />
+          <span className="header__logo-text">
+            Genesis<span className="header__logo-text-accent"> Garden</span>
+          </span>
         </Link>
 
         <nav className={`header__nav${menuOpen ? ' header__nav--open' : ''}`} aria-label="Main navigation">

@@ -1,0 +1,23 @@
+{
+  "seo": {
+    "title": "Summer Meals To-Go | Genesis Garden",
+    "description": "Free summer meals for children and youth ages 1-18 in McDonough County, Illinois, through the ISBE/USDA Summer Food Service Program."
+  },
+  "hero": {
+    "heading": "Summer Meals To-Go",
+    "text": "Free meals for children and youth ages 1–18 through the ISBE/USDA Summer Food Service Program (SFSP)."
+  },
+  "contentNote": "Genesis Garden's own site still lists each pickup site's days and times as \"to be announced\" and the sign-up form and menus as \"coming soon\" — that live copy is reproduced below unchanged rather than filled in or guessed at. Genesis Garden should update this page each spring with confirmed schedules before the season begins.",
+  "intro": "From June through August 2026, Genesis Garden offered free summer meals for children and youth ages 1–18 through the ISBE/USDA SFSP program. Multiple days of breakfasts and lunches were available at several sites in McDonough County, Illinois for pickup by children, or by parents, guardians, and caregivers.",
+  "sitesHeading": "Tentative 2026 sites",
+  "sites": [
+    { "name": "Colchester City Hall", "address": "500 E Roberts St, Colchester", "schedule": "June to mid-August. Days and times to be announced." },
+    { "name": "Bushnell and Bardolph", "address": "", "schedule": "June to mid-August. Days and times to be announced." },
+    { "name": "Macomb Middle School", "address": "1500 S Johnson, Macomb", "schedule": "June 26 – mid-August. Days and times to be announced." }
+  ],
+  "signupNote": "Sign-up form and menus coming soon.",
+  "cta": {
+    "heading": "Questions about Summer Meals?",
+    "text": "Call or text Genesis Garden and we'll get back to you."
+  }
+}
