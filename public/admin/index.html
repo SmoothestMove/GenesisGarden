@@ -5,8 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Genesis Garden Content Editor</title>
     <link href="/admin/config.yml" rel="cms-config-url" type="text/yaml" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,800;1,9..144,300&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <!-- Loaded only so preview-templates.js's Babel-compiled JSX has a
+         `React` global to call .createElement() on — Decap CMS's own
+         internal React (bundled above) is a separate instance and
+         isn't exposed globally. Preview template components must stay
+         plain functions with no hooks so mixing instances is safe
+         (see comment at the top of preview-templates.js). -->
+    <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+    <script type="text/babel" data-presets="react" src="/admin/preview-templates.js"></script>
   </body>
 </html>
