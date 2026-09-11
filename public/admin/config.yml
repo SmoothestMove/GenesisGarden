@@ -39,7 +39,7 @@ collections:
             widget: "object"
             fields:
               - { label: "Facebook URL", name: "facebook", widget: "string" }
-          - { label: "Year Founded", name: "foundedYear", widget: "number", valueType: "int" }
+          - { label: "Year Founded", name: "foundedYear", widget: "number", value_type: "int" }
 
       - file: "src/content/home.json"
         label: "Home Page"
@@ -95,7 +95,7 @@ collections:
                 name: "stats"
                 widget: "list"
                 fields:
-                  - { label: "Number (leave blank for Years of Service, calculated automatically)", name: "end", widget: "number", valueType: "int", required: false }
+                  - { label: "Number (leave blank for Years of Service, calculated automatically)", name: "end", widget: "number", value_type: "int", required: false }
                   - { label: "Suffix", name: "suffix", widget: "string", required: false, hint: "e.g. + or blank" }
                   - { label: "Label", name: "label", widget: "string" }
                   - { label: "Detail Text", name: "detail", widget: "string" }
