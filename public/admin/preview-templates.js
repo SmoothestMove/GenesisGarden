@@ -4,15 +4,23 @@
  * Services pages next to the edit form, using Decap's built-in
  * proportional scroll-sync (no code needed for that — it's automatic
  * once a preview template exists). There is no per-field highlight;
- * Decap CMS has no supported API for that (see commit message for
- * this file's addition for the investigation).
+ * Decap CMS has no supported API for that (see the commit that added
+ * this file for the investigation).
  *
- * Written as JSX, transpiled in-browser by Babel Standalone (loaded in
- * index.html) since public/admin/ has no build step. Every component
- * here MUST be a plain function of props only — no hooks — because
- * these elements are reconciled by Decap CMS's own bundled React
- * instance, not the separately-loaded global React/ReactDOM used only
- * to satisfy JSX's compiled React.createElement() calls.
+ * Written as JSX. index.html fetches this file's source, transpiles it
+ * with Babel's "automatic" JSX runtime (compiles <div/> to calls
+ * imported from "react/jsx-runtime" rather than a global
+ * React.createElement — React 19, which decap-cms@3 bundles
+ * internally, no longer ships a browser <script>-loadable build at
+ * all), and executes the result as a real ES module so that import
+ * resolves against the import map in index.html, pinned to the same
+ * React major version Decap bundles.
+ *
+ * Every component here MUST be a plain function of props only — no
+ * hooks. Only "react/jsx-runtime" is import-mapped (for building
+ * element objects), not "react" itself, so useState/useEffect/etc.
+ * aren't even available to import — which is fine, since all data
+ * here comes from the `entry` prop with no need for local state.
  */
 
 /* ---------- shared icon sets (kept in sync by hand with the matching
