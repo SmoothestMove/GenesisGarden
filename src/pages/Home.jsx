@@ -3,6 +3,8 @@ import SEOHead from '../components/SEOHead';
 import SectionDivider from '../components/SectionDivider';
 import AnimatedCounter from '../components/AnimatedCounter';
 import useInView from '../hooks/useInView';
+import useParallax from '../hooks/useParallax';
+import useRipple from '../hooks/useRipple';
 import content from '../content/home.json';
 import site from '../content/site.json';
 import './Home.css';
@@ -35,6 +37,8 @@ function Home() {
   const [knowRef, knowInView] = useInView({ threshold: 0.05 });
   const [impactRef, impactInView] = useInView();
   const [ctaRef, ctaInView] = useInView();
+  const heroParallaxRef = useParallax();
+  const ripple = useRipple();
 
   const { hero, getHelp, thingsToKnow, impact, cta } = content;
 
@@ -47,7 +51,7 @@ function Home() {
 
       {/* ===== Hero Section ===== */}
       <section className="hero">
-        <div className="hero__bg" aria-hidden="true">
+        <div className="hero__bg" aria-hidden="true" ref={heroParallaxRef}>
           <img
             src={hero.backgroundImage}
             alt=""
@@ -88,10 +92,10 @@ function Home() {
               {hero.subtitle}
             </p>
             <div className="hero__actions animate-fade-in-up delay-2">
-              <Link to={hero.primaryButtonTo} className="btn btn--accent btn--lg">
+              <Link to={hero.primaryButtonTo} className="btn btn--accent btn--lg" onClick={ripple}>
                 {hero.primaryButtonLabel}
               </Link>
-              <a href={site.phoneHref} className="btn btn--outline-white btn--lg">
+              <a href={site.phoneHref} className="btn btn--outline-white btn--lg" onClick={ripple}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
                 </svg>
@@ -218,13 +222,13 @@ function Home() {
             {cta.text}
           </p>
           <div className="cta-section__actions">
-            <a href={site.phoneHref} className="btn btn--accent btn--lg btn--glow">
+            <a href={site.phoneHref} className="btn btn--accent btn--lg btn--glow" onClick={ripple}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
               </svg>
               {site.phone}
             </a>
-            <Link to={cta.secondaryButtonTo} className="btn btn--outline-white btn--lg">
+            <Link to={cta.secondaryButtonTo} className="btn btn--outline-white btn--lg" onClick={ripple}>
               {cta.secondaryButtonLabel}
             </Link>
           </div>

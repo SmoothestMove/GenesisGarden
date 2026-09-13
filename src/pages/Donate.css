@@ -46,6 +46,7 @@
   background: var(--color-white);
   border: 1px solid var(--color-gray-200);
   animation: none;
+  overflow: hidden;
 }
 
 .donate-seal__badge--image img {
@@ -53,6 +54,28 @@
   height: 100%;
   object-fit: contain;
   border-radius: 50%;
+}
+
+/* Gold shimmer sweep over the badge, without distorting the seal image
+   itself (it's an official trust mark) */
+.donate-seal__badge--image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg,
+    transparent 40%,
+    rgba(212, 163, 115, 0.55) 50%,
+    transparent 60%
+  );
+  background-size: 300% 300%;
+  background-position: -100% -100%;
+  animation: sealShimmer 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sealShimmer {
+  0%, 30% { background-position: -100% -100%; }
+  70%, 100% { background-position: 100% 100%; }
 }
 
 .donate-seal__text h2 {
@@ -94,7 +117,7 @@
 }
 
 .donate-card--featured {
-  border: 2px solid var(--color-primary);
+  border: 2px solid transparent;
   position: relative;
 }
 
@@ -104,13 +127,17 @@
   inset: -2px;
   border-radius: var(--radius-lg);
   border: 2px solid transparent;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent)) border-box;
+  background: linear-gradient(135deg,
+    var(--color-primary), var(--color-accent),
+    var(--color-primary-light), var(--color-primary)
+  ) border-box;
+  background-size: 300% 300%;
   mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
   -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
   mask-composite: exclude;
   -webkit-mask-composite: xor;
   pointer-events: none;
-  animation: borderGlow 4s ease-in-out infinite;
+  animation: gradientShift 5s ease-in-out infinite;
 }
 
 .donate-card__icon {

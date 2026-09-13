@@ -24,13 +24,13 @@
   height: 100%;
   object-fit: cover;
   object-position: center 30%;
-  transform: scale(1.05);
+  transform: scale(1.18);
   animation: heroZoom 20s ease-in-out infinite alternate;
 }
 
 @keyframes heroZoom {
-  0% { transform: scale(1.05); }
-  100% { transform: scale(1.12); }
+  0% { transform: scale(1.18); }
+  100% { transform: scale(1.25); }
 }
 
 .hero__bg-overlay {
@@ -336,11 +336,18 @@
   font-family: var(--font-heading);
   font-weight: var(--fw-bold);
   font-size: var(--fs-sm);
-  box-shadow: 0 3px 10px rgba(45, 106, 79, 0.2);
+  box-shadow: 0 0 0 0 rgba(82, 183, 136, 0.3);
+  animation: knowBadgeGlow 3.2s ease-in-out infinite;
   transition: box-shadow var(--transition-base);
 }
 
+@keyframes knowBadgeGlow {
+  0%, 100% { box-shadow: 0 3px 10px rgba(45, 106, 79, 0.2), 0 0 0 0 rgba(82, 183, 136, 0.25); }
+  50% { box-shadow: 0 3px 10px rgba(45, 106, 79, 0.2), 0 0 14px 3px rgba(82, 183, 136, 0.3); }
+}
+
 .know-card:hover .know-card__number {
+  animation-play-state: paused;
   box-shadow: 0 3px 16px rgba(45, 106, 79, 0.35), 0 0 20px rgba(82, 183, 136, 0.15);
 }
 
@@ -433,17 +440,26 @@
   inset: 0;
   background: linear-gradient(135deg,
     rgba(27, 67, 50, 0.92) 0%,
-    rgba(45, 106, 79, 0.88) 100%
+    rgba(45, 106, 79, 0.88) 45%,
+    rgba(64, 145, 108, 0.85) 100%
   );
+  background-size: 220% 220%;
+  animation: gradientShift 12s ease-in-out infinite;
 }
 
-/* Animated dot pattern */
+/* Floating dot pattern */
 .cta-section__bg-overlay::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+  inset: -20px;
+  background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
   background-size: 20px 20px;
+  animation: dotsDrift 14s linear infinite;
+}
+
+@keyframes dotsDrift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-20px, -20px); }
 }
 
 @media (min-width: 768px) {
