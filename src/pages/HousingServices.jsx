@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import SEOHead from '../components/SEOHead';
 import SectionDivider from '../components/SectionDivider';
 import useInView from '../hooks/useInView';
+import useParallax from '../hooks/useParallax';
 import content from '../content/housing-services.json';
 import site from '../content/site.json';
 import './HousingServices.css';
@@ -53,6 +54,7 @@ function HousingServices() {
   const [servicesRef, servicesInView] = useInView({ threshold: 0.05 });
   const [eligRef, eligInView] = useInView();
   const [actRef, actInView] = useInView();
+  const heroParallaxRef = useParallax();
 
   const { hero, intro, services, eligibility, otherActivities, cta } = content;
 
@@ -65,7 +67,7 @@ function HousingServices() {
 
       {/* Page Hero */}
       <section className="housing-hero">
-        <div className="housing-hero__bg" aria-hidden="true">
+        <div className="housing-hero__bg" aria-hidden="true" ref={heroParallaxRef}>
           <img
             src={hero.backgroundImage}
             alt=""

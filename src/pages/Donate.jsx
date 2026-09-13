@@ -104,22 +104,40 @@ function Donate() {
 
               <h3>{goods.wishHeading}</h3>
               <ul className="donate-list donate-list--accept">
-                {goods.wishItems.map((item) => (
-                  <li key={item}>{item}</li>
+                {goods.wishItems.map((item, i) => (
+                  <li
+                    key={item}
+                    className={`reveal${cardsInView ? ' reveal--visible' : ''}`}
+                    style={{ transitionDelay: `${0.2 + i * 0.05}s` }}
+                  >
+                    {item}
+                  </li>
                 ))}
               </ul>
 
               <h3>{goods.shelterHeading}</h3>
               <ul className="donate-list donate-list--accept">
-                {goods.shelterItems.map((item) => (
-                  <li key={item}>{item}</li>
+                {goods.shelterItems.map((item, i) => (
+                  <li
+                    key={item}
+                    className={`reveal${cardsInView ? ' reveal--visible' : ''}`}
+                    style={{ transitionDelay: `${0.2 + i * 0.05}s` }}
+                  >
+                    {item}
+                  </li>
                 ))}
               </ul>
 
               <h3>{goods.declineHeading}</h3>
               <ul className="donate-list donate-list--decline">
-                {goods.dontAccept.map((item) => (
-                  <li key={item}>{item}</li>
+                {goods.dontAccept.map((item, i) => (
+                  <li
+                    key={item}
+                    className={`reveal${cardsInView ? ' reveal--visible' : ''}`}
+                    style={{ transitionDelay: `${0.2 + i * 0.05}s` }}
+                  >
+                    {item}
+                  </li>
                 ))}
               </ul>
             </div>

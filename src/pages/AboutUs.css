@@ -95,6 +95,12 @@
 /* --- Value Cards --- */
 .value-card {
   text-align: center;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  transform-style: preserve-3d;
+}
+
+.value-card.card:hover {
+  transform: perspective(700px) rotateX(6deg) rotateY(-6deg) translateY(-4px);
 }
 
 .value-card__icon {
@@ -215,11 +221,24 @@
 
 /* --- History/Impact Timeline --- */
 .about-history-grid {
+  position: relative;
   display: grid;
   gap: var(--space-8);
   grid-template-columns: 1fr;
-  max-width: 900px;
+  max-width: 640px;
   margin: 0 auto;
+}
+
+/* Single connecting line running the full height of the timeline,
+   instead of a separate border on each item */
+.about-history-grid::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 14px;
+  bottom: 14px;
+  width: 2px;
+  background: var(--color-gray-300);
 }
 
 .about-history-grid > * {
@@ -233,19 +252,12 @@
 .about-history-grid--visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
 .about-history-grid--visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.45s; }
 
-@media (min-width: 768px) {
-  .about-history-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 .about-block {
   position: relative;
 }
 
 .about-block--timeline {
   padding-left: var(--space-10);
-  border-left: 2px solid var(--color-gray-300);
 }
 
 .about-block__marker {

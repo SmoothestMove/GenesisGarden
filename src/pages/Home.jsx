@@ -3,19 +3,16 @@ import SEOHead from '../components/SEOHead';
 import SectionDivider from '../components/SectionDivider';
 import AnimatedCounter from '../components/AnimatedCounter';
 import useInView from '../hooks/useInView';
+import useParallax from '../hooks/useParallax';
+import useRipple from '../hooks/useRipple';
 import content from '../content/home.json';
 import site from '../content/site.json';
 import './Home.css';
 
-const MISSION_ICONS = {
+const GET_HELP_ICONS = {
   house: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
       <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-    </svg>
-  ),
-  people: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
     </svg>
   ),
   shield: (
@@ -23,15 +20,27 @@ const MISSION_ICONS = {
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
     </svg>
   ),
+  target: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" />
+    </svg>
+  ),
+  compass: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <circle cx="12" cy="12" r="10" /><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+    </svg>
+  ),
 };
 
 function Home() {
-  const [missionRef, missionInView] = useInView();
+  const [getHelpRef, getHelpInView] = useInView();
   const [knowRef, knowInView] = useInView({ threshold: 0.05 });
   const [impactRef, impactInView] = useInView();
   const [ctaRef, ctaInView] = useInView();
+  const heroParallaxRef = useParallax();
+  const ripple = useRipple();
 
-  const { hero, missionStrip, thingsToKnow, impact, cta } = content;
+  const { hero, getHelp, thingsToKnow, impact, cta } = content;
 
   return (
     <>
@@ -42,7 +51,7 @@ function Home() {
 
       {/* ===== Hero Section ===== */}
       <section className="hero">
-        <div className="hero__bg" aria-hidden="true">
+        <div className="hero__bg" aria-hidden="true" ref={heroParallaxRef}>
           <img
             src={hero.backgroundImage}
             alt=""
@@ -83,10 +92,10 @@ function Home() {
               {hero.subtitle}
             </p>
             <div className="hero__actions animate-fade-in-up delay-2">
-              <Link to={hero.primaryButtonTo} className="btn btn--accent btn--lg">
+              <Link to={hero.primaryButtonTo} className="btn btn--accent btn--lg" onClick={ripple}>
                 {hero.primaryButtonLabel}
               </Link>
-              <a href={site.phoneHref} className="btn btn--outline-white btn--lg">
+              <a href={site.phoneHref} className="btn btn--outline-white btn--lg" onClick={ripple}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
                 </svg>
@@ -102,19 +111,39 @@ function Home() {
         </div>
       </section>
 
-      {/* ===== Mission Strip ===== */}
-      <section className="mission-strip" ref={missionRef}>
+      {/* ===== Get Help ===== */}
+      <section className="get-help" ref={getHelpRef}>
         <div className="container">
-          <div className={`mission-strip__grid${missionInView ? ' mission-strip__grid--visible' : ''}`}>
-            {missionStrip.map((item) => (
-              <div className="mission-strip__item glass-card" key={item.title}>
-                <div className="mission-strip__icon-wrap">
-                  {MISSION_ICONS[item.icon]}
-                </div>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </div>
-            ))}
+          <div className="get-help__panel">
+            <div className="get-help__header">
+              <h2>{getHelp.heading}</h2>
+              <p>{getHelp.intro}</p>
+            </div>
+            <div className="get-help__list">
+              {getHelp.items.map((item, i) => (
+                <Link
+                  to={item.linkTo}
+                  className={`get-help__item reveal${getHelpInView ? ' reveal--visible' : ''}`}
+                  key={item.prompt}
+                  style={{ transitionDelay: `${i * 0.08}s` }}
+                >
+                  <span className="get-help__icon icon-container" aria-hidden="true">
+                    {GET_HELP_ICONS[item.icon]}
+                  </span>
+                  <span className="get-help__body">
+                    <span className="get-help__prompt">{item.prompt}</span>
+                    <span className="get-help__detail">{item.detail}</span>
+                    <span className="get-help__link-label">
+                      {item.linkLabel}
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                        <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    </span>
+                  </span>
+                </Link>
+              ))}
+            </div>
+            <p className="get-help__closing">{getHelp.closingNote}</p>
           </div>
         </div>
       </section>
@@ -193,13 +222,13 @@ function Home() {
             {cta.text}
           </p>
           <div className="cta-section__actions">
-            <a href={site.phoneHref} className="btn btn--accent btn--lg btn--glow">
+            <a href={site.phoneHref} className="btn btn--accent btn--lg btn--glow" onClick={ripple}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
               </svg>
               {site.phone}
             </a>
-            <Link to={cta.secondaryButtonTo} className="btn btn--outline-white btn--lg">
+            <Link to={cta.secondaryButtonTo} className="btn btn--outline-white btn--lg" onClick={ripple}>
               {cta.secondaryButtonLabel}
             </Link>
           </div>

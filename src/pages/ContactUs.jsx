@@ -5,6 +5,21 @@ import content from '../content/contact.json';
 import site from '../content/site.json';
 import './ContactUs.css';
 
+const CONFETTI_COLORS = ['#52b788', '#2d6a4f', '#d4a373', '#e8d5b7', '#40916c'];
+
+const CONFETTI_PIECES = Array.from({ length: 14 }, (_, i) => {
+  const angle = (i / 14) * Math.PI * 2 + (i % 2) * 0.3;
+  const distance = 70 + (i % 4) * 20;
+  return {
+    id: i,
+    color: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+    x: Math.cos(angle) * distance,
+    y: Math.sin(angle) * distance - 20,
+    rotate: (i % 2 === 0 ? 1 : -1) * (120 + i * 15),
+    delay: (i % 5) * 0.04,
+  };
+});
+
 function ContactUs() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
@@ -104,6 +119,20 @@ function ContactUs() {
               <h2>{content.form.heading}</h2>
               {submitted ? (
                 <div className="contact-form__success">
+                  {CONFETTI_PIECES.map((piece) => (
+                    <span
+                      key={piece.id}
+                      className="contact-form__confetti"
+                      aria-hidden="true"
+                      style={{
+                        background: piece.color,
+                        animationDelay: `${piece.delay}s`,
+                        '--confetti-x': `${piece.x}px`,
+                        '--confetti-y': `${piece.y}px`,
+                        '--confetti-rotate': `${piece.rotate}deg`,
+                      }}
+                    />
+                  ))}
                   <div className="contact-form__success-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="48" height="48">
                       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />

@@ -12,11 +12,41 @@
     "primaryButtonLabel": "Our Services",
     "primaryButtonTo": "/housing-services"
   },
-  "missionStrip": [
-    { "icon": "house", "title": "Emergency Shelter", "text": "Immediate safe housing when you need it most" },
-    { "icon": "people", "title": "Eviction Prevention", "text": "Resources and support to keep you in your home" },
-    { "icon": "shield", "title": "Permanent Housing", "text": "Long-term solutions for lasting stability" }
-  ],
+  "getHelp": {
+    "heading": "What brings you here today?",
+    "intro": "Tell us where you're starting from, and we'll point you to what's next.",
+    "items": [
+      {
+        "icon": "shield",
+        "prompt": "I might lose my housing",
+        "detail": "We can work with you and your landlord on financial resources, or talk through what it would take to stay where you are.",
+        "linkLabel": "See eviction prevention",
+        "linkTo": "/housing-services#services"
+      },
+      {
+        "icon": "house",
+        "prompt": "I need a safe place tonight",
+        "detail": "Genesis House and Leighty House offer private bedrooms and shared living space — we also use motel rooms when at capacity.",
+        "linkLabel": "See emergency shelter",
+        "linkTo": "/housing-services#services"
+      },
+      {
+        "icon": "target",
+        "prompt": "I need help finding stable housing",
+        "detail": "Financial assistance and support services to move into permanent housing, tapering down as you regain stability.",
+        "linkLabel": "See housing programs",
+        "linkTo": "/housing-services#services"
+      },
+      {
+        "icon": "compass",
+        "prompt": "I'm not sure what I need",
+        "detail": "That's normal. Start with what to expect before you call.",
+        "linkLabel": "See Things to Know",
+        "linkTo": "#things-to-know"
+      }
+    ],
+    "closingNote": "Every path starts the same way — a conversation. Call us and we'll help you figure out what's next."
+  },
   "thingsToKnow": {
     "heading": "Things to Know",
     "intro": "If you are considering seeking assistance, here are some important things to keep in mind.",

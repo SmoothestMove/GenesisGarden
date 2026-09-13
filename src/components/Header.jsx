@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import nav from '../content/nav.json';
 import './Header.css';
@@ -8,6 +8,8 @@ const navLinks = nav.header;
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [indicator, setIndicator] = useState(null);
+  const navListRef = useRef(null);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -17,6 +19,25 @@ function Header() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Position the sliding active-link indicator (desktop nav only)
+  useEffect(() => {
+    function measure() {
+      const list = navListRef.current;
+      if (!list) return;
+      const active = list.querySelector('.header__nav-link--active');
+      if (!active) {
+        setIndicator(null);
+        return;
+      }
+      const listRect = list.getBoundingClientRect();
+      const linkRect = active.getBoundingClientRect();
+      setIndicator({ left: linkRect.left - listRect.left, width: linkRect.width });
+    }
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, [pathname]);
 
   // Close menu on route change
   useEffect(() => {
@@ -52,7 +73,14 @@ function Header() {
         </Link>
 
         <nav className={`header__nav${menuOpen ? ' header__nav--open' : ''}`} aria-label="Main navigation">
-          <ul className="header__nav-list">
+          <ul className="header__nav-list" ref={navListRef}>
+            {indicator && (
+              <span
+                className="header__nav-indicator"
+                aria-hidden="true"
+                style={{ transform: `translateX(${indicator.left}px)`, width: `${indicator.width}px` }}
+              />
+            )}
             {navLinks.map((link) => (
               <li key={link.to} className="header__nav-item">
                 <NavLink
