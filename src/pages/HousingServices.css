@@ -92,6 +92,55 @@
   }
 }
 
+/* --- Situation Filter --- */
+.situation-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+
+.situation-filter__label {
+  font-family: var(--font-heading);
+  font-weight: var(--fw-semibold);
+  color: var(--color-gray-700);
+}
+
+.situation-filter__pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.situation-filter__pill {
+  padding: var(--space-2) var(--space-5);
+  border: 1px solid var(--color-gray-300);
+  border-radius: var(--radius-full);
+  background: var(--color-white);
+  color: var(--color-gray-700);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.situation-filter__pill:hover {
+  border-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+.situation-filter__pill--active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.situation-filter__pill--active:hover {
+  color: var(--color-white);
+}
+
 /* --- Service Cards --- */
 .services-grid {
   display: grid;
@@ -144,6 +193,15 @@
   font-size: var(--fs-sm);
   color: var(--color-gray-600);
   line-height: var(--lh-relaxed);
+}
+
+.service-card--dimmed {
+  opacity: 0.4;
+  transform: scale(0.97);
+}
+
+.service-card--dimmed:hover {
+  opacity: 0.7;
 }
 
 /* --- Eligibility --- */

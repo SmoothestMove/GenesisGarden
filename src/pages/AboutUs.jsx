@@ -59,12 +59,14 @@ const HISTORY_ICONS = {
 };
 
 function AboutUs() {
+  const [originRef, originInView] = useInView();
   const [mvRef, mvInView] = useInView();
   const [valRef, valInView] = useInView();
   const [teamRef, teamInView] = useInView();
   const [histRef, histInView] = useInView();
 
   const { hero, missionVision, values, team, history, volunteers } = content;
+  const [originStory, ...remainingHistory] = history.items;
 
   return (
     <>
@@ -80,6 +82,18 @@ function AboutUs() {
           <p className="animate-fade-in-up delay-1">
             {hero.text}
           </p>
+        </div>
+      </section>
+
+      {/* Origin Story — promoted out of the History timeline into a full narrative moment */}
+      <section className="story-section" ref={originRef}>
+        <div className={`story-section__media reveal--left${originInView ? ' reveal--visible' : ''}`}>
+          <img src={team.image} alt="Genesis Garden campus" loading="lazy" />
+        </div>
+        <div className={`story-section__content reveal--right${originInView ? ' reveal--visible' : ''}`}>
+          <span className="story-section__eyebrow">Where it started</span>
+          <p className="story-section__quote gradient-text">Every garden begins somewhere.</p>
+          <p className="story-section__text">{originStory.text}</p>
         </div>
       </section>
 
@@ -109,17 +123,17 @@ function AboutUs() {
           <div className="section-header">
             <h2>{values.heading}</h2>
           </div>
-          <div className="grid grid--5">
+          <div className={`values-row${valInView ? ' values-row--visible' : ''}`}>
             {values.items.map((value, i) => (
               <div
                 key={value.title}
-                className={`value-card card reveal--scale${valInView ? ' reveal--visible' : ''}`}
-                style={{ transitionDelay: `${i * 0.1}s` }}
+                className="value-chip"
+                style={{ transitionDelay: `${i * 0.08}s` }}
               >
-                <div className="value-card__icon icon-container" aria-hidden="true">
+                <span className="value-chip__icon" aria-hidden="true">
                   {VALUE_ICONS[value.icon]}
-                </div>
-                <h3 className="card__title">{value.title}</h3>
+                </span>
+                <span className="value-chip__label">{value.title}</span>
               </div>
             ))}
           </div>
@@ -198,7 +212,7 @@ function AboutUs() {
       <section className="section section--alt" ref={histRef}>
         <div className="container">
           <div className={`about-history-grid${histInView ? ' about-history-grid--visible' : ''}`}>
-            {history.items.map((item) => (
+            {remainingHistory.map((item) => (
               <div className="about-block about-block--timeline" key={item.heading}>
                 <div className="about-block__marker" aria-hidden="true">
                   {HISTORY_ICONS[item.icon]}
