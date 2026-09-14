@@ -5,12 +5,16 @@
   },
   "hero": {
     "backgroundImage": "/images/Enhanced-Family_Hero.webp",
-    "badge": "Serving Western Illinois",
-    "titleLine1": "Cultivating Hope,",
-    "titleAccent": "Empowering Dreams",
-    "subtitle": "Empowering our community with safe, stable, and affordable housing options for individuals and families across McDonough, Hancock, Henderson, and Warren Counties.",
-    "primaryButtonLabel": "Our Services",
-    "primaryButtonTo": "/housing-services"
+    "badge": "Genesis Garden · Western Illinois",
+    "kicker": "Cultivating Hope, Empowering Dreams",
+    "titleLine1": "What do you need",
+    "titleAccent": "right now?",
+    "subtitle": "A new beginning can grow from here — safe, stable housing for individuals and families across McDonough, Hancock, Henderson, and Warren Counties.",
+    "ctas": [
+      { "label": "I need housing help", "to": "#get-help", "style": "btn--accent" },
+      { "label": "I want to help", "to": "/donate", "style": "btn--outline-white" },
+      { "label": "I want to partner", "to": "/partners", "style": "btn--outline-white" }
+    ]
   },
   "getHelp": {
     "heading": "What brings you here today?",
@@ -77,6 +81,32 @@
         "text": "When you call to be added to our list, please be upfront and honest about your situation and history. We know it can be hard to talk about, but we are best able to support you when we understand your story. We care about what's happened to you."
       }
     ]
+  },
+  "story": {
+    "eyebrow": "Where it started",
+    "quote": "Every garden begins somewhere.",
+    "text": "Our inception was inspired by the rapid eviction of Shade Tree Mobile Park residents in 2010. This event exposed the lack of emergency and rapid re-housing in Macomb and McDonough County for families who suddenly find themselves without a place to live.",
+    "image": "/images/campus_wide.jpg",
+    "linkLabel": "Read our full story",
+    "linkTo": "/about-us"
+  },
+  "team": {
+    "heading": "Who you'll talk to",
+    "text": "A small, dedicated team — not a call center.",
+    "linkLabel": "Meet the full team",
+    "linkTo": "/about-us"
+  },
+  "wantToHelp": {
+    "heading": "I want to help",
+    "text": "Financial gifts and household goods both go directly to families settling into stable housing.",
+    "linkLabel": "See how to give",
+    "linkTo": "/donate"
+  },
+  "wantToPartner": {
+    "heading": "I want to partner",
+    "text": "Genesis Garden works alongside law enforcement, regional care networks, and housing coalitions across Western Illinois.",
+    "linkLabel": "See all our partners",
+    "linkTo": "/partners"
   },
   "impact": {
     "heading": "Our Impact",
