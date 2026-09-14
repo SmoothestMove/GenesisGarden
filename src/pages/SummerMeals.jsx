@@ -5,6 +5,12 @@ import content from '../content/summer-meals.json';
 import site from '../content/site.json';
 import './SummerMeals.css';
 
+const PIN_ICON = (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="22" height="22">
+    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
+  </svg>
+);
+
 function SummerMeals() {
   const [gridRef, gridInView] = useInView();
 
@@ -24,9 +30,9 @@ function SummerMeals() {
         </div>
       </section>
 
-      <SectionDivider shape="wave" color="var(--color-cream)" />
+      <SectionDivider shape="curve" color="var(--color-cream)" />
 
-      <section className="section" ref={gridRef}>
+      <section className="section section--summer-warm" ref={gridRef}>
         <div className="container">
           <div className="summer-notice">
             <strong>Content note:</strong> {content.contentNote}
@@ -42,9 +48,34 @@ function SummerMeals() {
           <div className={`summer-sites${gridInView ? ' summer-sites--visible' : ''}`}>
             {content.sites.map((mealSite) => (
               <div className="card summer-site-card" key={mealSite.name}>
+                {mealSite.address ? (
+                  <div className="summer-site-card__map">
+                    <iframe
+                      title={`Map of ${mealSite.name}`}
+                      src={`https://www.google.com/maps?q=${encodeURIComponent(mealSite.address)}&output=embed`}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    />
+                  </div>
+                ) : (
+                  <div className="summer-site-card__map summer-site-card__map--unavailable">
+                    {PIN_ICON}
+                    <span>Map unavailable — no address on file yet</span>
+                  </div>
+                )}
                 <h3 className="card__title">{mealSite.name}</h3>
                 {mealSite.address && <p className="summer-site-card__address">{mealSite.address}</p>}
                 <p>{mealSite.schedule}</p>
+                {mealSite.address && (
+                  <a
+                    className="summer-site-card__directions"
+                    href={`https://www.google.com/maps?q=${encodeURIComponent(mealSite.address)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Get Directions &rarr;
+                  </a>
+                )}
               </div>
             ))}
           </div>
@@ -53,9 +84,9 @@ function SummerMeals() {
         </div>
       </section>
 
-      <SectionDivider shape="tilt" color="var(--color-primary-dark)" />
+      <SectionDivider shape="tilt" color="var(--color-accent-dark)" />
 
-      <section className="cta-section">
+      <section className="cta-section cta-section--warm">
         <div className="cta-section__bg" aria-hidden="true">
           <div className="cta-section__bg-overlay" />
         </div>

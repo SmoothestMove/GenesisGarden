@@ -17,6 +17,10 @@
   color: var(--color-primary-dark);
 }
 
+.section--summer-warm {
+  background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-accent-light) 140%);
+}
+
 .summer-sites {
   display: grid;
   gap: var(--space-6);
@@ -29,17 +33,69 @@
   }
 }
 
+.summer-sites > * {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.summer-sites--visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0s; }
+.summer-sites--visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.15s; }
+.summer-sites--visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.3s; }
+
 .summer-site-card {
   background: var(--color-white);
   border-radius: var(--radius-lg);
   padding: var(--space-6);
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--color-gray-200);
-  border-top: 3px solid var(--color-primary);
+  border-top: 3px solid var(--color-accent);
+  overflow: hidden;
+  transition: box-shadow var(--transition-base);
+}
+
+.summer-site-card:hover {
+  box-shadow: var(--shadow-lg), var(--shadow-glow-accent);
+}
+
+.summer-site-card__map {
+  height: 160px;
+  margin: calc(var(--space-6) * -1) calc(var(--space-6) * -1) var(--space-4);
+}
+
+.summer-site-card__map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.summer-site-card__map--unavailable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: var(--color-gray-100);
+  color: var(--color-gray-500);
+  font-size: var(--fs-sm);
+  text-align: center;
+  padding: var(--space-4);
 }
 
 .summer-site-card__address {
   font-size: var(--fs-sm);
   color: var(--color-gray-600);
   margin-bottom: var(--space-2);
+}
+
+.summer-site-card__directions {
+  display: inline-block;
+  margin-top: var(--space-3);
+  color: var(--color-accent-dark);
+  font-weight: var(--fw-semibold);
+}
+
+.cta-section--warm .cta-section__bg-overlay {
+  background: linear-gradient(135deg, var(--color-accent-dark) 0%, var(--color-accent) 50%, var(--color-accent-light) 100%);
 }
