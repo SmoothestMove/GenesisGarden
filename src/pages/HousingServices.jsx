@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SEOHead from '../components/SEOHead';
 import SectionDivider from '../components/SectionDivider';
@@ -6,6 +7,13 @@ import useParallax from '../hooks/useParallax';
 import content from '../content/housing-services.json';
 import site from '../content/site.json';
 import './HousingServices.css';
+
+const SITUATION_FILTERS = [
+  { id: 'all', label: 'Show me everything', titles: null },
+  { id: 'stay', label: 'I want to stay where I am', titles: ['Diversion', 'Eviction Prevention'] },
+  { id: 'shelter', label: 'I need shelter now', titles: ['Emergency Shelter'] },
+  { id: 'permanent', label: "I'm ready for something permanent", titles: ['Rapid Re-Housing', 'Permanent Supportive Housing'] },
+];
 
 const ICON_PROPS = {
   viewBox: '0 0 24 24',
@@ -55,6 +63,8 @@ function HousingServices() {
   const [eligRef, eligInView] = useInView();
   const [actRef, actInView] = useInView();
   const heroParallaxRef = useParallax();
+  const [situationFilter, setSituationFilter] = useState('all');
+  const activeFilter = SITUATION_FILTERS.find((f) => f.id === situationFilter);
 
   const { hero, intro, services, eligibility, otherActivities, cta } = content;
 
@@ -113,11 +123,29 @@ function HousingServices() {
             <h2>{services.heading}</h2>
             <p>{services.subtitle}</p>
           </div>
+          <div className="situation-filter" role="group" aria-label="Filter services by your situation">
+            <span className="situation-filter__label">What's your situation?</span>
+            <div className="situation-filter__pills">
+              {SITUATION_FILTERS.map((f) => (
+                <button
+                  key={f.id}
+                  type="button"
+                  className={`situation-filter__pill${situationFilter === f.id ? ' situation-filter__pill--active' : ''}`}
+                  aria-pressed={situationFilter === f.id}
+                  onClick={() => setSituationFilter(f.id)}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="services-grid">
-            {services.items.map((service, i) => (
+            {services.items.map((service, i) => {
+              const matched = !activeFilter.titles || activeFilter.titles.includes(service.title);
+              return (
               <article
                 key={service.title}
-                className={`service-card reveal--scale${servicesInView ? ' reveal--visible' : ''}`}
+                className={`service-card reveal--scale${servicesInView ? ' reveal--visible' : ''}${matched ? '' : ' service-card--dimmed'}`}
                 style={{ transitionDelay: `${i * 0.1}s` }}
               >
                 <div className="service-card__icon icon-container" aria-hidden="true">
@@ -126,7 +154,8 @@ function HousingServices() {
                 <h3 className="service-card__title">{service.title}</h3>
                 <p className="service-card__text">{service.description}</p>
               </article>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

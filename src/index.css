@@ -530,6 +530,99 @@ p:last-child {
   .grid--5 { grid-template-columns: repeat(5, 1fr); }
 }
 
+/* --- Editorial Split (image + copy, e.g. an origin story) --- */
+.story-section {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .story-section {
+    grid-template-columns: 1fr 1fr;
+    min-height: 560px;
+  }
+}
+
+.story-section__media {
+  min-height: 320px;
+  overflow: hidden;
+}
+
+@media (min-width: 900px) {
+  .story-section__media {
+    min-height: auto;
+  }
+}
+
+.story-section__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.story-section:hover .story-section__media img {
+  transform: scale(1.04);
+}
+
+.story-section__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-12) var(--space-6);
+  background: var(--color-cream);
+}
+
+@media (min-width: 768px) {
+  .story-section__content {
+    padding: var(--space-16) var(--space-16);
+  }
+}
+
+.story-section__eyebrow {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent-dark);
+  margin-bottom: var(--space-4);
+}
+
+.story-section__quote {
+  font-family: var(--font-heading);
+  font-size: var(--fs-3xl);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+  margin-bottom: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .story-section__quote {
+    font-size: var(--fs-4xl);
+  }
+}
+
+.story-section__text {
+  font-size: var(--fs-md);
+  color: var(--color-gray-700);
+  line-height: var(--lh-relaxed);
+  max-width: 480px;
+  margin-bottom: var(--space-6);
+}
+
+.story-section__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: var(--fw-semibold);
+  color: var(--color-primary);
+  transition: gap var(--transition-fast);
+}
+
+.story-section__link:hover {
+  gap: var(--space-3);
+}
+
 /* --- SVG Icon Container --- */
 .icon-container {
   width: 56px;
