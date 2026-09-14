@@ -1,6 +1,37 @@
 /* =========================================
-   Partners Page — Glassmorphism Style
+   Partners Page — Network / Ecosystem Style
    ========================================= */
+
+.partners-hub {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.partners-hub__node {
+  width: 88px;
+  height: 88px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2);
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-tight);
+  text-align: center;
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.partners-hub__stem {
+  width: 2px;
+  height: var(--space-12);
+  margin: var(--space-4) auto 0;
+  background: linear-gradient(to bottom, var(--color-primary-light), transparent);
+}
 
 .partners-grid {
   display: grid;
@@ -22,35 +53,33 @@
 
 .partner-card {
   position: relative;
-  border-left: none;
-  padding-left: calc(var(--space-6) + 4px);
+  text-align: center;
+  padding-top: calc(var(--space-6) + 6px);
   transition: all var(--transition-base);
-  overflow: hidden;
+  overflow: visible;
 }
 
-.partner-card::before {
+.partner-card::after {
   content: "";
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: linear-gradient(180deg,
-    var(--color-primary-light),
-    var(--color-accent),
-    var(--color-primary-light)
-  );
-  background-size: 100% 220%;
-  animation: partnerBorderShift 6s ease-in-out infinite;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent));
+  box-shadow: 0 0 0 4px var(--color-white), 0 2px 8px rgba(45, 106, 79, 0.3);
+  animation: partnerNodePulse 3s ease-in-out infinite;
 }
 
-@keyframes partnerBorderShift {
-  0%, 100% { background-position: center 0%; }
-  50% { background-position: center 100%; }
+@keyframes partnerNodePulse {
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.15); }
 }
 
 .partner-card__icon {
-  margin-bottom: var(--space-4);
+  margin: 0 auto var(--space-4);
 }
 
 .partner-card__name {
@@ -65,4 +94,12 @@
   font-size: var(--fs-sm);
   color: var(--color-gray-600);
   line-height: var(--lh-relaxed);
+}
+
+.partner-card--compact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 168px;
 }

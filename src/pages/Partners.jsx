@@ -1,6 +1,8 @@
 import SEOHead from '../components/SEOHead';
+import SectionDivider from '../components/SectionDivider';
 import useInView from '../hooks/useInView';
 import content from '../content/partners.json';
+import site from '../content/site.json';
 import './Partners.css';
 
 const ICON_PROPS = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: '1.8', strokeLinecap: 'round', strokeLinejoin: 'round' };
@@ -58,14 +60,20 @@ function Partners() {
         </div>
       </section>
 
+      <SectionDivider shape="organic" color="var(--color-cream)" />
+
       {/* Partner Cards */}
       <section className="section" ref={gridRef}>
         <div className="container">
+          <div className={`partners-hub reveal--scale${gridInView ? ' reveal--visible' : ''}`}>
+            <div className="partners-hub__node">{site.orgName}</div>
+            <div className="partners-hub__stem" aria-hidden="true" />
+          </div>
           <div className="partners-grid">
             {content.partners.map((partner, i) => (
               <article
                 key={partner.name}
-                className={`partner-card glass-card reveal--scale${gridInView ? ' reveal--visible' : ''}`}
+                className={`partner-card glass-card reveal--scale${gridInView ? ' reveal--visible' : ''}${!partner.description ? ' partner-card--compact' : ''}`}
                 style={{ transitionDelay: `${i * 0.08}s` }}
               >
                 <div className="partner-card__icon icon-container" aria-hidden="true">
