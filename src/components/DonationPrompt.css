@@ -35,15 +35,15 @@
   position: absolute;
   top: var(--space-3);
   right: var(--space-3);
-  width: 28px;
-  height: 28px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: none;
   border: none;
   border-radius: var(--radius-full);
-  color: var(--color-gray-500);
+  color: var(--color-gray-600);
   cursor: pointer;
   transition: all var(--transition-fast);
 }

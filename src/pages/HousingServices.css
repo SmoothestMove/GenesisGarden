@@ -30,8 +30,8 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg,
-    rgba(27, 67, 50, 0.88) 0%,
-    rgba(45, 106, 79, 0.82) 100%
+    rgba(15, 23, 42, 0.88) 0%,
+    rgba(5, 150, 105, 0.82) 100%
   );
 }
 
@@ -115,7 +115,8 @@
 }
 
 .situation-filter__pill {
-  padding: var(--space-2) var(--space-5);
+  min-height: 44px;
+  padding: var(--space-3) var(--space-5);
   border: 1px solid var(--color-gray-300);
   border-radius: var(--radius-full);
   background: var(--color-white);

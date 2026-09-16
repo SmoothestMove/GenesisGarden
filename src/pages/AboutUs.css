@@ -128,7 +128,7 @@
 
 .value-chip__icon {
   display: flex;
-  color: var(--color-primary);
+  color: var(--color-secondary);
 }
 
 .value-chip__icon svg {
@@ -249,7 +249,7 @@
 
 .about-team-stat__label {
   font-size: var(--fs-sm);
-  color: var(--color-gray-500);
+  color: var(--color-gray-600);
   font-weight: var(--fw-medium);
   margin-top: var(--space-1);
 }
@@ -306,7 +306,7 @@
   align-items: center;
   justify-content: center;
   color: var(--color-white);
-  box-shadow: 0 2px 8px rgba(45, 106, 79, 0.25);
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.25);
 }
 
 .about-block__marker svg {
@@ -335,7 +335,10 @@
 .about-volunteers-history summary {
   cursor: pointer;
   font-weight: var(--fw-bold);
-  color: var(--color-primary);
+  color: var(--color-secondary);
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 
 .about-volunteers-history__body {
