@@ -17,7 +17,25 @@
     "heading": "Financial Support",
     "intro": "We accept monetary donations online and by check payable to Genesis Garden, mailed to:",
     "buttonLabel": "Donate Online",
-    "buttonUrl": "https://www.zeffy.com/en-US/donation-form/donate-to-support-stable-housing-in-macomb-and-western-illinois"
+    "buttonUrl": "https://www.zeffy.com/en-US/donation-form/donate-to-support-stable-housing-in-macomb-and-western-illinois",
+    "impactHeading": "Where Your Gift Goes",
+    "impactTiers": [
+      {
+        "icon": "shield",
+        "heading": "Eviction Prevention",
+        "text": "Helps a family stay in their home through financial assistance and support before a crisis becomes a loss."
+      },
+      {
+        "icon": "house",
+        "heading": "Emergency Shelter",
+        "text": "Keeps Genesis House and Leighty House ready for someone who needs a safe place tonight."
+      },
+      {
+        "icon": "target",
+        "heading": "Rapid Re-Housing",
+        "text": "Supports the path from shelter to a stable, permanent home."
+      }
+    ]
   },
   "goods": {
     "heading": "Donating Goods",

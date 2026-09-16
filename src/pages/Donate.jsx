@@ -6,6 +6,26 @@ import content from '../content/donate.json';
 import site from '../content/site.json';
 import './Donate.css';
 
+const IMPACT_ICON_PROPS = { viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: '1.8', strokeLinecap: 'round', strokeLinejoin: 'round' };
+
+const IMPACT_ICONS = {
+  shield: (
+    <svg {...IMPACT_ICON_PROPS}>
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    </svg>
+  ),
+  house: (
+    <svg {...IMPACT_ICON_PROPS}>
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
+    </svg>
+  ),
+  target: (
+    <svg {...IMPACT_ICON_PROPS}>
+      <line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" />
+    </svg>
+  ),
+};
+
 function Donate() {
   const [sealRef, sealInView] = useInView();
   const [cardsRef, cardsInView] = useInView({ threshold: 0.05 });
@@ -80,6 +100,24 @@ function Donate() {
                 {site.address.street}<br />
                 {site.address.cityStateZip}
               </address>
+
+              <div className="donate-impact">
+                <h3 className="donate-impact__heading">{financial.impactHeading}</h3>
+                <ul className="donate-impact__list">
+                  {financial.impactTiers.map((tier) => (
+                    <li key={tier.heading} className="donate-impact__item">
+                      <span className="donate-impact__icon" aria-hidden="true">
+                        {IMPACT_ICONS[tier.icon]}
+                      </span>
+                      <span className="donate-impact__body">
+                        <span className="donate-impact__tier-heading">{tier.heading}</span>
+                        <span className="donate-impact__text">{tier.text}</span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
               <a
                 href={financial.buttonUrl}
                 target="_blank"
