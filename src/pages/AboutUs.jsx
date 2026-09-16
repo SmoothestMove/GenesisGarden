@@ -2,6 +2,7 @@ import SEOHead from '../components/SEOHead';
 import SectionDivider from '../components/SectionDivider';
 import AnimatedCounter from '../components/AnimatedCounter';
 import useInView from '../hooks/useInView';
+import useImageLoaded from '../hooks/useImageLoaded';
 import content from '../content/about.json';
 import './AboutUs.css';
 
@@ -64,6 +65,7 @@ function AboutUs() {
   const [valRef, valInView] = useInView();
   const [teamRef, teamInView] = useInView();
   const [histRef, histInView] = useInView();
+  const teamImg = useImageLoaded();
 
   const { hero, missionVision, values, team, history, volunteers } = content;
   const [originStory, ...remainingHistory] = history.items;
@@ -149,9 +151,13 @@ function AboutUs() {
           <div className={`about-team-grid${teamInView ? ' about-team-grid--visible' : ''}`}>
             <div className="about-team-grid__image">
               <img
+                ref={teamImg.imgRef}
                 src={team.image}
                 alt="Genesis Garden campus"
                 loading="lazy"
+                className={teamImg.loaded ? '' : 'img-skeleton'}
+                onLoad={teamImg.onLoad}
+                onError={teamImg.onError}
               />
             </div>
             <div className="about-team-grid__content">

@@ -7,6 +7,7 @@ import useInView from '../hooks/useInView';
 import useParallax from '../hooks/useParallax';
 import useRipple from '../hooks/useRipple';
 import useActiveStage from '../hooks/useActiveStage';
+import useImageLoaded from '../hooks/useImageLoaded';
 import content from '../content/home.json';
 import site from '../content/site.json';
 import aboutContent from '../content/about.json';
@@ -82,6 +83,8 @@ function Home() {
   const heroParallaxRef = useParallax();
   const ripple = useRipple();
   const { active: activeStage, setRef: setStageRef } = useActiveStage();
+  const storyImg = useImageLoaded();
+  const ctaImg = useImageLoaded();
 
   const { hero, getHelp, story, team, wantToHelp, wantToPartner, thingsToKnow, impact, cta } = content;
   const featuredPartners = partnersContent.partners.slice(0, 3);
@@ -203,7 +206,15 @@ function Home() {
       {/* ===== Story — editorial split ===== */}
       <section className="story-section" ref={storyRef}>
         <div className={`story-section__media reveal--left${storyInView ? ' reveal--visible' : ''}`}>
-          <img src={story.image} alt="Genesis Garden campus" loading="lazy" />
+          <img
+            ref={storyImg.imgRef}
+            src={story.image}
+            alt="Genesis Garden campus"
+            loading="lazy"
+            className={storyImg.loaded ? '' : 'img-skeleton'}
+            onLoad={storyImg.onLoad}
+            onError={storyImg.onError}
+          />
         </div>
         <div className={`story-section__content reveal--right${storyInView ? ' reveal--visible' : ''}`}>
           <span className="story-section__eyebrow">{story.eyebrow}</span>
@@ -341,10 +352,13 @@ function Home() {
       <section className="cta-section" ref={ctaRef}>
         <div className="cta-section__bg" aria-hidden="true">
           <img
+            ref={ctaImg.imgRef}
             src={cta.backgroundImage}
             alt=""
-            className="cta-section__bg-image"
+            className={`cta-section__bg-image${ctaImg.loaded ? '' : ' img-skeleton'}`}
             loading="lazy"
+            onLoad={ctaImg.onLoad}
+            onError={ctaImg.onError}
           />
           <div className="cta-section__bg-overlay" />
         </div>

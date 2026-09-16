@@ -1,6 +1,7 @@
 import SEOHead from '../components/SEOHead';
 import SectionDivider from '../components/SectionDivider';
 import useInView from '../hooks/useInView';
+import useImageLoaded from '../hooks/useImageLoaded';
 import content from '../content/donate.json';
 import site from '../content/site.json';
 import './Donate.css';
@@ -8,6 +9,7 @@ import './Donate.css';
 function Donate() {
   const [sealRef, sealInView] = useInView();
   const [cardsRef, cardsInView] = useInView({ threshold: 0.05 });
+  const sealImg = useImageLoaded();
 
   const { hero, seal, financial, goods } = content;
 
@@ -36,11 +38,15 @@ function Donate() {
           <div className={`donate-seal reveal--scale${sealInView ? ' reveal--visible' : ''}`}>
             <div className="donate-seal__badge donate-seal__badge--image" aria-hidden="true">
               <img
+                ref={sealImg.imgRef}
                 src={seal.imageUrl}
                 alt={seal.imageAlt}
                 width="64"
                 height="64"
                 loading="lazy"
+                className={sealImg.loaded ? '' : 'img-skeleton'}
+                onLoad={sealImg.onLoad}
+                onError={sealImg.onError}
               />
             </div>
             <div className="donate-seal__text">
