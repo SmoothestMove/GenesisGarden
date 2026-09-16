@@ -9,11 +9,65 @@
     />
     <meta name="theme-color" content="#1b4332" />
 
-    <!-- Favicon -->
+    <!-- Favicon (raster set; a true vector SVG favicon needs source vector
+         art that isn't in this repo, only rasterized PNG logos) -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/logo/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/logo/favicon-16x16.png" />
     <link rel="icon" type="image/png" href="/logo/Logo-Favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/logo/apple-touch-icon.png" />
 
-    <!-- Preload critical hero image -->
-    <link rel="preload" as="image" href="/images/Enhanced-Family_Hero.webp" type="image/webp" />
+    <!-- Open Graph / social preview metadata -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Genesis Garden" />
+    <meta property="og:title" content="Genesis Garden | Emergency Housing &amp; Eviction Prevention in McDonough County" />
+    <meta
+      property="og:description"
+      content="Genesis Garden provides emergency shelter, eviction prevention, and permanent housing solutions in McDonough, Hancock, Henderson, and Warren Counties, Illinois."
+    />
+    <meta property="og:url" content="https://genesisgarden.vercel.app/" />
+    <meta property="og:image" content="https://genesisgarden.vercel.app/images/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Genesis Garden | Emergency Housing &amp; Eviction Prevention in McDonough County" />
+    <meta
+      name="twitter:description"
+      content="Genesis Garden provides emergency shelter, eviction prevention, and permanent housing solutions in Western Illinois."
+    />
+    <meta name="twitter:image" content="https://genesisgarden.vercel.app/images/og-image.jpg" />
+
+    <!-- Preload critical hero image (responsive: matches the srcset in Home.jsx) -->
+    <link
+      rel="preload"
+      as="image"
+      href="/images/Enhanced-Family_Hero.webp"
+      imagesrcset="/images/Enhanced-Family_Hero-640w.webp 640w, /images/Enhanced-Family_Hero-960w.webp 960w, /images/Enhanced-Family_Hero-1280w.webp 1280w, /images/Enhanced-Family_Hero-1920w.webp 1920w, /images/Enhanced-Family_Hero-2560w.webp 2560w, /images/Enhanced-Family_Hero.webp 4096w"
+      imagesizes="100vw"
+      type="image/webp"
+    />
+
+    <!-- Structured data: SocialService (schema.org) describing the org -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SocialService",
+        "name": "Genesis Garden",
+        "description": "Genesis Garden provides emergency shelter, eviction prevention, and permanent housing solutions in McDonough, Hancock, Henderson, and Warren Counties, Illinois.",
+        "url": "https://genesisgarden.vercel.app/",
+        "telephone": "+13093263075",
+        "email": "info@genesis-garden.org",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "307 E Carroll St",
+          "addressLocality": "Macomb",
+          "addressRegion": "IL",
+          "postalCode": "61455",
+          "addressCountry": "US"
+        },
+        "areaServed": ["McDonough County, IL", "Hancock County, IL", "Henderson County, IL", "Warren County, IL"],
+        "serviceType": ["Emergency Shelter", "Eviction Prevention", "Rapid Re-Housing"]
+      }
+    </script>
 
     <!-- Google Fonts: Fraunces (headings) + Manrope (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
