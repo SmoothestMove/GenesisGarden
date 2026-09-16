@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
+import EmergencyCallBar from './EmergencyCallBar';
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -37,6 +38,7 @@ function Layout() {
         <Outlet />
       </main>
       <Footer />
+      <EmergencyCallBar />
     </>
   );
 }

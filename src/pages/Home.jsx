@@ -96,11 +96,19 @@ function Home() {
       {/* ===== Hero Section ===== */}
       <section className="hero">
         <div className="hero__bg" aria-hidden="true" ref={heroParallaxRef}>
+          {/* Responsive variants are pre-generated via `npm run generate:hero`
+              (scripts/generate-responsive-image.mjs). Re-run it after the CMS
+              swaps hero.backgroundImage, or these -Nw.webp candidates 404. */}
           <img
             src={hero.backgroundImage}
+            srcSet={`${hero.backgroundImage.replace(/\.webp$/, '-640w.webp')} 640w, ${hero.backgroundImage.replace(/\.webp$/, '-960w.webp')} 960w, ${hero.backgroundImage.replace(/\.webp$/, '-1280w.webp')} 1280w, ${hero.backgroundImage.replace(/\.webp$/, '-1920w.webp')} 1920w, ${hero.backgroundImage.replace(/\.webp$/, '-2560w.webp')} 2560w, ${hero.backgroundImage} 4096w`}
+            sizes="100vw"
             alt=""
             className="hero__bg-image"
             loading="eager"
+            fetchPriority="high"
+            width="4096"
+            height="2288"
           />
           <div className="hero__bg-overlay" />
         </div>
