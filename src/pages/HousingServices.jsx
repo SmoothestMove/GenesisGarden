@@ -65,6 +65,9 @@ function HousingServices() {
   const heroParallaxRef = useParallax();
   const [situationFilter, setSituationFilter] = useState('all');
   const activeFilter = SITUATION_FILTERS.find((f) => f.id === situationFilter);
+  const matchedCount = activeFilter.titles
+    ? content.services.items.filter((service) => activeFilter.titles.includes(service.title)).length
+    : content.services.items.length;
 
   const { hero, intro, services, eligibility, otherActivities, cta } = content;
 
@@ -139,6 +142,11 @@ function HousingServices() {
               ))}
             </div>
           </div>
+          <p className="sr-only" aria-live="polite">
+            {activeFilter.titles
+              ? `Highlighting ${matchedCount} of ${services.items.length} services for “${activeFilter.label}”.`
+              : `Showing all ${services.items.length} services.`}
+          </p>
           <div className="services-grid">
             {services.items.map((service, i) => {
               const matched = !activeFilter.titles || activeFilter.titles.includes(service.title);

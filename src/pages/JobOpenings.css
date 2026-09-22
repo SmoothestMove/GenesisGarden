@@ -90,6 +90,10 @@
   color: var(--color-gray-800);
 }
 
+.job-notice--empty {
+  margin: 0 auto var(--space-8);
+}
+
 .job-notice strong {
   color: var(--color-primary-dark);
 }

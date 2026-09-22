@@ -593,7 +593,7 @@
 
 .team-avatar__role {
   font-size: var(--fs-xs);
-  color: var(--color-gray-500);
+  color: var(--color-gray-600);
 }
 
 .team-preview__link-wrap {

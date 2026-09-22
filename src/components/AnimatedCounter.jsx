@@ -1,17 +1,36 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useLayoutEffect } from 'react';
+
+function canAnimate() {
+  return (
+    typeof IntersectionObserver !== 'undefined' &&
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
+}
 
 /**
  * AnimatedCounter — counts up from 0 to `end` when scrolled into view.
+ * The real value is in the initial markup (for crawlers and no-animation
+ * cases) and is only reset to 0 before first paint when animation will run.
  */
 function AnimatedCounter({ end, duration = 2000, suffix = '', prefix = '' }) {
-  const [count, setCount] = useState(0);
+  const endVal = Number(end);
+  const [count, setCount] = useState(endVal);
   const ref = useRef(null);
   const hasAnimated = useRef(false);
 
+  useLayoutEffect(() => {
+    if (!hasAnimated.current && canAnimate()) {
+      setCount(0);
+    } else {
+      setCount(endVal);
+    }
+  }, [endVal]);
+
   useEffect(() => {
     const element = ref.current;
-    if (!element) return;
+    if (!element || !canAnimate()) return;
 
+    let frame;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated.current) {
@@ -19,7 +38,6 @@ function AnimatedCounter({ end, duration = 2000, suffix = '', prefix = '' }) {
           observer.unobserve(element);
 
           const startTime = performance.now();
-          const endVal = Number(end);
 
           function animate(currentTime) {
             const elapsed = currentTime - startTime;
@@ -29,11 +47,11 @@ function AnimatedCounter({ end, duration = 2000, suffix = '', prefix = '' }) {
             setCount(Math.floor(eased * endVal));
 
             if (progress < 1) {
-              requestAnimationFrame(animate);
+              frame = requestAnimationFrame(animate);
             }
           }
 
-          requestAnimationFrame(animate);
+          frame = requestAnimationFrame(animate);
         }
       },
       { threshold: 0.3 }
@@ -41,12 +59,20 @@ function AnimatedCounter({ end, duration = 2000, suffix = '', prefix = '' }) {
 
     observer.observe(element);
 
-    return () => observer.unobserve(element);
-  }, [end, duration]);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+      // If torn down mid-animation, settle on the real value
+      if (hasAnimated.current) setCount(endVal);
+    };
+  }, [endVal, duration]);
+
+  const finalLabel = `${prefix}${endVal.toLocaleString()}${suffix}`;
 
   return (
     <span ref={ref} className="animated-counter">
-      {prefix}{count.toLocaleString()}{suffix}
+      <span className="sr-only">{finalLabel}</span>
+      <span aria-hidden="true">{prefix}{count.toLocaleString()}{suffix}</span>
     </span>
   );
 }

@@ -92,7 +92,7 @@ function AboutUs() {
         </div>
         <div className={`story-section__content reveal--right${originInView ? ' reveal--visible' : ''}`}>
           <span className="story-section__eyebrow">Where it started</span>
-          <p className="story-section__quote gradient-text">Every garden begins somewhere.</p>
+          <h2 className="story-section__quote gradient-text">Every garden begins somewhere.</h2>
           <p className="story-section__text">{originStory.text}</p>
         </div>
       </section>

@@ -43,7 +43,7 @@
   background: none;
   border: none;
   border-radius: var(--radius-full);
-  color: var(--color-gray-500);
+  color: var(--color-gray-600);
   cursor: pointer;
   transition: all var(--transition-fast);
 }

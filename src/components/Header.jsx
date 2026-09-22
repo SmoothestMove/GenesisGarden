@@ -4,12 +4,17 @@ import nav from '../content/nav.json';
 import './Header.css';
 
 const navLinks = nav.header;
+const MOBILE_QUERY = '(max-width: 1023px)';
+const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [indicator, setIndicator] = useState(null);
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia(MOBILE_QUERY).matches);
   const navListRef = useRef(null);
+  const navRef = useRef(null);
+  const toggleRef = useRef(null);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -39,6 +44,17 @@ function Header() {
     return () => window.removeEventListener('resize', measure);
   }, [pathname]);
 
+  // Track whether the nav is rendered as the mobile drawer
+  useEffect(() => {
+    const mql = window.matchMedia(MOBILE_QUERY);
+    const handleChange = (e) => {
+      setIsMobile(e.matches);
+      if (!e.matches) setMenuOpen(false);
+    };
+    mql.addEventListener('change', handleChange);
+    return () => mql.removeEventListener('change', handleChange);
+  }, []);
+
   // Close menu on route change
   useEffect(() => {
     setMenuOpen(false);
@@ -56,6 +72,34 @@ function Header() {
     };
   }, [menuOpen]);
 
+  // Modal drawer behavior: focus first link, trap Tab, close on Escape
+  useEffect(() => {
+    if (!menuOpen) return;
+    const navEl = navRef.current;
+    const toggle = toggleRef.current;
+    navEl?.querySelector(FOCUSABLE)?.focus();
+
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') {
+        setMenuOpen(false);
+        toggle?.focus();
+        return;
+      }
+      if (e.key !== 'Tab' || !navEl) return;
+      const items = [...navEl.querySelectorAll(FOCUSABLE), toggle].filter(Boolean);
+      const index = items.indexOf(document.activeElement);
+      const next = e.shiftKey
+        ? (index <= 0 ? items.length - 1 : index - 1)
+        : (index === -1 || index === items.length - 1 ? 0 : index + 1);
+      e.preventDefault();
+      items[next].focus();
+    }
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [menuOpen]);
+
+  const drawerOpen = isMobile && menuOpen;
+
   return (
     <header className={`header${scrolled ? ' header--scrolled' : ''}`} role="banner">
       <div className="header__inner container">
@@ -72,7 +116,15 @@ function Header() {
           </span>
         </Link>
 
-        <nav className={`header__nav${menuOpen ? ' header__nav--open' : ''}`} aria-label="Main navigation">
+        <nav
+          ref={navRef}
+          id="primary-navigation"
+          className={`header__nav${menuOpen ? ' header__nav--open' : ''}`}
+          aria-label="Main navigation"
+          role={drawerOpen ? 'dialog' : undefined}
+          aria-modal={drawerOpen ? 'true' : undefined}
+          inert={isMobile && !menuOpen}
+        >
           <ul className="header__nav-list" ref={navListRef}>
             {indicator && (
               <span
@@ -110,10 +162,12 @@ function Header() {
             Donate
           </Link>
           <button
+            ref={toggleRef}
             className={`header__hamburger${menuOpen ? ' header__hamburger--open' : ''}`}
             onClick={() => setMenuOpen((prev) => !prev)}
             aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={menuOpen}
+            aria-controls="primary-navigation"
           >
             <span className="header__hamburger-line" />
             <span className="header__hamburger-line" />

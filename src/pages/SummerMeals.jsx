@@ -28,10 +28,6 @@ function SummerMeals() {
 
       <section className="section" ref={gridRef}>
         <div className="container">
-          <div className="summer-notice">
-            <strong>Content note:</strong> {content.contentNote}
-          </div>
-
           <p>
             {content.intro}
           </p>

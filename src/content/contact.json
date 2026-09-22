@@ -11,13 +11,12 @@
     "mailingHeading": "Mailing Address",
     "callHeading": "Call Us",
     "emailHeading": "Email",
-    "emailNote": "Not listed on the main Contact page, but published by Genesis Garden in its SMS messaging terms as a way to reach the organization.",
     "emergencyHeading": "Emergency Housing Line",
     "emergencyNote": "Please leave a message if we can't answer the phone, and we will call or text you in response."
   },
   "form": {
     "heading": "Send Us a Message",
-    "successHeading": "Thank You!",
-    "successText": "Your message has been received. We'll get back to you as soon as possible."
+    "successHeading": "Almost done",
+    "successText": "Your email app should open with your message ready to go. Press Send there to reach us."
   }
 }

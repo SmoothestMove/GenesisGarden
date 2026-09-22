@@ -13,6 +13,7 @@
   --color-secondary: #40916c;
   --color-accent: #d4a373;
   --color-accent-dark: #b8885a;
+  --color-accent-text: #8a6238; /* accent tone that passes 4.5:1 for small text */
   --color-accent-light: #e8d5b7;
   --color-accent-glow: rgba(212, 163, 115, 0.35);
 
@@ -25,7 +26,7 @@
   --color-gray-300: #dee2e6;
   --color-gray-400: #ced4da;
   --color-gray-500: #adb5bd;
-  --color-gray-600: #6c757d;
+  --color-gray-600: #5f676e;
   --color-gray-700: #495057;
   --color-gray-800: #343a40;
   --color-gray-900: #212529;
@@ -139,6 +140,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-height);
   -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -150,8 +152,10 @@ body {
   background-color: var(--color-cream);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Manrope's contextual alternates turn "(c)" into "©" (e.g. 501(c)(3)) */
+  font-variant-ligatures: no-contextual;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Subtle grain texture overlay */
@@ -584,7 +588,7 @@ p:last-child {
   font-weight: var(--fw-bold);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-accent-dark);
+  color: var(--color-accent-text);
   margin-bottom: var(--space-4);
 }
 

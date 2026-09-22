@@ -6,6 +6,7 @@ import './JobOpenings.css';
 
 function JobOpenings() {
   const [listRef, listInView] = useInView({ threshold: 0.05 });
+  const hasOpenings = content.jobs.some((job) => job.status === 'open');
 
   return (
     <>
@@ -27,6 +28,13 @@ function JobOpenings() {
 
       <section className="section" ref={listRef}>
         <div className="container">
+          {!hasOpenings && (
+            <div className="job-notice job-notice--empty">
+              <strong>No openings right now.</strong> Check back soon, or{' '}
+              <a href="/contact-us">contact us</a> to ask about upcoming openings.
+            </div>
+          )}
+
           <div className="job-list">
             {content.jobs.map((job, i) => (
               <article
@@ -47,7 +55,7 @@ function JobOpenings() {
                     ))}
                   </ul>
                 )}
-                {job.applyUrl && (
+                {job.status === 'open' && job.applyUrl && (
                   <a
                     href={job.applyUrl}
                     target="_blank"
