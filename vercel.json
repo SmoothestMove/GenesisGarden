@@ -1,5 +1,12 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/housing-services", "destination": "/index.html" },
+    { "source": "/job-openings", "destination": "/index.html" },
+    { "source": "/summer-meals", "destination": "/index.html" },
+    { "source": "/about-us", "destination": "/index.html" },
+    { "source": "/partners", "destination": "/index.html" },
+    { "source": "/donate", "destination": "/index.html" },
+    { "source": "/contact-us", "destination": "/index.html" }
   ]
 }

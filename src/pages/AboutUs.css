@@ -249,7 +249,7 @@
 
 .about-team-stat__label {
   font-size: var(--fs-sm);
-  color: var(--color-gray-500);
+  color: var(--color-gray-600);
   font-weight: var(--fw-medium);
   margin-top: var(--space-1);
 }

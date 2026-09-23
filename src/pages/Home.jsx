@@ -207,7 +207,7 @@ function Home() {
         </div>
         <div className={`story-section__content reveal--right${storyInView ? ' reveal--visible' : ''}`}>
           <span className="story-section__eyebrow">{story.eyebrow}</span>
-          <p className="story-section__quote gradient-text">{story.quote}</p>
+          <h2 className="story-section__quote gradient-text">{story.quote}</h2>
           <p className="story-section__text">{story.text}</p>
           <Link to={story.linkTo} className="story-section__link">
             {story.linkLabel}
@@ -279,7 +279,10 @@ function Home() {
               <h2>{wantToHelp.heading}</h2>
               <p>{wantToHelp.text}</p>
               <ul className="split-help__list">
-                <li>{donateContent.financial.heading} — {donateContent.financial.intro}</li>
+                <li>
+                  {donateContent.financial.heading} — {donateContent.financial.intro}{' '}
+                  {site.address.street}, {site.address.cityStateZip}
+                </li>
                 <li>{donateContent.goods.heading} — {donateContent.goods.intro}</li>
               </ul>
               <Link to={wantToHelp.linkTo} className="btn btn--outline">

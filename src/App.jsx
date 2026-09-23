@@ -8,6 +8,7 @@ import AboutUs from './pages/AboutUs';
 import Partners from './pages/Partners';
 import Donate from './pages/Donate';
 import ContactUs from './pages/ContactUs';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/partners" element={<Partners />} />
         <Route path="/donate" element={<Donate />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );

@@ -372,7 +372,6 @@ collections:
               - { label: "Mailing Address Card Heading", name: "mailingHeading", widget: "string" }
               - { label: "Call Card Heading", name: "callHeading", widget: "string" }
               - { label: "Email Card Heading", name: "emailHeading", widget: "string" }
-              - { label: "Email Card Note", name: "emailNote", widget: "text" }
               - { label: "Emergency Card Heading", name: "emergencyHeading", widget: "string" }
               - { label: "Emergency Card Note", name: "emergencyNote", widget: "text" }
           - label: "Message Form"
@@ -435,7 +434,6 @@ collections:
             fields:
               - { label: "Heading", name: "heading", widget: "string" }
               - { label: "Text", name: "text", widget: "text" }
-          - { label: "Content Note", name: "contentNote", widget: "text", hint: "Shown at the top of the page as a reminder to keep this page current" }
           - { label: "Intro Paragraph", name: "intro", widget: "text" }
           - { label: "Sites Heading", name: "sitesHeading", widget: "string" }
           - label: "Pickup Sites"

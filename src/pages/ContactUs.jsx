@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import SEOHead from '../components/SEOHead';
 import useInView from '../hooks/useInView';
 import content from '../content/contact.json';
@@ -24,14 +24,25 @@ function ContactUs() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [gridRef, gridInView] = useInView();
+  const successHeadingRef = useRef(null);
+
+  // Move focus to the confirmation so keyboard and screen reader users land on it
+  useEffect(() => {
+    if (submitted) successHeadingRef.current?.focus();
+  }, [submitted]);
 
   function handleChange(e) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   }
 
+  // There is no form backend, so hand the message to the visitor's email app
   function handleSubmit(e) {
     e.preventDefault();
+    const subject = `Website message from ${formData.name}`;
+    const body = `${formData.message}\n\n${formData.name}\n${formData.email}`;
+    window.location.href =
+      `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     setSubmitted(true);
   }
 
@@ -93,9 +104,6 @@ function ContactUs() {
                 <p>
                   <a href={`mailto:${site.email}`} className="contact-link">{site.email}</a>
                 </p>
-                <p className="contact-info__note">
-                  {content.cards.emailNote}
-                </p>
               </div>
 
               <div className="contact-info__card contact-info__card--emergency glass-card">
@@ -117,6 +125,9 @@ function ContactUs() {
             {/* Form Column */}
             <div className="contact-form-wrapper">
               <h2>{content.form.heading}</h2>
+              <p className="sr-only" role="status" aria-live="polite">
+                {submitted ? `${content.form.successHeading}. ${content.form.successText}` : ''}
+              </p>
               {submitted ? (
                 <div className="contact-form__success">
                   {CONFETTI_PIECES.map((piece) => (
@@ -138,8 +149,13 @@ function ContactUs() {
                       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
                     </svg>
                   </div>
-                  <h3>{content.form.successHeading}</h3>
+                  <h3 ref={successHeadingRef} tabIndex={-1}>{content.form.successHeading}</h3>
                   <p>{content.form.successText}</p>
+                  <p>
+                    If it didn't open, email{' '}
+                    <a href={`mailto:${site.email}`} className="contact-link">{site.email}</a>{' '}
+                    or call <a href={site.phoneHref} className="contact-link">{site.phone}</a>.
+                  </p>
                   <button
                     className="btn btn--primary"
                     onClick={() => {
@@ -147,14 +163,18 @@ function ContactUs() {
                       setFormData({ name: '', email: '', message: '' });
                     }}
                   >
-                    Send Another Message
+                    Write Another Message
                   </button>
                 </div>
               ) : (
                 <form className="contact-form" onSubmit={handleSubmit}>
+                  <p className="contact-form__required-note">
+                    Required fields are marked <span aria-hidden="true">*</span>
+                    <span className="sr-only">with an asterisk</span>
+                  </p>
                   <div className="contact-form__group">
                     <label htmlFor="contact-name" className="contact-form__label">
-                      Full Name
+                      Full Name <span className="contact-form__required" aria-hidden="true">*</span>
                     </label>
                     <input
                       type="text"
@@ -164,12 +184,13 @@ function ContactUs() {
                       onChange={handleChange}
                       className="contact-form__input"
                       placeholder="Your full name"
+                      autoComplete="name"
                       required
                     />
                   </div>
                   <div className="contact-form__group">
                     <label htmlFor="contact-email" className="contact-form__label">
-                      Email Address
+                      Email Address <span className="contact-form__required" aria-hidden="true">*</span>
                     </label>
                     <input
                       type="email"
@@ -179,12 +200,13 @@ function ContactUs() {
                       onChange={handleChange}
                       className="contact-form__input"
                       placeholder="you@example.com"
+                      autoComplete="email"
                       required
                     />
                   </div>
                   <div className="contact-form__group">
                     <label htmlFor="contact-message" className="contact-form__label">
-                      Message
+                      Message <span className="contact-form__required" aria-hidden="true">*</span>
                     </label>
                     <textarea
                       id="contact-message"
@@ -198,8 +220,11 @@ function ContactUs() {
                     />
                   </div>
                   <button type="submit" className="btn btn--primary btn--lg contact-form__submit">
-                    Send Message
+                    Send by Email
                   </button>
+                  <p className="contact-form__hint">
+                    This opens your email app with your message filled in.
+                  </p>
                 </form>
               )}
             </div>
