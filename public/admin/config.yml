@@ -27,6 +27,8 @@ collections:
           - { label: "Tagline", name: "tagline", widget: "string" }
           - { label: "Phone (display)", name: "phone", widget: "string", hint: "e.g. 309-326-3075" }
           - { label: "Phone Link", name: "phoneHref", widget: "string", hint: "e.g. tel:3093263075 (no spaces or dashes)" }
+          - { label: "Call Hours Note", name: "callHours", widget: "string", required: false, hint: "e.g. Mon–Fri 9am–5pm (optional)" }
+          - { label: "Texting Available?", name: "textingAvailable", widget: "boolean", default: false, required: false }
           - { label: "Email", name: "email", widget: "string" }
           - label: "Address"
             name: "address"
@@ -40,6 +42,18 @@ collections:
             fields:
               - { label: "Facebook URL", name: "facebook", widget: "string" }
           - { label: "Year Founded", name: "foundedYear", widget: "number", value_type: "int" }
+          - label: "Safety / Crisis Referral Strip"
+            name: "safetyStrip"
+            widget: "object"
+            fields:
+              - { label: "Show Crisis Strip?", name: "enabled", widget: "boolean", default: false, hint: "Toggle on once referral numbers are verified with Genesis Garden team" }
+              - { label: "Heading", name: "heading", widget: "string", default: "In danger or unsafe right now?" }
+              - label: "Referral Lines"
+                name: "lines"
+                widget: "list"
+                fields:
+                  - { label: "Phone Number", name: "number", widget: "string", hint: "e.g. 911, 988, 211, 1-800-799-7233" }
+                  - { label: "Label / Description", name: "label", widget: "string", hint: "e.g. Emergency, Suicide & Crisis Lifeline" }
 
       - file: "src/content/home.json"
         label: "Home Page"
@@ -56,6 +70,8 @@ collections:
             widget: "object"
             fields:
               - { label: "Background Image", name: "backgroundImage", widget: "image" }
+              - { label: "Background Image Alt Text", name: "imageAlt", widget: "string", required: false }
+              - { label: "Image Focal Point (CSS object-position)", name: "focalPoint", widget: "string", required: false, hint: "e.g. center 20% or center top" }
               - { label: "Badge Text", name: "badge", widget: "string" }
               - { label: "Title (line 1)", name: "titleLine1", widget: "string" }
               - { label: "Title (accent line)", name: "titleAccent", widget: "string" }
@@ -108,6 +124,17 @@ collections:
               - { label: "Text", name: "text", widget: "text" }
               - { label: "Button Label", name: "secondaryButtonLabel", widget: "string" }
               - { label: "Button Link", name: "secondaryButtonTo", widget: "string" }
+          - label: "Origin Story Section"
+            name: "story"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Quote / Heading", name: "quote", widget: "string" }
+              - { label: "Story Text", name: "text", widget: "text" }
+              - { label: "Image", name: "image", widget: "image" }
+              - { label: "Image Alt Text", name: "imageAlt", widget: "string", required: false }
+              - { label: "Link Label", name: "linkLabel", widget: "string" }
+              - { label: "Link To", name: "linkTo", widget: "string" }
 
       - file: "src/content/housing-services.json"
         label: "Housing Services Page"
@@ -233,6 +260,7 @@ collections:
                 fields:
                   - { label: "Name", name: "name", widget: "string" }
                   - { label: "Role", name: "role", widget: "string", required: false }
+                  - { label: "Photo", name: "photo", widget: "image", required: false }
               - { label: "In Memory Of (Name)", name: "inMemoryName", widget: "string" }
               - { label: "In Memory Of (Link)", name: "inMemoryUrl", widget: "string" }
               - { label: "Directors Heading", name: "directorsHeading", widget: "string" }
@@ -242,6 +270,7 @@ collections:
                 fields:
                   - { label: "Name", name: "name", widget: "string" }
                   - { label: "Role", name: "role", widget: "string", required: false }
+                  - { label: "Photo", name: "photo", widget: "image", required: false }
               - { label: "Founding President Line", name: "foundingPresident", widget: "string" }
               - { label: "Partners Link Label", name: "partnersLinkLabel", widget: "string" }
           - label: "History Section"
@@ -293,6 +322,7 @@ collections:
                 options: ["bell", "globe", "book", "building", "people", "house"]
               - { label: "Name", name: "name", widget: "string" }
               - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "Logo", name: "logo", widget: "image", required: false }
 
       - file: "src/content/donate.json"
         label: "Donate Page"
@@ -326,6 +356,14 @@ collections:
               - { label: "Intro Text", name: "intro", widget: "text" }
               - { label: "Button Label", name: "buttonLabel", widget: "string" }
               - { label: "Button URL", name: "buttonUrl", widget: "string" }
+          - label: "Giving Tiers (Impact Framing Cards)"
+            name: "givingTiers"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Amount", name: "amount", widget: "string", hint: "e.g. $25, $50, $100, $250" }
+              - { label: "Outcome / Impact", name: "outcome", widget: "string", hint: "e.g. Supplies a welcome kit for a family entering shelter" }
+          - { label: "Monthly Giving URL", name: "monthlyUrl", widget: "string", required: false, hint: "Optional link to monthly recurring donation page" }
           - label: "Goods Donations"
             name: "goods"
             widget: "object"
@@ -422,6 +460,7 @@ collections:
         label: "Summer Meals Page"
         name: "summer-meals"
         fields:
+          - { label: "Program Active (Summer Season)?", name: "active", widget: "boolean", default: false, hint: "Turn on during summer distribution season to display in main header navigation." }
           - label: "SEO"
             name: "seo"
             widget: "object"
@@ -475,3 +514,27 @@ collections:
               - { label: "Label", name: "label", widget: "string" }
               - { label: "Link", name: "to", widget: "string", hint: "internal page path, or a full https:// URL if External is checked" }
               - { label: "External Link?", name: "external", widget: "boolean", default: false, required: false }
+
+      - file: "src/content/privacy.json"
+        label: "Privacy Policy Page"
+        name: "privacy"
+        fields:
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            fields:
+              - { label: "Page Title", name: "title", widget: "string" }
+              - { label: "Page Description", name: "description", widget: "text" }
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Last Updated", name: "lastUpdated", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+          - label: "Sections"
+            name: "sections"
+            widget: "list"
+            fields:
+              - { label: "Heading", name: "heading", widget: "string" }
+              - { label: "Content", name: "content", widget: "text" }

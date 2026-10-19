@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import useInView from '../hooks/useInView';
+import useMediaQuery from '../hooks/useMediaQuery';
 import site from '../content/site.json';
 import nav from '../content/nav.json';
 import './Footer.css';
@@ -7,6 +8,7 @@ import './Footer.css';
 function Footer() {
   const currentYear = new Date().getFullYear();
   const [footerRef, footerInView] = useInView({ threshold: 0.1 });
+  const isDesktop = useMediaQuery('(min-width: 640px)');
 
   return (
     <footer className="footer" role="contentinfo">
@@ -48,32 +50,78 @@ function Footer() {
 
           {/* Quick Links */}
           <div className="footer__links-group">
-            <h3 className="footer__heading">Our Work</h3>
-            <ul className="footer__link-list">
-              {nav.footerWork.map((link) => (
-                <li key={link.to}>
-                  <Link to={link.to} className="footer__link">{link.label}</Link>
-                </li>
-              ))}
-            </ul>
+            {isDesktop ? (
+              <>
+                <h3 className="footer__heading">Our Work</h3>
+                <ul className="footer__link-list">
+                  {nav.footerWork.map((link) => (
+                    <li key={link.to}>
+                      <Link to={link.to} className="footer__link">{link.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <details className="footer__collapsible">
+                <summary className="footer__heading footer__summary">
+                  <span>Our Work</span>
+                  <svg className="footer__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </summary>
+                <ul className="footer__link-list">
+                  {nav.footerWork.map((link) => (
+                    <li key={link.to}>
+                      <Link to={link.to} className="footer__link">{link.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            )}
           </div>
 
           {/* Support Links */}
           <div className="footer__links-group">
-            <h3 className="footer__heading">Support</h3>
-            <ul className="footer__link-list">
-              {nav.footerSupport.map((link) => (
-                <li key={link.to}>
-                  {link.external ? (
-                    <a href={link.to} target="_blank" rel="noopener noreferrer" className="footer__link">
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link to={link.to} className="footer__link">{link.label}</Link>
-                  )}
-                </li>
-              ))}
-            </ul>
+            {isDesktop ? (
+              <>
+                <h3 className="footer__heading">Support</h3>
+                <ul className="footer__link-list">
+                  {nav.footerSupport.map((link) => (
+                    <li key={link.to}>
+                      {link.external ? (
+                        <a href={link.to} target="_blank" rel="noopener noreferrer" className="footer__link">
+                          {link.label}
+                        </a>
+                      ) : (
+                        <Link to={link.to} className="footer__link">{link.label}</Link>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <details className="footer__collapsible">
+                <summary className="footer__heading footer__summary">
+                  <span>Support</span>
+                  <svg className="footer__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </summary>
+                <ul className="footer__link-list">
+                  {nav.footerSupport.map((link) => (
+                    <li key={link.to}>
+                      {link.external ? (
+                        <a href={link.to} target="_blank" rel="noopener noreferrer" className="footer__link">
+                          {link.label}
+                        </a>
+                      ) : (
+                        <Link to={link.to} className="footer__link">{link.label}</Link>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            )}
           </div>
 
           {/* Contact Column */}

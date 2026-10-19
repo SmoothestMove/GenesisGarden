@@ -1,0 +1,32 @@
+.inline-donate {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .inline-donate {
+    display: block;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    padding: var(--space-8) 0;
+  }
+
+  .inline-donate__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    text-align: center;
+  }
+
+  .inline-donate__text {
+    font-family: var(--font-heading);
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-semibold);
+    color: var(--color-white);
+    margin: 0;
+  }
+
+  .inline-donate__btn {
+    width: 100%;
+    max-width: 320px;
+  }
+}

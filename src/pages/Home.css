@@ -23,9 +23,15 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 30%;
+  object-position: center 20%;
   transform: scale(1.18);
   animation: heroZoom 20s ease-in-out infinite alternate;
+}
+
+@media (min-width: 768px) {
+  .hero__bg-image {
+    object-position: center 30%;
+  }
 }
 
 @keyframes heroZoom {
@@ -176,11 +182,30 @@
 }
 
 .hero__phone {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: var(--space-2) var(--space-4);
   margin-top: var(--space-4);
   font-size: var(--fs-sm);
-  color: rgba(255, 255, 255, 0.7);
+  font-weight: var(--fw-medium);
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: underline;
+  text-underline-offset: 4px;
+  border-radius: var(--radius-md);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.hero__phone:hover {
+  color: var(--color-white);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.hero__phone:focus-visible {
+  outline: 3px solid var(--color-primary-light);
+  outline-offset: 2px;
 }
 
 /* Scroll indicator */
@@ -307,6 +332,27 @@
   transform: translateX(2px);
 }
 
+.get-help__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.get-help__call-btn {
+  min-height: 44px;
+}
+
+.get-help__item--has-call {
+  cursor: default;
+}
+
+.get-help__item--has-call:hover {
+  background-color: rgba(45, 106, 79, 0.03);
+  transform: none;
+}
+
 .get-help__closing {
   text-align: center;
   font-size: var(--fs-sm);
@@ -387,6 +433,94 @@
   font-size: var(--fs-sm);
   color: var(--color-gray-600);
   line-height: var(--lh-relaxed);
+}
+
+/* ===== Mobile Journey Accordion ===== */
+.journey-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.journey-accordion__item {
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+}
+
+.journey-accordion__item[open] {
+  border-color: var(--color-primary-light);
+  box-shadow: var(--shadow-md);
+}
+
+.journey-accordion__summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  min-height: 48px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.journey-accordion__summary::-webkit-details-marker {
+  display: none;
+}
+
+.journey-accordion__num {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(45, 106, 79, 0.12), rgba(82, 183, 136, 0.2));
+  color: var(--color-primary-dark);
+  border-radius: var(--radius-full);
+  font-family: var(--font-heading);
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-sm);
+}
+
+.journey-accordion__item[open] .journey-accordion__num {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.journey-accordion__title {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-heading);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  color: var(--color-gray-900);
+}
+
+.journey-accordion__chevron {
+  flex-shrink: 0;
+  color: var(--color-primary);
+  transition: transform var(--transition-fast);
+}
+
+.journey-accordion__item[open] .journey-accordion__chevron {
+  transform: rotate(180deg);
+}
+
+.journey-accordion__body {
+  padding: 0 var(--space-5) var(--space-5) calc(var(--space-5) + 32px + var(--space-3));
+}
+
+.journey-accordion__body p {
+  font-size: var(--fs-sm);
+  color: var(--color-gray-600);
+  line-height: var(--lh-relaxed);
+  margin: 0;
 }
 
 /* ===== Impact — proof point ===== */
@@ -496,6 +630,13 @@
   flex-direction: column;
   gap: var(--space-3);
   margin-bottom: var(--space-6);
+}
+
+.split-help__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: flex-start;
 }
 
 .split-help__list li {

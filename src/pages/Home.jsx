@@ -3,7 +3,12 @@ import SEOHead from '../components/SEOHead';
 import SectionDivider from '../components/SectionDivider';
 import AnimatedCounter from '../components/AnimatedCounter';
 import DonationPrompt from '../components/DonationPrompt';
+import SafetyStrip from '../components/SafetyStrip';
+import InlineDonateBanner from '../components/InlineDonateBanner';
+import TrustBadge from '../components/TrustBadge';
+import PhoneIcon from '../components/PhoneIcon';
 import useInView from '../hooks/useInView';
+import useMediaQuery from '../hooks/useMediaQuery';
 import useParallax from '../hooks/useParallax';
 import useRipple from '../hooks/useRipple';
 import useActiveStage from '../hooks/useActiveStage';
@@ -80,6 +85,7 @@ function Home() {
   const [impactRef, impactInView] = useInView();
   const [ctaRef, ctaInView] = useInView();
   const heroParallaxRef = useParallax();
+  const isDesktop = useMediaQuery('(min-width: 768px)');
   const ripple = useRipple();
   const { active: activeStage, setRef: setStageRef } = useActiveStage();
 
@@ -103,8 +109,9 @@ function Home() {
             src={hero.backgroundImage}
             srcSet={`${hero.backgroundImage.replace(/\.webp$/, '-640w.webp')} 640w, ${hero.backgroundImage.replace(/\.webp$/, '-960w.webp')} 960w, ${hero.backgroundImage.replace(/\.webp$/, '-1280w.webp')} 1280w, ${hero.backgroundImage.replace(/\.webp$/, '-1920w.webp')} 1920w, ${hero.backgroundImage.replace(/\.webp$/, '-2560w.webp')} 2560w, ${hero.backgroundImage} 4096w`}
             sizes="100vw"
-            alt=""
+            alt={hero.imageAlt || "Genesis Garden community in Western Illinois"}
             className="hero__bg-image"
+            style={hero.focalPoint ? { objectPosition: hero.focalPoint } : undefined}
             loading="eager"
             fetchPriority="high"
             width="4096"
@@ -145,14 +152,32 @@ function Home() {
               {hero.subtitle}
             </p>
             <div className="hero__actions animate-fade-in-up delay-2">
-              {hero.ctas.map((item) => (
-                <Link key={item.label} to={item.to} className={`btn ${item.style} btn--lg`} onClick={ripple}>
-                  {item.label}
-                </Link>
-              ))}
+              {hero.ctas.map((item) =>
+                item.href ? (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className={`btn ${item.style} btn--lg`}
+                    onClick={ripple}
+                  >
+                    <PhoneIcon size={18} />
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.label}
+                    to={item.to}
+                    className={`btn ${item.style} btn--lg`}
+                    onClick={ripple}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
             </div>
             <a href={site.phoneHref} className="hero__phone">
-              or call {site.phone}
+              <PhoneIcon size={16} />
+              <span>or call {site.phone}{site.callHours ? ` (${site.callHours})` : ''}</span>
             </a>
           </div>
         </div>
@@ -163,6 +188,9 @@ function Home() {
         </div>
       </section>
 
+      {/* ===== Crisis & Safety Referral Strip (Finding 2) ===== */}
+      <SafetyStrip />
+
       {/* ===== Get Help ===== */}
       <section className="get-help" id="get-help" ref={getHelpRef}>
         <div className="container">
@@ -172,28 +200,64 @@ function Home() {
               <p>{getHelp.intro}</p>
             </div>
             <div className="get-help__list">
-              {getHelp.items.map((item, i) => (
-                <Link
-                  to={item.linkTo}
-                  className={`get-help__item reveal${getHelpInView ? ' reveal--visible' : ''}`}
-                  key={item.prompt}
-                  style={{ transitionDelay: `${i * 0.08}s` }}
-                >
-                  <span className="get-help__icon icon-container" aria-hidden="true">
-                    {GET_HELP_ICONS[item.icon]}
-                  </span>
-                  <span className="get-help__body">
-                    <span className="get-help__prompt">{item.prompt}</span>
-                    <span className="get-help__detail">{item.detail}</span>
-                    <span className="get-help__link-label">
-                      {item.linkLabel}
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                        <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
-                      </svg>
+              {getHelp.items.map((item, i) => {
+                if (item.callHref) {
+                  return (
+                    <div
+                      key={item.prompt}
+                      className={`get-help__item get-help__item--has-call reveal${getHelpInView ? ' reveal--visible' : ''}`}
+                      style={{ transitionDelay: `${i * 0.08}s` }}
+                    >
+                      <span className="get-help__icon icon-container" aria-hidden="true">
+                        {GET_HELP_ICONS[item.icon]}
+                      </span>
+                      <span className="get-help__body">
+                        <span className="get-help__prompt">{item.prompt}</span>
+                        <span className="get-help__detail">{item.detail}</span>
+                        <span className="get-help__actions">
+                          <a
+                            href={item.callHref}
+                            className="btn btn--accent btn--sm get-help__call-btn"
+                            aria-label={`Call Genesis Garden emergency line at ${site.phone}`}
+                          >
+                            <PhoneIcon size={14} />
+                            {item.callLabel || `Call ${site.phone}`}
+                          </a>
+                          <Link to={item.linkTo} className="get-help__link-label">
+                            {item.linkLabel}
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                              <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+                            </svg>
+                          </Link>
+                        </span>
+                      </span>
+                    </div>
+                  );
+                }
+
+                return (
+                  <Link
+                    to={item.linkTo}
+                    className={`get-help__item reveal${getHelpInView ? ' reveal--visible' : ''}`}
+                    key={item.prompt}
+                    style={{ transitionDelay: `${i * 0.08}s` }}
+                  >
+                    <span className="get-help__icon icon-container" aria-hidden="true">
+                      {GET_HELP_ICONS[item.icon]}
                     </span>
-                  </span>
-                </Link>
-              ))}
+                    <span className="get-help__body">
+                      <span className="get-help__prompt">{item.prompt}</span>
+                      <span className="get-help__detail">{item.detail}</span>
+                      <span className="get-help__link-label">
+                        {item.linkLabel}
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                          <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+                        </svg>
+                      </span>
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
             <p className="get-help__closing">{getHelp.closingNote}</p>
           </div>
@@ -203,7 +267,7 @@ function Home() {
       {/* ===== Story — editorial split ===== */}
       <section className="story-section" ref={storyRef}>
         <div className={`story-section__media reveal--left${storyInView ? ' reveal--visible' : ''}`}>
-          <img src={story.image} alt="Genesis Garden campus" loading="lazy" />
+          <img src={story.image} alt={story.imageAlt || "Genesis Garden community in Macomb, Illinois"} loading="lazy" />
         </div>
         <div className={`story-section__content reveal--right${storyInView ? ' reveal--visible' : ''}`}>
           <span className="story-section__eyebrow">{story.eyebrow}</span>
@@ -227,23 +291,42 @@ function Home() {
             <h2>{thingsToKnow.heading}</h2>
             <p>{thingsToKnow.intro}</p>
           </div>
-          <div className="journey">
-            <div className="journey__line" aria-hidden="true" />
-            {thingsToKnow.items.map((item, i) => (
-              <div
-                key={item.number}
-                ref={setStageRef(i)}
-                className={`journey__stage reveal${knowInView ? ' reveal--visible' : ''}${activeStage === i ? ' journey__stage--active' : ''}`}
-                style={{ transitionDelay: `${i * 0.06}s` }}
-              >
-                <span className="journey__marker" aria-hidden="true">{item.number}</span>
-                <div className="journey__content">
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
+          {isDesktop ? (
+            <div className="journey">
+              <div className="journey__line" aria-hidden="true" />
+              {thingsToKnow.items.map((item, i) => (
+                <div
+                  key={item.number}
+                  ref={setStageRef(i)}
+                  className={`journey__stage reveal${knowInView ? ' reveal--visible' : ''}${activeStage === i ? ' journey__stage--active' : ''}`}
+                  style={{ transitionDelay: `${i * 0.06}s` }}
+                >
+                  <span className="journey__marker" aria-hidden="true">{item.number}</span>
+                  <div className="journey__content">
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="journey-accordion">
+              {thingsToKnow.items.map((item, i) => (
+                <details key={item.number} className="journey-accordion__item" open={i === 0}>
+                  <summary className="journey-accordion__summary">
+                    <span className="journey-accordion__num" aria-hidden="true">{item.number}</span>
+                    <span className="journey-accordion__title">{item.title}</span>
+                    <svg className="journey-accordion__chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </summary>
+                  <div className="journey-accordion__body">
+                    <p>{item.text}</p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -270,6 +353,9 @@ function Home() {
         </div>
       </section>
 
+      {/* ===== Inline Mobile Donate Banner (Finding 1) ===== */}
+      <InlineDonateBanner />
+
       {/* ===== Want to help / Want to partner — split ===== */}
       <section className="split-help" ref={splitRef}>
         <div className="container">
@@ -285,9 +371,12 @@ function Home() {
                 </li>
                 <li>{donateContent.goods.heading} — {donateContent.goods.intro}</li>
               </ul>
-              <Link to={wantToHelp.linkTo} className="btn btn--outline">
-                {wantToHelp.linkLabel}
-              </Link>
+              <div className="split-help__actions">
+                <Link to={wantToHelp.linkTo} className="btn btn--outline">
+                  {wantToHelp.linkLabel}
+                </Link>
+                <TrustBadge tone="light" />
+              </div>
             </div>
             <div className="split-help__col">
               <span className="split-help__icon icon-container" aria-hidden="true">{PARTNER_ICONS.globe}</span>

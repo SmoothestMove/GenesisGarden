@@ -150,9 +150,25 @@
   gap: var(--space-3);
 }
 
+.header__call-btn {
+  display: none;
+  font-size: var(--fs-sm);
+  padding: var(--space-2) var(--space-4);
+  min-height: 44px;
+}
+
+@media (min-width: 1024px) {
+  .header__call-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+}
+
 .header__donate-btn {
   font-size: var(--fs-sm);
   padding: var(--space-2) var(--space-5);
+  min-height: 44px;
   animation: pulseGlowAccent 3s ease-in-out infinite;
   display: none;
 }
@@ -180,8 +196,8 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   background: none;
   border: none;
   cursor: pointer;
@@ -283,6 +299,9 @@
     font-size: var(--fs-base);
     padding: var(--space-3) var(--space-4);
     border-radius: var(--radius-md);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
   }
 
   .header__nav-link::after {

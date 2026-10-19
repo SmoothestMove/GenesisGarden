@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import site from '../content/site.json';
 
-const SITE_URL = 'https://genesisgarden.vercel.app';
+const SITE_URL = site.siteUrl || 'https://genesisgarden.vercel.app';
 
 const defaultMeta = {
   title: 'Genesis Garden | Safe, Stable Housing in Western Illinois',
@@ -31,15 +32,38 @@ function SEOHead({ title, description, noindex = false }) {
       return el;
     });
     metaDesc.setAttribute('content', pageDescription);
+
+    const ogTitle = upsertHeadTag('meta[property="og:title"]', () => {
+      const el = document.createElement('meta');
+      el.setAttribute('property', 'og:title');
+      return el;
+    });
+    ogTitle.setAttribute('content', pageTitle);
+
+    const ogDesc = upsertHeadTag('meta[property="og:description"]', () => {
+      const el = document.createElement('meta');
+      el.setAttribute('property', 'og:description');
+      return el;
+    });
+    ogDesc.setAttribute('content', pageDescription);
   }, [pageTitle, pageDescription]);
 
   useEffect(() => {
+    const url = `${SITE_URL}${pathname === '/' ? '/' : pathname}`;
+
     const canonical = upsertHeadTag('link[rel="canonical"]', () => {
       const el = document.createElement('link');
       el.rel = 'canonical';
       return el;
     });
-    canonical.href = `${SITE_URL}${pathname}`;
+    canonical.href = url;
+
+    const ogUrl = upsertHeadTag('meta[property="og:url"]', () => {
+      const el = document.createElement('meta');
+      el.setAttribute('property', 'og:url');
+      return el;
+    });
+    ogUrl.setAttribute('content', url);
   }, [pathname]);
 
   useEffect(() => {

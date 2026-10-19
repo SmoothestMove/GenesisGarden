@@ -28,6 +28,15 @@ function SummerMeals() {
 
       <section className="section" ref={gridRef}>
         <div className="container">
+          {!content.active && (
+            <aside className="summer-meals__offseason-banner" role="status">
+              <h3>Program Status: Off-Season</h3>
+              <p>
+                Summer Meals To-Go operates from June through August. Meal distribution is currently on seasonal pause. Site schedules and sign-up details for the upcoming summer will be announced in May.
+              </p>
+            </aside>
+          )}
+
           <p>
             {content.intro}
           </p>

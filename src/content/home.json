@@ -10,8 +10,10 @@
     "titleLine1": "What do you need",
     "titleAccent": "right now?",
     "subtitle": "A new beginning can grow from here — safe, stable housing for individuals and families across McDonough, Hancock, Henderson, and Warren Counties.",
+    "imageAlt": "A family together outdoors, representing safe and stable housing in Western Illinois",
     "ctas": [
-      { "label": "I need housing help", "to": "#get-help", "style": "btn--accent" },
+      { "label": "Call now: 309-326-3075", "href": "tel:3093263075", "style": "btn--accent" },
+      { "label": "I need housing help", "to": "#get-help", "style": "btn--outline-white" },
       { "label": "I want to help", "to": "/donate", "style": "btn--outline-white" },
       { "label": "I want to partner", "to": "/partners", "style": "btn--outline-white" }
     ]
@@ -32,7 +34,9 @@
         "prompt": "I need a safe place tonight",
         "detail": "Genesis House and Leighty House offer private bedrooms and shared living space — we also use motel rooms when at capacity.",
         "linkLabel": "See emergency shelter",
-        "linkTo": "/housing-services#services"
+        "linkTo": "/housing-services#services",
+        "callLabel": "Call shelter line",
+        "callHref": "tel:3093263075"
       },
       {
         "icon": "target",
@@ -87,6 +91,7 @@
     "quote": "Every garden begins somewhere.",
     "text": "Our inception was inspired by the rapid eviction of Shade Tree Mobile Park residents in 2010. This event exposed the lack of emergency and rapid re-housing in Macomb and McDonough County for families who suddenly find themselves without a place to live.",
     "image": "/images/campus_wide.jpg",
+    "imageAlt": "Genesis Garden community grounds in Macomb, Illinois",
     "linkLabel": "Read our full story",
     "linkTo": "/about-us"
   },

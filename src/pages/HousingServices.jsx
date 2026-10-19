@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SEOHead from '../components/SEOHead';
+import SafetyStrip from '../components/SafetyStrip';
 import SectionDivider from '../components/SectionDivider';
 import useInView from '../hooks/useInView';
+import useMediaQuery from '../hooks/useMediaQuery';
 import useParallax from '../hooks/useParallax';
 import content from '../content/housing-services.json';
 import site from '../content/site.json';
@@ -63,6 +65,8 @@ function HousingServices() {
   const [eligRef, eligInView] = useInView();
   const [actRef, actInView] = useInView();
   const heroParallaxRef = useParallax();
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+  const [introOpen, setIntroOpen] = useState(false);
   const [situationFilter, setSituationFilter] = useState('all');
   const activeFilter = SITUATION_FILTERS.find((f) => f.id === situationFilter);
   const matchedCount = activeFilter.titles
@@ -97,29 +101,12 @@ function HousingServices() {
         </div>
       </section>
 
-      <SectionDivider shape="wave" color="var(--color-cream)" />
+      {/* Safety & Crisis Referral Strip */}
+      <SafetyStrip />
 
-      {/* Intro */}
-      <section className="section" ref={introRef}>
-        <div className="container housing-intro">
-          <div className={`housing-intro__content reveal${introInView ? ' reveal--visible' : ''}`}>
-            <h2>{intro.heading}</h2>
-            <p>
-              {intro.paragraph1}
-            </p>
-            <p className="housing-intro__highlight gradient-text">
-              {intro.highlight}
-            </p>
-            <p>
-              {intro.paragraph2}
-            </p>
-          </div>
-        </div>
-      </section>
+      <SectionDivider shape="wave" color="var(--color-off-white)" />
 
-      <SectionDivider shape="curve" color="var(--color-off-white)" />
-
-      {/* Services List */}
+      {/* Services List with Immediate Situation Triage */}
       <section className="section section--alt" id="services" ref={servicesRef}>
         <div className="container">
           <div className="section-header">
@@ -165,6 +152,52 @@ function HousingServices() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      <SectionDivider shape="curve" color="var(--color-white)" />
+
+      {/* Housing Philosophy / How We Help (Collapsible on mobile) */}
+      <section className="section housing-intro-section" ref={introRef}>
+        <div className="container housing-intro">
+          {!isDesktop && (
+            <button
+              type="button"
+              className="housing-intro__toggle-btn"
+              onClick={() => setIntroOpen((prev) => !prev)}
+              aria-expanded={introOpen}
+              aria-controls="housing-intro-content"
+            >
+              <span>{introOpen ? 'Hide our housing philosophy & continuum of care' : 'Read about our housing philosophy & continuum of care'}</span>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                style={{ transform: introOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }}
+                aria-hidden="true"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+          )}
+
+          {(isDesktop || introOpen) && (
+            <div id="housing-intro-content" className={`housing-intro__content reveal${introInView ? ' reveal--visible' : ''}`}>
+              <h2>{intro.heading}</h2>
+              <p>
+                {intro.paragraph1}
+              </p>
+              <p className="housing-intro__highlight gradient-text">
+                {intro.highlight}
+              </p>
+              <p>
+                {intro.paragraph2}
+              </p>
+            </div>
+          )}
         </div>
       </section>
 

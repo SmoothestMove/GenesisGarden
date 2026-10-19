@@ -19,6 +19,8 @@
     "buttonLabel": "Donate Online",
     "buttonUrl": "https://www.zeffy.com/en-US/donation-form/donate-to-support-stable-housing-in-macomb-and-western-illinois"
   },
+  "givingTiers": [],
+  "monthlyUrl": "",
   "goods": {
     "heading": "Donating Goods",
     "intro": "Donate gently used household goods and some furniture to help families settle into new homes.",

@@ -8,6 +8,7 @@ import AboutUs from './pages/AboutUs';
 import Partners from './pages/Partners';
 import Donate from './pages/Donate';
 import ContactUs from './pages/ContactUs';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -22,10 +23,18 @@ function App() {
         <Route path="/partners" element={<Partners />} />
         <Route path="/donate" element={<Donate />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="*" element={<NotFound />} />
       </Route>
+      {/* Fallback to hard reload for /admin to load Decap CMS */}
+      <Route path="/admin/*" element={<AdminRedirect />} />
     </Routes>
   );
+}
+
+function AdminRedirect() {
+  window.location.href = '/admin/index.html';
+  return null;
 }
 
 export default App;

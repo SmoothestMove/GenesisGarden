@@ -69,7 +69,11 @@ function Partners() {
                 style={{ transitionDelay: `${i * 0.08}s` }}
               >
                 <div className="partner-card__icon icon-container" aria-hidden="true">
-                  {PARTNER_ICONS[partner.icon]}
+                  {partner.logo ? (
+                    <img src={partner.logo} alt="" className="partner-card__logo-img" />
+                  ) : (
+                    PARTNER_ICONS[partner.icon]
+                  )}
                 </div>
                 <h2 className="partner-card__name">{partner.name}</h2>
                 {partner.description && <p className="partner-card__desc">{partner.description}</p>}

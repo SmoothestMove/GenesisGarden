@@ -1,0 +1,33 @@
+{
+  "seo": {
+    "title": "Privacy Policy | Genesis Garden",
+    "description": "Genesis Garden privacy policy: how we protect client confidentiality, donor information, and website visitor privacy."
+  },
+  "hero": {
+    "heading": "Privacy Policy",
+    "lastUpdated": "October 2026",
+    "text": "Genesis Garden is committed to safeguarding the confidentiality, privacy, and dignity of our clients, donors, volunteers, and website visitors."
+  },
+  "sections": [
+    {
+      "heading": "Client Confidentiality & Housing Services",
+      "content": "Genesis Garden provides emergency shelter, diversion, and supportive housing services to individuals and families facing vulnerable circumstances. All information shared with our caseworkers, shelter staff, and volunteers is held in strict confidence in compliance with federal privacy regulations, state guidelines, and Homeless Management Information System (HMIS) requirements. We will never sell, rent, or publicly disclose client records or personally identifiable information without explicit written consent, except where required by law."
+    },
+    {
+      "heading": "Donor Privacy",
+      "content": "We deeply value the trust of our supporters. Genesis Garden will not sell, share, trade, or rent donor contact information, giving amounts, or personal details with any third party, nor will we send donor mailings on behalf of other entities. Online donations are processed through secure, industry-standard encrypted payment gateways. Genesis Garden does not store credit card or payment card credentials on our servers."
+    },
+    {
+      "heading": "Website Data & Inquiries",
+      "content": "When you visit our site, submit a contact form, or sign up for summer meals, we only collect the information you voluntarily supply (such as your name, email, phone number, and message). This data is used exclusively to respond to your inquiry and coordinate services. We do not use third-party behavioral ad trackers or sell browsing data."
+    },
+    {
+      "heading": "Third-Party Links",
+      "content": "Our website may link to community partners, referral hotlines, and government resources. Genesis Garden is not responsible for the privacy practices or content of third-party websites. We encourage you to review their individual privacy statements."
+    },
+    {
+      "heading": "Contacting Us About Privacy",
+      "content": "If you have questions, concerns, or requests regarding this Privacy Policy or how your information is handled, please contact Genesis Garden at info@genesis-garden.org or call 309-326-3075."
+    }
+  ]
+}

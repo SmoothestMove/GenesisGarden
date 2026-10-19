@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import SEOHead from '../components/SEOHead';
+import SafetyStrip from '../components/SafetyStrip';
+import PhoneIcon from '../components/PhoneIcon';
 import useInView from '../hooks/useInView';
 import content from '../content/contact.json';
 import site from '../content/site.json';
@@ -21,29 +23,60 @@ const CONFETTI_PIECES = Array.from({ length: 14 }, (_, i) => {
 });
 
 function ContactUs() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    bestTime: '',
+    message: '',
+    _gotcha: '',
+  });
+  const [status, setStatus] = useState('idle'); // 'idle' | 'submitting' | 'submitted' | 'error'
+  const [errorMessage, setErrorMessage] = useState('');
   const [gridRef, gridInView] = useInView();
   const successHeadingRef = useRef(null);
+  const errorHeadingRef = useRef(null);
 
-  // Move focus to the confirmation so keyboard and screen reader users land on it
+  // Move focus to the confirmation or error so screen reader and keyboard users land on it
   useEffect(() => {
-    if (submitted) successHeadingRef.current?.focus();
-  }, [submitted]);
+    if (status === 'submitted') successHeadingRef.current?.focus();
+    if (status === 'error') errorHeadingRef.current?.focus();
+  }, [status]);
 
   function handleChange(e) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   }
 
-  // There is no form backend, so hand the message to the visitor's email app
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    const subject = `Website message from ${formData.name}`;
-    const body = `${formData.message}\n\n${formData.name}\n${formData.email}`;
-    window.location.href =
-      `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSubmitted(true);
+    setStatus('submitting');
+    setErrorMessage('');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Unable to send your message right now.');
+      }
+
+      setStatus('submitted');
+    } catch (err) {
+      console.error('Contact form submission error:', err);
+      setStatus('error');
+      setErrorMessage(
+        err.message || 'There was a problem sending your message. Please give us a call directly.'
+      );
+    }
   }
 
   return (
@@ -63,10 +96,207 @@ function ContactUs() {
         </div>
       </section>
 
+      {/* Safety & Crisis Strip */}
+      <SafetyStrip />
+
       {/* Contact Grid */}
       <section className="section" ref={gridRef}>
         <div className="container">
           <div className={`contact-grid${gridInView ? ' contact-grid--visible' : ''}`}>
+            {/* Form Column (placed first on mobile for immediate conversion) */}
+            <div className="contact-form-wrapper">
+              {/* Quick phone banner above the form */}
+              <div className="contact-quick-call">
+                <div className="contact-quick-call__icon" aria-hidden="true">
+                  <PhoneIcon size={22} />
+                </div>
+                <div className="contact-quick-call__content">
+                  <p className="contact-quick-call__title">Need immediate help or shelter?</p>
+                  <p className="contact-quick-call__text">
+                    Calling is fastest:{' '}
+                    <a href={site.phoneHref} className="contact-quick-call__link">
+                      {site.phone}
+                    </a>
+                    {site.callHours ? ` · ${site.callHours}` : ''}
+                  </p>
+                </div>
+              </div>
+
+              <h2>{content.form.heading}</h2>
+
+              {status === 'error' && (
+                <div className="contact-form__error" role="alert">
+                  <h3 ref={errorHeadingRef} tabIndex={-1}>Message Not Sent</h3>
+                  <p>{errorMessage}</p>
+                  <p>
+                    You can reach us directly by calling{' '}
+                    <a href={site.phoneHref} className="contact-link">{site.phone}</a> or emailing{' '}
+                    <a href={`mailto:${site.email}`} className="contact-link">{site.email}</a>.
+                  </p>
+                </div>
+              )}
+
+              {status === 'submitted' ? (
+                <div className="contact-form__success">
+                  {CONFETTI_PIECES.map((piece) => (
+                    <span
+                      key={piece.id}
+                      className="contact-form__confetti"
+                      aria-hidden="true"
+                      style={{
+                        background: piece.color,
+                        animationDelay: `${piece.delay}s`,
+                        '--confetti-x': `${piece.x}px`,
+                        '--confetti-y': `${piece.y}px`,
+                        '--confetti-rotate': `${piece.rotate}deg`,
+                      }}
+                    />
+                  ))}
+                  <div className="contact-form__success-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="48" height="48">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                  </div>
+                  <h3 ref={successHeadingRef} tabIndex={-1}>Thank You!</h3>
+                  <p>Your message has been received. Our team will review it and get in touch with you shortly.</p>
+                  <p>
+                    Need immediate assistance? Call us at{' '}
+                    <a href={site.phoneHref} className="contact-link">{site.phone}</a>.
+                  </p>
+                  <button
+                    type="button"
+                    className="btn btn--primary"
+                    onClick={() => {
+                      setStatus('idle');
+                      setFormData({
+                        name: '',
+                        email: '',
+                        phone: '',
+                        bestTime: '',
+                        message: '',
+                        _gotcha: '',
+                      });
+                    }}
+                  >
+                    Write Another Message
+                  </button>
+                </div>
+              ) : (
+                <form className="contact-form" onSubmit={handleSubmit}>
+                  <p className="contact-form__required-note">
+                    Required fields are marked <span aria-hidden="true">*</span>
+                    <span className="sr-only">with an asterisk</span>
+                  </p>
+
+                  {/* Honeypot field for bot suppression */}
+                  <input
+                    type="text"
+                    name="_gotcha"
+                    value={formData._gotcha}
+                    onChange={handleChange}
+                    style={{ display: 'none' }}
+                    tabIndex="-1"
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
+
+                  <div className="contact-form__group">
+                    <label htmlFor="contact-name" className="contact-form__label">
+                      Full Name <span className="contact-form__required" aria-hidden="true">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="contact-name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="contact-form__input"
+                      placeholder="Your full name"
+                      autoComplete="name"
+                      required
+                    />
+                  </div>
+
+                  <div className="contact-form__row">
+                    <div className="contact-form__group">
+                      <label htmlFor="contact-email" className="contact-form__label">
+                        Email Address <span className="contact-form__required" aria-hidden="true">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        id="contact-email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="contact-form__input"
+                        placeholder="you@example.com"
+                        autoComplete="email"
+                        required
+                      />
+                    </div>
+
+                    <div className="contact-form__group">
+                      <label htmlFor="contact-phone" className="contact-form__label">
+                        Phone Number <span className="contact-form__optional">(optional)</span>
+                      </label>
+                      <input
+                        type="tel"
+                        id="contact-phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="contact-form__input"
+                        placeholder="(309) 000-0000"
+                        autoComplete="tel"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="contact-form__group">
+                    <label htmlFor="contact-best-time" className="contact-form__label">
+                      Best Time to Reach You <span className="contact-form__optional">(optional)</span>
+                    </label>
+                    <select
+                      id="contact-best-time"
+                      name="bestTime"
+                      value={formData.bestTime}
+                      onChange={handleChange}
+                      className="contact-form__input contact-form__select"
+                    >
+                      <option value="">Anytime</option>
+                      <option value="Morning">Morning (8am – 12pm)</option>
+                      <option value="Afternoon">Afternoon (12pm – 5pm)</option>
+                      <option value="Evening">Evening (5pm – 8pm)</option>
+                    </select>
+                  </div>
+
+                  <div className="contact-form__group">
+                    <label htmlFor="contact-message" className="contact-form__label">
+                      Message <span className="contact-form__required" aria-hidden="true">*</span>
+                    </label>
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      className="contact-form__textarea"
+                      placeholder="How can we help you?"
+                      rows="5"
+                      required
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="btn btn--primary btn--lg contact-form__submit"
+                    disabled={status === 'submitting'}
+                  >
+                    {status === 'submitting' ? 'Sending Message...' : 'Send Message'}
+                  </button>
+                </form>
+              )}
+            </div>
+
             {/* Info Column */}
             <div className="contact-info">
               <div className="contact-info__card glass-card">
@@ -120,113 +350,6 @@ function ContactUs() {
                   {content.cards.emergencyNote}
                 </p>
               </div>
-            </div>
-
-            {/* Form Column */}
-            <div className="contact-form-wrapper">
-              <h2>{content.form.heading}</h2>
-              <p className="sr-only" role="status" aria-live="polite">
-                {submitted ? `${content.form.successHeading}. ${content.form.successText}` : ''}
-              </p>
-              {submitted ? (
-                <div className="contact-form__success">
-                  {CONFETTI_PIECES.map((piece) => (
-                    <span
-                      key={piece.id}
-                      className="contact-form__confetti"
-                      aria-hidden="true"
-                      style={{
-                        background: piece.color,
-                        animationDelay: `${piece.delay}s`,
-                        '--confetti-x': `${piece.x}px`,
-                        '--confetti-y': `${piece.y}px`,
-                        '--confetti-rotate': `${piece.rotate}deg`,
-                      }}
-                    />
-                  ))}
-                  <div className="contact-form__success-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="48" height="48">
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
-                    </svg>
-                  </div>
-                  <h3 ref={successHeadingRef} tabIndex={-1}>{content.form.successHeading}</h3>
-                  <p>{content.form.successText}</p>
-                  <p>
-                    If it didn't open, email{' '}
-                    <a href={`mailto:${site.email}`} className="contact-link">{site.email}</a>{' '}
-                    or call <a href={site.phoneHref} className="contact-link">{site.phone}</a>.
-                  </p>
-                  <button
-                    className="btn btn--primary"
-                    onClick={() => {
-                      setSubmitted(false);
-                      setFormData({ name: '', email: '', message: '' });
-                    }}
-                  >
-                    Write Another Message
-                  </button>
-                </div>
-              ) : (
-                <form className="contact-form" onSubmit={handleSubmit}>
-                  <p className="contact-form__required-note">
-                    Required fields are marked <span aria-hidden="true">*</span>
-                    <span className="sr-only">with an asterisk</span>
-                  </p>
-                  <div className="contact-form__group">
-                    <label htmlFor="contact-name" className="contact-form__label">
-                      Full Name <span className="contact-form__required" aria-hidden="true">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="contact-name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="contact-form__input"
-                      placeholder="Your full name"
-                      autoComplete="name"
-                      required
-                    />
-                  </div>
-                  <div className="contact-form__group">
-                    <label htmlFor="contact-email" className="contact-form__label">
-                      Email Address <span className="contact-form__required" aria-hidden="true">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      id="contact-email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="contact-form__input"
-                      placeholder="you@example.com"
-                      autoComplete="email"
-                      required
-                    />
-                  </div>
-                  <div className="contact-form__group">
-                    <label htmlFor="contact-message" className="contact-form__label">
-                      Message <span className="contact-form__required" aria-hidden="true">*</span>
-                    </label>
-                    <textarea
-                      id="contact-message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      className="contact-form__textarea"
-                      placeholder="How can we help you?"
-                      rows="5"
-                      required
-                    />
-                  </div>
-                  <button type="submit" className="btn btn--primary btn--lg contact-form__submit">
-                    Send by Email
-                  </button>
-                  <p className="contact-form__hint">
-                    This opens your email app with your message filled in.
-                  </p>
-                </form>
-              )}
             </div>
           </div>
         </div>

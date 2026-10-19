@@ -2,6 +2,29 @@
    Donate Page — Premium Styles
    ========================================= */
 
+/* --- Hero Actions --- */
+.donate-hero__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 640px) {
+  .donate-hero__actions {
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space-6);
+  }
+}
+
+.section--compact {
+  padding: var(--space-6) 0;
+}
+
 /* --- Seal --- */
 .donate-seal {
   display: flex;
@@ -9,7 +32,7 @@
   align-items: center;
   text-align: center;
   gap: var(--space-5);
-  padding: var(--space-8);
+  padding: var(--space-5) var(--space-6);
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));

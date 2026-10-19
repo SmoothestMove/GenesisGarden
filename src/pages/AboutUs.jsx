@@ -58,6 +58,16 @@ const HISTORY_ICONS = {
   ),
 };
 
+function initials(name) {
+  return name
+    .split(' ')
+    .filter(Boolean)
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
+}
+
 function AboutUs() {
   const [originRef, originInView] = useInView();
   const [mvRef, mvInView] = useInView();
@@ -158,9 +168,18 @@ function AboutUs() {
               <h2>{team.staffHeading}</h2>
               <ul className="about-team-list">
                 {team.staff.map((person) => (
-                  <li key={person.name}>
-                    <strong>{person.name}</strong>
-                    <span>{person.role}</span>
+                  <li key={person.name} className="about-team-item">
+                    <div className="about-team-member__avatar" aria-hidden="true">
+                      {person.photo ? (
+                        <img src={person.photo} alt={person.name} className="about-team-member__photo" />
+                      ) : (
+                        <span className="about-team-member__initials">{initials(person.name)}</span>
+                      )}
+                    </div>
+                    <div className="about-team-member__info">
+                      <strong>{person.name}</strong>
+                      {person.role && <span>{person.role}</span>}
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -174,9 +193,18 @@ function AboutUs() {
               <h2 style={{ marginTop: 'var(--space-8)' }}>{team.directorsHeading}</h2>
               <ul className="about-team-list">
                 {team.directors.map((person) => (
-                  <li key={person.name}>
-                    <strong>{person.name}</strong>
-                    {person.role && <span>{person.role}</span>}
+                  <li key={person.name} className="about-team-item">
+                    <div className="about-team-member__avatar" aria-hidden="true">
+                      {person.photo ? (
+                        <img src={person.photo} alt={person.name} className="about-team-member__photo" />
+                      ) : (
+                        <span className="about-team-member__initials">{initials(person.name)}</span>
+                      )}
+                    </div>
+                    <div className="about-team-member__info">
+                      <strong>{person.name}</strong>
+                      {person.role && <span>{person.role}</span>}
+                    </div>
                   </li>
                 ))}
               </ul>

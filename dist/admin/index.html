@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Genesis Garden Content Editor</title>
+    <link href="/admin/config.yml" rel="cms-config-url" type="text/yaml" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,800;1,9..144,300&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- decap-cms@3 bundles React 19 internally, and React 19 no longer
+         publishes UMD browser builds at all — so preview-templates.js's
+         JSX can't reference a plain `React` global the way older Decap
+         preview examples show. Instead it's compiled with Babel's
+         "automatic" JSX runtime (imports jsx()/jsxs() rather than
+         calling React.createElement), executed as a real ES module so
+         those imports resolve against this import map — pointed at the
+         same React major version Decap bundles, so the element objects
+         our code creates match what Decap's own reconciler expects. -->
+    <script type="importmap">
+      {
+        "imports": {
+          "react/jsx-runtime": "https://esm.sh/react@19.3.0/jsx-runtime"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+    <script>
+      (async () => {
+        const source = await (await fetch('/admin/preview-templates.js')).text();
+        const { code } = Babel.transform(source, {
+          presets: [['react', { runtime: 'automatic' }]],
+          filename: 'preview-templates.js',
+        });
+        const blobUrl = URL.createObjectURL(new Blob([code], { type: 'text/javascript' }));
+        await import(blobUrl);
+        URL.revokeObjectURL(blobUrl);
+      })();
+    </script>
+  </body>
+</html>

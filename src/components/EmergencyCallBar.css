@@ -39,9 +39,9 @@
   }
 
   .emergency-bar__label {
-    font-size: 0.7rem;
+    font-size: var(--fs-sm);
     font-weight: var(--fw-medium);
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.85);
   }
 
   .emergency-bar__number {
