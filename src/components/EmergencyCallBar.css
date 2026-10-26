@@ -12,15 +12,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-3);
+    gap: var(--space-2);
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
     z-index: 950;
-    min-height: 56px;
-    padding: var(--space-3) var(--space-4);
-    padding-bottom: max(var(--space-3), env(safe-area-inset-bottom));
+    min-height: 44px;
+    padding: 6px var(--space-3);
+    padding-bottom: max(6px, env(safe-area-inset-bottom));
     background: var(--color-primary-dark);
     color: var(--color-white);
     text-decoration: none;
@@ -32,10 +32,17 @@
     outline-offset: -3px;
   }
 
+  .emergency-bar svg {
+    flex-shrink: 0;
+  }
+
   .emergency-bar__text {
     display: flex;
-    flex-direction: column;
-    line-height: 1.25;
+    align-items: baseline;
+    gap: var(--space-2);
+    line-height: 1.2;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .emergency-bar__label {
@@ -45,13 +52,14 @@
   }
 
   .emergency-bar__number {
-    font-size: var(--fs-base);
+    font-size: var(--fs-sm);
     font-weight: var(--fw-bold);
+    text-decoration: underline;
   }
 
   /* Reserve space so page content and the footer are never hidden behind
      the fixed bar. */
   body {
-    padding-bottom: calc(56px + env(safe-area-inset-bottom));
+    padding-bottom: calc(44px + env(safe-area-inset-bottom));
   }
 }

@@ -42,7 +42,7 @@
   --font-heading: "Fraunces", "Georgia", serif;
   --font-body: "Manrope", system-ui, sans-serif;
 
-  --fs-xs: 0.8125rem;
+  --fs-xs: 0.875rem;
   --fs-sm: 0.875rem;
   --fs-base: 1.0625rem;
   --fs-md: 1.25rem;
@@ -428,6 +428,7 @@ p:last-child {
 .btn--sm {
   padding: var(--space-2) var(--space-4);
   font-size: var(--fs-xs);
+  min-height: 44px;
 }
 
 /* Pulsing glow button for CTAs */
@@ -626,6 +627,8 @@ p:last-child {
   gap: var(--space-2);
   font-weight: var(--fw-semibold);
   color: var(--color-primary);
+  min-height: 44px;
+  padding: var(--space-2) 0;
   transition: gap var(--transition-fast);
 }
 

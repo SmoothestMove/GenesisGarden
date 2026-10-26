@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SEOHead from '../components/SEOHead';
 import SectionDivider from '../components/SectionDivider';
@@ -76,6 +77,13 @@ function initials(name) {
     .toUpperCase();
 }
 
+function getSrcSet(imagePath, maxWidth = 2752) {
+  if (!imagePath || !imagePath.endsWith('.webp')) return undefined;
+  const base = imagePath.replace(/\.webp$/, '');
+  const candidateWidths = [640, 960, 1280, 1920, 2560].filter((w) => w < maxWidth);
+  return `${candidateWidths.map((w) => `${base}-${w}w.webp ${w}w`).join(', ')}, ${imagePath} ${maxWidth}w`;
+}
+
 function Home() {
   const [getHelpRef, getHelpInView] = useInView();
   const [storyRef, storyInView] = useInView();
@@ -92,6 +100,25 @@ function Home() {
   const { hero, getHelp, story, team, wantToHelp, wantToPartner, thingsToKnow, impact, cta } = content;
   const featuredPartners = partnersContent.partners.slice(0, 3);
 
+  const slides = hero.slides && hero.slides.length > 0
+    ? hero.slides
+    : [{ image: hero.backgroundImage, alt: hero.imageAlt || "Genesis Garden community in Western Illinois", focalPoint: hero.focalPoint, maxWidth: 4096 }];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    if (slides.length <= 1) return;
+
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mediaQuery.matches) return;
+
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 6500);
+
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
   return (
     <>
       <SEOHead
@@ -102,21 +129,32 @@ function Home() {
       {/* ===== Hero Section ===== */}
       <section className="hero">
         <div className="hero__bg" aria-hidden="true" ref={heroParallaxRef}>
-          {/* Responsive variants are pre-generated via `npm run generate:hero`
-              (scripts/generate-responsive-image.mjs). Re-run it after the CMS
-              swaps hero.backgroundImage, or these -Nw.webp candidates 404. */}
-          <img
-            src={hero.backgroundImage}
-            srcSet={`${hero.backgroundImage.replace(/\.webp$/, '-640w.webp')} 640w, ${hero.backgroundImage.replace(/\.webp$/, '-960w.webp')} 960w, ${hero.backgroundImage.replace(/\.webp$/, '-1280w.webp')} 1280w, ${hero.backgroundImage.replace(/\.webp$/, '-1920w.webp')} 1920w, ${hero.backgroundImage.replace(/\.webp$/, '-2560w.webp')} 2560w, ${hero.backgroundImage} 4096w`}
-            sizes="100vw"
-            alt={hero.imageAlt || "Genesis Garden community in Western Illinois"}
-            className="hero__bg-image"
-            style={hero.focalPoint ? { objectPosition: hero.focalPoint } : undefined}
-            loading="eager"
-            fetchPriority="high"
-            width="4096"
-            height="2288"
-          />
+          {slides.map((slide, index) => {
+            const isActive = index === currentSlide;
+            const isNext = index === (currentSlide + 1) % slides.length;
+            const shouldPreload = index === 0 || isActive || isNext;
+            const srcSet = getSrcSet(slide.image, slide.maxWidth || 2752);
+
+            return (
+              <div
+                key={slide.image}
+                className={`hero__bg-slide${isActive ? ' hero__bg-slide--active' : ''}`}
+              >
+                <img
+                  src={slide.image}
+                  srcSet={srcSet}
+                  sizes="100vw"
+                  alt={slide.alt || "Genesis Garden community in Western Illinois"}
+                  className="hero__bg-image"
+                  style={slide.focalPoint ? { objectPosition: slide.focalPoint } : undefined}
+                  loading={index === 0 ? "eager" : shouldPreload ? "eager" : "lazy"}
+                  fetchPriority={index === 0 ? "high" : "auto"}
+                  width={slide.maxWidth ? String(slide.maxWidth) : "2752"}
+                  height={slide.maxWidth === 4096 ? "2288" : "1536"}
+                />
+              </div>
+            );
+          })}
           <div className="hero__bg-overlay" />
         </div>
 
@@ -175,12 +213,18 @@ function Home() {
                 )
               )}
             </div>
-            <a href={site.phoneHref} className="hero__phone">
-              <PhoneIcon size={16} />
-              <span>or call {site.phone}{site.callHours ? ` (${site.callHours})` : ''}</span>
-            </a>
+            {hero.partnerLink && (
+              <p className="hero__partner-text animate-fade-in-up delay-2">
+                <span>{hero.partnerLink.prompt} </span>
+                <Link to={hero.partnerLink.to} className="hero__partner-link">
+                  {hero.partnerLink.actionLabel} &rarr;
+                </Link>
+              </p>
+            )}
           </div>
         </div>
+
+
 
         {/* Scroll indicator */}
         <div className="hero__scroll-indicator" aria-hidden="true">
@@ -311,8 +355,8 @@ function Home() {
             </div>
           ) : (
             <div className="journey-accordion">
-              {thingsToKnow.items.map((item, i) => (
-                <details key={item.number} className="journey-accordion__item" open={i === 0}>
+              {thingsToKnow.items.map((item) => (
+                <details key={item.number} className="journey-accordion__item" open={false}>
                   <summary className="journey-accordion__summary">
                     <span className="journey-accordion__num" aria-hidden="true">{item.number}</span>
                     <span className="journey-accordion__title">{item.title}</span>

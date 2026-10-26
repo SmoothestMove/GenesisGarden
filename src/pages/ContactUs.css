@@ -89,6 +89,10 @@
   text-decoration: none;
   transition: all var(--transition-fast);
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: var(--space-2) 0;
 }
 
 .contact-link::after {

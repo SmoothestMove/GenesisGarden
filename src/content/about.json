@@ -26,6 +26,7 @@
   },
   "team": {
     "image": "/images/campus_wide.jpg",
+    "imageAlt": "Genesis Garden community grounds in Macomb, Illinois",
     "staffHeading": "Staff",
     "staff": [
       { "name": "Jeanetta Thorpe", "role": "Genesis Housing Director" },

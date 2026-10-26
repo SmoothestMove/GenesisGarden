@@ -37,6 +37,7 @@
   gap: var(--space-3);
   text-decoration: none;
   flex-shrink: 0;
+  min-height: 44px;
   transition: opacity var(--transition-fast);
 }
 
@@ -150,37 +151,40 @@
   gap: var(--space-3);
 }
 
-.header__call-btn {
-  display: none;
+/* On mobile, Call button is hidden because EmergencyCallBar provides sticky calling.
+   Use high specificity so .btn { display: inline-flex } never overrides it. */
+.header__actions .header__call-btn {
+  display: none !important;
   font-size: var(--fs-sm);
   padding: var(--space-2) var(--space-4);
   min-height: 44px;
 }
 
 @media (min-width: 1024px) {
-  .header__call-btn {
-    display: inline-flex;
+  .header__actions .header__call-btn {
+    display: inline-flex !important;
     align-items: center;
     gap: var(--space-2);
   }
 }
 
-.header__donate-btn {
+/* On screens < 480px, Donate button is hidden in header and accessible via mobile nav drawer & hero inline banner */
+.header__actions .header__donate-btn {
   font-size: var(--fs-sm);
   padding: var(--space-2) var(--space-5);
   min-height: 44px;
   animation: pulseGlowAccent 3s ease-in-out infinite;
-  display: none;
+  display: none !important;
 }
 
-.header__donate-btn svg {
+.header__actions .header__donate-btn svg {
   display: inline-block;
   flex-shrink: 0;
 }
 
 @media (min-width: 480px) {
-  .header__donate-btn {
-    display: inline-flex;
+  .header__actions .header__donate-btn {
+    display: inline-flex !important;
   }
 }
 

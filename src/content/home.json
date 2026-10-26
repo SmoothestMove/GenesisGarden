@@ -11,12 +11,54 @@
     "titleAccent": "right now?",
     "subtitle": "A new beginning can grow from here — safe, stable housing for individuals and families across McDonough, Hancock, Henderson, and Warren Counties.",
     "imageAlt": "A family together outdoors, representing safe and stable housing in Western Illinois",
+    "slides": [
+      {
+        "image": "/images/Enhanced-Family_Hero.webp",
+        "alt": "A family together outdoors, representing safe and stable housing in Western Illinois",
+        "focalPoint": "center 20%",
+        "maxWidth": 4096
+      },
+      {
+        "image": "/images/Couple_Hero.webp",
+        "alt": "A couple standing together peacefully in their home",
+        "focalPoint": "center 25%",
+        "maxWidth": 2752
+      },
+      {
+        "image": "/images/Elderly_Man_Hero.webp",
+        "alt": "An elderly resident in a secure, dignified home in Western Illinois",
+        "focalPoint": "center 20%",
+        "maxWidth": 2752
+      },
+      {
+        "image": "/images/Couple_Hero2.webp",
+        "alt": "A smiling couple sharing a warm moment at home",
+        "focalPoint": "center 25%",
+        "maxWidth": 2752
+      },
+      {
+        "image": "/images/Family_Hero_2.webp",
+        "alt": "A family together with renewed hope and housing stability",
+        "focalPoint": "center 20%",
+        "maxWidth": 2752
+      },
+      {
+        "image": "/images/Couple_Hero_3.webp",
+        "alt": "A couple enjoying the comfort of safe shelter",
+        "focalPoint": "center 25%",
+        "maxWidth": 2752
+      }
+    ],
     "ctas": [
       { "label": "Call now: 309-326-3075", "href": "tel:3093263075", "style": "btn--accent" },
       { "label": "I need housing help", "to": "#get-help", "style": "btn--outline-white" },
-      { "label": "I want to help", "to": "/donate", "style": "btn--outline-white" },
-      { "label": "I want to partner", "to": "/partners", "style": "btn--outline-white" }
-    ]
+      { "label": "I want to help", "to": "/donate", "style": "btn--outline-white" }
+    ],
+    "partnerLink": {
+      "prompt": "Looking to collaborate?",
+      "actionLabel": "Partner with us",
+      "to": "/partners"
+    }
   },
   "getHelp": {
     "heading": "What brings you here today?",

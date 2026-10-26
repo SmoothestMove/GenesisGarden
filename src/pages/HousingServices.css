@@ -298,3 +298,34 @@
   max-width: 420px;
   margin: 0 auto;
 }
+
+/* --- Mobile First-Screen Priority (Finding 4) --- */
+@media (max-width: 767px) {
+  .housing-hero {
+    min-height: auto;
+    padding: calc(var(--header-height) + var(--space-4)) 0 var(--space-6);
+  }
+
+  .housing-hero__content h1 {
+    font-size: var(--fs-2xl);
+    margin-bottom: var(--space-2);
+  }
+
+  .housing-hero__content p {
+    font-size: var(--fs-sm);
+    line-height: var(--lh-normal);
+  }
+
+  .section--alt#services {
+    padding-top: var(--space-4);
+  }
+
+  .section-header {
+    margin-bottom: var(--space-4);
+  }
+
+  .situation-filter {
+    margin-bottom: var(--space-4);
+  }
+}
+

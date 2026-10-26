@@ -19,13 +19,27 @@
   z-index: 0;
 }
 
+.hero__bg-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+  pointer-events: none;
+}
+
+.hero__bg-slide--active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .hero__bg-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
   transform: scale(1.18);
-  animation: heroZoom 20s ease-in-out infinite alternate;
+  animation: heroZoom 24s ease-in-out infinite alternate;
 }
 
 @media (min-width: 768px) {
@@ -42,12 +56,14 @@
 .hero__bg-overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
   background:
     linear-gradient(180deg,
       rgba(27, 67, 50, 0.75) 0%,
       rgba(27, 67, 50, 0.6) 40%,
       rgba(27, 27, 27, 0.85) 100%
     );
+  pointer-events: none;
 }
 
 /* Floating botanicals */
@@ -181,31 +197,50 @@
   }
 }
 
-.hero__phone {
+.hero__partner-text {
+  margin-top: var(--space-4);
+  font-size: var(--fs-sm);
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.hero__partner-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
+  gap: var(--space-1);
   min-height: 44px;
-  padding: var(--space-2) var(--space-4);
-  margin-top: var(--space-4);
+  padding: var(--space-2) var(--space-3);
   font-size: var(--fs-sm);
-  font-weight: var(--fw-medium);
-  color: rgba(255, 255, 255, 0.9);
+  font-weight: var(--fw-semibold);
+  color: var(--color-white);
   text-decoration: underline;
   text-underline-offset: 4px;
   border-radius: var(--radius-md);
   transition: color var(--transition-fast), background-color var(--transition-fast);
 }
 
-.hero__phone:hover {
-  color: var(--color-white);
+.hero__partner-link:hover {
+  color: var(--color-accent-light);
   background-color: rgba(255, 255, 255, 0.08);
 }
 
-.hero__phone:focus-visible {
+.hero__partner-link:focus-visible {
   outline: 3px solid var(--color-primary-light);
   outline-offset: 2px;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__bg-slide {
+    transition: none !important;
+  }
+  .hero__bg-image {
+    animation: none !important;
+  }
 }
 
 /* Scroll indicator */
@@ -319,6 +354,8 @@
   font-size: var(--fs-sm);
   font-weight: var(--fw-semibold);
   color: var(--color-primary);
+  min-height: 44px;
+  padding: var(--space-2) 0;
 }
 
 .get-help__link-label svg {
@@ -733,8 +770,8 @@
 }
 
 .team-avatar__role {
-  font-size: var(--fs-xs);
-  color: var(--color-gray-600);
+  font-size: var(--fs-sm);
+  color: var(--color-gray-700);
 }
 
 .team-preview__link-wrap {
@@ -747,6 +784,8 @@
   gap: var(--space-2);
   font-weight: var(--fw-semibold);
   color: var(--color-primary);
+  min-height: 44px;
+  padding: var(--space-2) 0;
 }
 
 /* ===== CTA Section ===== */

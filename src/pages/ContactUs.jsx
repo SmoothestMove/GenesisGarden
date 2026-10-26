@@ -182,7 +182,7 @@ function ContactUs() {
                   </button>
                 </div>
               ) : (
-                <form className="contact-form" onSubmit={handleSubmit}>
+                <form className="contact-form" method="POST" action="/api/contact" onSubmit={handleSubmit}>
                   <p className="contact-form__required-note">
                     Required fields are marked <span aria-hidden="true">*</span>
                     <span className="sr-only">with an asterisk</span>

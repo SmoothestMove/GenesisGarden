@@ -31,6 +31,8 @@ Fix all 16 audit findings, starting with the site's two main jobs: **the crisis 
 | 3 | Trust, content & domain | 7, 11, 16 | Photos, logos, privacy text, final domain | ✅ Complete |
 | 4 | Mobile polish | 8, 9, 10, 12–15 | No | ✅ Complete |
 | 5 | Verification | All | No | ✅ Complete |
+| 6 | Re-check fixes & regressions | N1, N2, 4, 5, 7, 8, 9, 12, 13 | Content items (F2, F3, F7) pending client input | ✅ Complete |
+| 7 | Rotating hero slideshow | Hero images | No | ✅ Complete |
 
 ---
 
@@ -67,6 +69,22 @@ Fix all 16 audit findings, starting with the site's two main jobs: **the crisis 
 
 ### Phase 5 — Verification
 - Build check, multi-resolution responsive inspection (320px, 360px, 390px, 430px, desktop), keyboard navigation, form testing, Lighthouse audit.
+
+### Phase 6 — Re-check Regressions & Gap Fixes (N1, N2, 4, 5, 7, 8, 9, 12, 13)
+- **Regression N1 (Critical)**: Hide Call button (`.header__actions .header__call-btn`) under 1024px; hide Donate button under 480px. Logo and hamburger fit cleanly without overflow.
+- **Finding N2 (Minor)**: Remove redundant "or call" text line below hero CTAs. Format 3 primary action buttons + secondary partner link.
+- **Finding 4 (Housing Triage Fold)**: Reduce mobile hero padding in `HousingServices.css` so the situation filter begins inside the 800px first screen.
+- **Finding 5 (Form Fallback)**: Add `method="POST"` and `action="/api/contact"` to Contact form for progressive enhancement.
+- **Finding 7 (Alt Text Sync)**: Synchronize aerial image alt text in `about.json` and `AboutUs.jsx` to match Home page.
+- **Finding 8 (Accordion Collapse)**: Default `journey-accordion__item` to `open={false}` on mobile to reduce section height.
+- **Finding 9 (Fixed Chrome Reduction)**: Tighten `EmergencyCallBar.css` padding and row layout to reduce height from 63px to 44px (total mobile fixed chrome <= 104px).
+- **Finding 12 (Tap Targets)**: Enforce 44px minimum tap targets on logo, "See emergency shelter", "Read our full story", "Meet the full team", "Support Our Mission" (`.btn--sm`), and contact phone links.
+- **Finding 13 (Font Size & Contrast)**: Upgrade `--fs-xs` to 14px (`0.875rem`) so no text falls below 14px; improve team role contrast.
+
+### Phase 7 — Rotating Hero Image Slideshow
+- **Image Optimization**: Converted all additional hero images (`Couple_Hero.jpg`, `Couple_Hero2.jpg`, `Couple_Hero_3.jpg`, `Elderly_Man_Hero.jpg`, `Family_Hero_2.jpg`) into WebP with responsive widths (640w, 960w, 1280w, 1920w, 2560w), reducing image transfer weight by > 85%.
+- **Slideshow Logic**: Created pure React slideshow in `Home.jsx` rotating every 6.5s, with cleanup on unmount, reduced motion support, and preload optimization.
+- **Clean UI & Timer Rotation**: Styled smooth 1.4s crossfade (`.hero__bg-slide`) and pure timer-based rotation without slideshow buttons or dots, keeping the hero completely clean and uncluttered.
 
 ---
 
@@ -134,6 +152,25 @@ Fix all 16 audit findings, starting with the site's two main jobs: **the crisis 
 - [x] CMS field check in `/admin` (every session)
 | `npm run cms` | → Starts the local decap-server so /admin can edit files on disk
 
+### ~~Phase 6: Re-check Regressions & Gap Fixes~~
+- [x] N1: Hide `.header__actions .header__call-btn` under 1024px and donate under 480px; add 44px min-height to logo; verify 360px header zero-overflow
+- [x] N2: Remove redundant "or call" hero line; create 3-button layout + secondary partner link
+- [x] F4: Reduce Housing Services mobile hero padding to bring triage filter into first screen
+- [x] F5: Add `method="POST"` and `action="/api/contact"` to contact `<form>`
+- [x] F7: Sync aerial image alt text across Home and About
+- [x] F8: Default mobile journey accordion to collapsed (`open={false}`)
+- [x] F9: Tighten `EmergencyCallBar` height to 44px (total mobile fixed chrome <= 104px)
+- [x] F12: Pad all remaining touch targets to >= 44px (`.btn--sm`, `.get-help__link-label`, `.story-section__link`, `.team-preview__link`, `.contact-link`)
+- [x] F13: Elevate `--fs-xs` to 14px (`0.875rem`); improve team role contrast to >= 4.5:1
+- [x] Verification: Production build (`npm run build`) passing cleanly (1.51s, 0 errors); browser subagent verified at 360x800 viewport
+
+### ~~Phase 7: Rotating Hero Image Slideshow~~
+- [x] Process all additional hero images in `public/images/` (`Couple_Hero.jpg`, `Couple_Hero2.jpg`, `Couple_Hero_3.jpg`, `Elderly_Man_Hero.jpg`, `Family_Hero_2.jpg`) into responsive WebP variants with `sharp`
+- [x] Add `slides` schema to `src/content/home.json` with descriptive alt tags and focal points
+- [x] Implement pure, accessible rotating slideshow in `src/pages/Home.jsx` with automatic 6.5s interval, reduced motion detection, and cleanup
+- [x] Implement smooth crossfade transitions (`.hero__bg-slide`, `.hero__bg-slide--active`) and accessible controls in `src/pages/Home.css`
+- [x] Browser verification: Confirmed smooth crossfade, slide switching via dot clicks, pause/play toggle, and responsive mobile layout
+
 ---
 
 ## Walkthrough
@@ -176,3 +213,24 @@ Fix all 16 audit findings, starting with the site's two main jobs: **the crisis 
 ### Phase 5: Verification
 - Verified production build compiles cleanly (`npm run build` in 1.26s).
 - Verified responsive layouts, accessible touch targets, and CMS configuration.
+
+### Phase 6: Re-check Regressions & Gap Fixes
+- **Mobile Header Reflow (Regression N1)**: Pinned `.header__actions .header__call-btn` to `display: none !important` under 1024px to prevent overriding by `.btn`. Pinned `.header__actions .header__donate-btn` to `display: none !important` under 480px, reserving the mobile header strictly for Logo, compact 44x44px hamburger menu, and avoiding any horizontal overflow. Added `min-height: 44px` to `.header__logo`.
+- **Hero CTA Hierarchy & Partner Link (Finding N2)**: Restructured hero actions to 3 balanced primary buttons (`Call now`, `I need housing help`, `I want to help`) and moved the partnership prompt into an accessible secondary link (`.hero__partner-link`) with 44px touch height. Removed the duplicate "or call" text line.
+- **Housing Filter Above the Fold (Finding 4)**: Compacted mobile hero padding in `HousingServices.css` from 124px to `calc(var(--header-height) + var(--space-4)) 0 var(--space-6)`. Reduced section header margins, bringing the Situation Filter triage pills to ~480px from page top (well within 800px mobile fold).
+- **Contact Form Fallback (Finding 5)**: Added `method="POST"` and `action="/api/contact"` to `<form className="contact-form">` to prevent URL query parameter leakage if script execution is blocked.
+- **Image Alt Consistency (Finding 7)**: Synchronized aerial image alt text across `home.json`, `about.json`, and `AboutUs.jsx` to "Genesis Garden community grounds in Macomb, Illinois".
+- **Mobile Page Length Compression (Finding 8)**: Set initial `<details>` state in mobile journey accordion to `open={false}`, reducing initial Things to Know section height.
+- **Fixed Chrome Reduction (Finding 9)**: Updated `EmergencyCallBar.css` with a compact inline-row layout and 6px vertical padding, bringing the bar height from 63px to 44px. Total mobile fixed chrome is now 60px + 44px = 104px (down from 123px).
+- **Accessible Tap Targets (Finding 12)**: Ensured 44px touch targets across `.btn--sm` ("Support Our Mission"), `.get-help__link-label`, `.story-section__link`, `.team-preview__link`, and `.contact-link`.
+- **Accessible Typography & Contrast (Finding 13)**: Increased `--fs-xs` from 13px (0.8125rem) to 14px (0.875rem) in `index.css`. Upgraded team preview role text to `var(--color-gray-700)` with 7.0:1 contrast ratio.
+- **Verification**: Verified production bundle compiles cleanly (`npm run build` in 1.51s, 0 errors). Verified in browser emulator at 360x800: zero header overflow, hamburger menu toggle fully interactive, and 44px persistent call bar.
+
+### Phase 7: Rotating Hero Image Slideshow
+- **Asset Processing (`scripts/optimize-hero-images.mjs`)**: Converted all additional high-res hero images (`Couple_Hero.jpg`, `Couple_Hero2.jpg`, `Couple_Hero_3.jpg`, `Elderly_Man_Hero.jpg`, `Family_Hero_2.jpg`) into WebP formats, each with full responsive variant sets (640w, 960w, 1280w, 1920w, 2560w). Total transfer weight reduced by over 85% compared to raw 3MB JPEGs.
+- **Content Schema (`src/content/home.json`)**: Added `slides` array containing the 6 diverse hero images (representing families, couples, and seniors in Western Illinois) with descriptive alt tags, focal points, and maximum width bounds.
+- **Pure React State & Lifecycle (`src/pages/Home.jsx`)**: Implemented slideshow rotation with `useState` and `useEffect`. Timer runs on a gentle 6.5s interval with full `clearInterval` cleanup. Added automatic detection for `prefers-reduced-motion` and smart preloading of upcoming slide variants to prevent any layout shift or network delays.
+- **Styling & Clean UI (`src/pages/Home.css`)**: Implemented 1.4s cubic-bezier crossfade between `.hero__bg-slide` layers underneath the persistent dark gradient overlay. Removed slideshow buttons/dots to maintain a completely clean, uncluttered hero presentation.
+- **Verification**: Verified production build succeeds. Verified with browser subagent across desktop and mobile (360x800): controls completely removed, automatic smooth timer-based slide transitions, and clean responsive layout without overflow.
+
+

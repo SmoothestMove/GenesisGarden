@@ -98,7 +98,7 @@ function AboutUs() {
       {/* Origin Story — promoted out of the History timeline into a full narrative moment */}
       <section className="story-section" ref={originRef}>
         <div className={`story-section__media reveal--left${originInView ? ' reveal--visible' : ''}`}>
-          <img src={team.image} alt="Genesis Garden campus" loading="lazy" />
+          <img src={team.image} alt={team.imageAlt || "Genesis Garden community grounds in Macomb, Illinois"} loading="lazy" />
         </div>
         <div className={`story-section__content reveal--right${originInView ? ' reveal--visible' : ''}`}>
           <span className="story-section__eyebrow">Where it started</span>
@@ -160,7 +160,7 @@ function AboutUs() {
             <div className="about-team-grid__image">
               <img
                 src={team.image}
-                alt="Genesis Garden campus"
+                alt={team.imageAlt || "Genesis Garden community grounds in Macomb, Illinois"}
                 loading="lazy"
               />
             </div>
