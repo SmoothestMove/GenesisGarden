@@ -59,6 +59,49 @@ const SERVICE_ICONS = {
   ),
 };
 
+const IMPACT_ICONS = {
+  health: (
+    <svg {...ICON_PROPS} width="22" height="22">
+      <path d="M12 2v20M2 12h20" strokeWidth="2.2" />
+    </svg>
+  ),
+  crowd: (
+    <svg {...ICON_PROPS} width="22" height="22">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    </svg>
+  ),
+  court: (
+    <svg {...ICON_PROPS} width="22" height="22">
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <line x1="7" y1="8" x2="17" y2="8" />
+      <line x1="7" y1="12" x2="17" y2="12" />
+      <line x1="7" y1="16" x2="12" y2="16" />
+    </svg>
+  ),
+  shelter: (
+    <svg {...ICON_PROPS} width="22" height="22">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      <line x1="12" y1="12" x2="12" y2="17" strokeWidth="2" />
+    </svg>
+  ),
+  hope: (
+    <svg {...ICON_PROPS} width="28" height="28">
+      <circle cx="12" cy="12" r="5" />
+      <line x1="12" y1="12" x2="12" y2="3" />
+      <line x1="12" y1="21" x2="12" y2="23" />
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+      <line x1="1" y1="12" x2="3" y2="12" />
+      <line x1="21" y1="12" x2="23" y2="12" />
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+    </svg>
+  ),
+};
+
 function HousingServices() {
   const [introRef, introInView] = useInView();
   const [servicesRef, servicesInView] = useInView({ threshold: 0.05 });
@@ -68,6 +111,8 @@ function HousingServices() {
   const isDesktop = useMediaQuery('(min-width: 768px)');
   const [introOpen, setIntroOpen] = useState(false);
   const [situationFilter, setSituationFilter] = useState('all');
+  const [activeEligIndex, setActiveEligIndex] = useState(null);
+  const toggleElig = (index) => setActiveEligIndex((prev) => (prev === index ? null : index));
   const activeFilter = SITUATION_FILTERS.find((f) => f.id === situationFilter);
   const matchedCount = activeFilter.titles
     ? content.services.items.filter((service) => activeFilter.titles.includes(service.title)).length
@@ -157,47 +202,63 @@ function HousingServices() {
 
       <SectionDivider shape="curve" color="var(--color-white)" />
 
-      {/* Housing Philosophy / How We Help (Collapsible on mobile) */}
+      {/* Housing Philosophy / How We Help (The Reality & The Hope) */}
       <section className="section housing-intro-section" ref={introRef}>
         <div className="container housing-intro">
-          {!isDesktop && (
-            <button
-              type="button"
-              className="housing-intro__toggle-btn"
-              onClick={() => setIntroOpen((prev) => !prev)}
-              aria-expanded={introOpen}
-              aria-controls="housing-intro-content"
-            >
-              <span>{introOpen ? 'Hide our housing philosophy & continuum of care' : 'Read about our housing philosophy & continuum of care'}</span>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                style={{ transform: introOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }}
-                aria-hidden="true"
-              >
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </button>
-          )}
+          <div className={`housing-intro__content reveal${introInView ? ' reveal--visible' : ''}`}>
+            {intro.badge && (
+              <span className="housing-intro__badge">{intro.badge}</span>
+            )}
+            <h2 className="housing-intro__heading">{intro.heading}</h2>
+            <p className="housing-intro__lead">
+              {intro.subheading || intro.paragraph1}
+            </p>
 
-          {(isDesktop || introOpen) && (
-            <div id="housing-intro-content" className={`housing-intro__content reveal${introInView ? ' reveal--visible' : ''}`}>
-              <h2>{intro.heading}</h2>
-              <p>
-                {intro.paragraph1}
-              </p>
-              <p className="housing-intro__highlight gradient-text">
-                {intro.highlight}
-              </p>
-              <p>
-                {intro.paragraph2}
-              </p>
+            {intro.impacts && (
+              <div className="housing-intro__impacts-grid" role="list">
+                {intro.impacts.map((impact, i) => (
+                  <div
+                    key={impact.title}
+                    className="housing-intro__impact-card"
+                    style={{ transitionDelay: `${0.1 + i * 0.08}s` }}
+                    role="listitem"
+                  >
+                    <div className={`housing-intro__impact-icon housing-intro__impact-icon--${impact.icon}`} aria-hidden="true">
+                      {IMPACT_ICONS[impact.icon] || SERVICE_ICONS.house}
+                    </div>
+                    <h3 className="housing-intro__impact-title">{impact.title}</h3>
+                    <p className="housing-intro__impact-desc">{impact.description}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Hope & Empowerment Heroic Banner */}
+            <div className="housing-intro__hope-card">
+              <div className="housing-intro__hope-icon-wrap" aria-hidden="true">
+                {IMPACT_ICONS.hope}
+              </div>
+              <div className="housing-intro__hope-body">
+                <h3 className="housing-intro__hope-headline gradient-text">
+                  {intro.highlight}
+                </h3>
+                <p className="housing-intro__hope-text">
+                  {intro.paragraph2}
+                </p>
+                <div className="housing-intro__hope-actions">
+                  <Link to={intro.ctaLink || '/contact-us'} className="btn btn--primary">
+                    {intro.ctaLabel || 'Talk With Us'} &rarr;
+                  </Link>
+                  {site.phone && (
+                    <a href={site.phoneHref} className="housing-intro__phone-callout">
+                      <span aria-hidden="true">📞</span>
+                      <span>Or call <strong>{site.phone}</strong></span>
+                    </a>
+                  )}
+                </div>
+              </div>
             </div>
-          )}
+          </div>
         </div>
       </section>
 
@@ -209,13 +270,52 @@ function HousingServices() {
             <p>
               {eligibility.intro}
             </p>
-            <ul className="eligibility__list">
-              {eligibility.items.map((item, i) => (
-                <li key={item} style={{ transitionDelay: `${0.3 + i * 0.08}s` }} className={`reveal${eligInView ? ' reveal--visible' : ''}`}>
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <div className="eligibility__grid" role="region" aria-label="Eligibility categories">
+              {eligibility.items.map((item, i) => {
+                const title = typeof item === 'string' ? item : item.title;
+                const desc = typeof item === 'object' ? item.description : null;
+                const isExpanded = activeEligIndex === i;
+
+                return (
+                  <div
+                    key={title}
+                    style={{ transitionDelay: `${0.2 + i * 0.04}s` }}
+                    className={`eligibility__card reveal${eligInView ? ' reveal--visible' : ''}${isExpanded ? ' is-active' : ''}`}
+                    onClick={() => toggleElig(i)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleElig(i);
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    aria-expanded={isExpanded}
+                    aria-label={`${title}${desc ? ': click or hover for description' : ''}`}
+                  >
+                    <div className="eligibility__header">
+                      <span className="eligibility__badge" aria-hidden="true">✓</span>
+                      <span className="eligibility__title">{title}</span>
+                      {desc && (
+                        <span className="eligibility__toggle" aria-hidden="true">
+                          {isExpanded ? '−' : '+'}
+                        </span>
+                      )}
+                    </div>
+                    {desc && (
+                      <div className="eligibility__details">
+                        <p>{desc}</p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+            {eligibility.hint && (
+              <p className="eligibility__hint">
+                <small>💡 {eligibility.hint}</small>
+              </p>
+            )}
           </div>
         </div>
       </section>

@@ -9,10 +9,35 @@
     "text": "Everyone needs a safe and stable place to call home. Home is more than a place — home ignites hope and fuels dreams for healthy people and resilient families."
   },
   "intro": {
+    "badge": "The Reality & The Hope",
     "heading": "What Happens Without Housing?",
-    "paragraph1": "When there aren't enough safe, stable, affordable places for everyone to live? Skipping crucial medications and meals. Doubling up. Eviction. Homelessness.",
+    "subheading": "When there aren't enough safe, stable, and affordable places for everyone to live, the impacts cascade rapidly across every part of life:",
+    "impacts": [
+      {
+        "icon": "health",
+        "title": "Compromised Health",
+        "description": "Skipping crucial medications, cutting daily meals, and enduring chronic stress just to make rent."
+      },
+      {
+        "icon": "crowd",
+        "title": "Doubling Up",
+        "description": "Crowding into temporary spaces with relatives or friends under constant instability and uncertainty."
+      },
+      {
+        "icon": "court",
+        "title": "Eviction & Debt",
+        "description": "Navigating abrupt legal court notices and rental records that block access to future housing."
+      },
+      {
+        "icon": "shelter",
+        "title": "Unsheltered Crisis",
+        "description": "Displacement into vehicles, temporary motels, or emergency shelters when all options run out."
+      }
+    ],
     "highlight": "But homelessness doesn't have to be hopeless.",
-    "paragraph2": "If you're struggling with safe, stable housing, have a conversation with us. Together, we'll work toward a solution."
+    "paragraph2": "If you're struggling with safe, stable housing, you don't have to carry the weight alone. Have a conversation with us — together, we'll listen, advocate, and work toward a solution.",
+    "ctaLabel": "Talk With Our Team",
+    "ctaLink": "/contact-us"
   },
   "services": {
     "heading": "Our Solutions",
@@ -48,12 +73,64 @@
   "eligibility": {
     "heading": "Who Can We Help?",
     "intro": "Most of these options for regaining housing stability are open to:",
+    "hint": "Hover or tap any category to view eligibility details.",
     "items": [
-      "Multi-generational families",
-      "Large families",
-      "Self-defined households",
-      "Returning citizens",
-      "Those who are justice-involved but may not be eligible for other housing supports"
+      {
+        "title": "Multi-generational families",
+        "description": "Households bringing grandparents, parents, adult children, and grandchildren together under one roof with shared caregiving and mutual support."
+      },
+      {
+        "title": "Single-parent & kinship households",
+        "description": "Solo mothers, solo fathers, legal guardians, and relatives raising children on a single income or navigating caregiver transitions."
+      },
+      {
+        "title": "Large & blended families",
+        "description": "Households with multiple dependents, stepfamilies, and extended kin requiring flexible, high-capacity living arrangements."
+      },
+      {
+        "title": "Couples & partnerships",
+        "description": "Married spouses, domestic partners, and cohabiting couples (with or without dependents) facing economic hardship or relocation."
+      },
+      {
+        "title": "Self-defined & chosen households",
+        "description": "Supportive living arrangements and families formed by mutual bond, shared commitments, or community care rather than legal or biological ties."
+      },
+      {
+        "title": "Roommates & shared living groups",
+        "description": "Unrelated adults, students, or peers pooling financial resources to achieve long-term, stable housing affordability."
+      },
+      {
+        "title": "Foster & adoptive families",
+        "description": "Families welcoming foster placements, navigating guardianship, or finalizing adoptions who need housing stability during transitional periods."
+      },
+      {
+        "title": "Solo adults & independent individuals",
+        "description": "Single adults seeking an affordable home base to establish stability, employment continuity, and personal independence."
+      },
+      {
+        "title": "Young adults & aging-out youth",
+        "description": "Unaccompanied young adults (ages 18–24) transitioning out of foster care, educational programs, or temporary youth shelters."
+      },
+      {
+        "title": "Returning citizens",
+        "description": "Formerly incarcerated individuals re-entering their communities who need safe, immediate housing to rebuild their foundation."
+      },
+      {
+        "title": "Justice-involved applicants",
+        "description": "Individuals with legal records or open proceedings who are routinely locked out of conventional vouchers and traditional housing supports."
+      },
+      {
+        "title": "Older adults & fixed-income seniors",
+        "description": "Aging individuals and couples on fixed retirement, SSI, or disability benefits needing accessible, dignified housing."
+      },
+      {
+        "title": "Veterans & former service members",
+        "description": "Military veterans and their families seeking civilian stability, emergency housing bridges, or reintegration support."
+      },
+      {
+        "title": "Survivors & specialized support needs",
+        "description": "Individuals escaping domestic violence, human trafficking, or those requiring physical accessibility and trauma-informed stability."
+      }
     ]
   },
   "otherActivities": {

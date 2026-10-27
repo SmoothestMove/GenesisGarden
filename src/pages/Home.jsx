@@ -109,12 +109,9 @@ function Home() {
   useEffect(() => {
     if (slides.length <= 1) return;
 
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (mediaQuery.matches) return;
-
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 6500);
+    }, 6000);
 
     return () => clearInterval(timer);
   }, [slides.length]);
@@ -127,7 +124,11 @@ function Home() {
       />
 
       {/* ===== Hero Section ===== */}
-      <section className="hero">
+      <section
+        className="hero"
+        aria-roledescription="carousel"
+        aria-label="Genesis Garden Highlights"
+      >
         <div className="hero__bg" aria-hidden="true" ref={heroParallaxRef}>
           {slides.map((slide, index) => {
             const isActive = index === currentSlide;
@@ -147,8 +148,8 @@ function Home() {
                   alt={slide.alt || "Genesis Garden community in Western Illinois"}
                   className="hero__bg-image"
                   style={slide.focalPoint ? { objectPosition: slide.focalPoint } : undefined}
-                  loading={index === 0 ? "eager" : shouldPreload ? "eager" : "lazy"}
-                  fetchPriority={index === 0 ? "high" : "auto"}
+                  loading="eager"
+                  fetchPriority={index === 0 ? "high" : "low"}
                   width={slide.maxWidth ? String(slide.maxWidth) : "2752"}
                   height={slide.maxWidth === 4096 ? "2288" : "1536"}
                 />
@@ -223,6 +224,8 @@ function Home() {
             )}
           </div>
         </div>
+
+
 
 
 

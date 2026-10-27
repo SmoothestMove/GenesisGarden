@@ -31,6 +31,12 @@
         "maxWidth": 2752
       },
       {
+        "image": "/images/Chair_Hero.webp",
+        "alt": "A smiling resident in a wheelchair on an accessibility ramp, representing dignified and inclusive housing in Western Illinois",
+        "focalPoint": "center 25%",
+        "maxWidth": 2752
+      },
+      {
         "image": "/images/Couple_Hero2.webp",
         "alt": "A smiling couple sharing a warm moment at home",
         "focalPoint": "center 25%",

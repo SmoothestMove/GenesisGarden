@@ -6,6 +6,7 @@ const IMAGES_DIR = 'public/images';
 const WIDTHS = [640, 960, 1280, 1920, 2560];
 
 const heroFiles = [
+  'Chair_Hero.jpg',
   'Couple_Hero.jpg',
   'Couple_Hero2.jpg',
   'Couple_Hero_3.jpg',

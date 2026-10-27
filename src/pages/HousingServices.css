@@ -69,62 +69,216 @@
   }
 }
 
-/* --- Intro --- */
+/* --- Intro: Reality & Hope --- */
 .housing-intro-section {
-  padding-top: var(--space-8);
-  padding-bottom: var(--space-8);
+  padding-top: var(--space-10, 3.5rem);
+  padding-bottom: var(--space-12, 4.5rem);
+  background: linear-gradient(180deg, var(--color-white) 0%, rgba(244, 247, 245, 0.7) 40%, var(--color-white) 100%);
 }
 
 .housing-intro {
-  max-width: 800px;
+  max-width: 1040px;
   margin: 0 auto;
 }
 
-.housing-intro__toggle-btn {
+.housing-intro__content {
+  text-align: center;
+}
+
+.housing-intro__badge {
+  display: inline-block;
+  padding: 0.35rem 0.95rem;
+  background-color: rgba(45, 106, 79, 0.1);
+  color: var(--color-primary-dark, #1e4533);
+  border-radius: 9999px;
+  font-size: var(--fs-xs, 0.75rem);
+  font-weight: var(--fw-bold, 700);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-3, 0.75rem);
+}
+
+.housing-intro__heading {
+  font-size: clamp(2rem, 3.2vw, 2.65rem);
+  font-weight: 800;
+  color: var(--color-gray-900, #111827);
+  letter-spacing: -0.025em;
+  margin-bottom: var(--space-3, 0.75rem);
+}
+
+.housing-intro__lead {
+  font-size: var(--fs-lg, 1.125rem);
+  color: var(--color-gray-600, #4b5563);
+  max-width: 720px;
+  margin: 0 auto var(--space-8, 2.5rem);
+  line-height: var(--lh-relaxed, 1.6);
+}
+
+/* 4-Impacts Grid */
+.housing-intro__impacts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4, 1rem);
+  margin-bottom: var(--space-8, 2.5rem);
+  text-align: left;
+}
+
+@media (max-width: 900px) {
+  .housing-intro__impacts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .housing-intro__impacts-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-3, 0.75rem);
+  }
+}
+
+.housing-intro__impact-card {
+  background: var(--color-white, #ffffff);
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  border-radius: var(--radius-lg, 12px);
+  padding: var(--space-5, 1.25rem) var(--space-4, 1rem);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.housing-intro__impact-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-primary-light, #52b788);
+  box-shadow: 0 8px 20px -4px rgba(45, 106, 79, 0.12);
+}
+
+.housing-intro__impact-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  min-height: 48px;
-  padding: var(--space-3) var(--space-4);
-  background: var(--color-off-white);
-  border: 1px solid var(--color-gray-300);
-  border-radius: var(--radius-md);
-  font-family: var(--font-heading);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-semibold);
-  color: var(--color-primary-dark);
-  cursor: pointer;
+  justify-content: center;
+  margin-bottom: var(--space-3, 0.75rem);
+  flex-shrink: 0;
+}
+
+.housing-intro__impact-icon--health {
+  background: rgba(220, 38, 38, 0.1);
+  color: #dc2626;
+}
+
+.housing-intro__impact-icon--crowd {
+  background: rgba(217, 119, 6, 0.12);
+  color: #d97706;
+}
+
+.housing-intro__impact-icon--court {
+  background: rgba(147, 51, 234, 0.1);
+  color: #9333ea;
+}
+
+.housing-intro__impact-icon--shelter {
+  background: rgba(37, 99, 235, 0.1);
+  color: #2563eb;
+}
+
+.housing-intro__impact-title {
+  font-size: var(--fs-base, 1rem);
+  font-weight: 700;
+  color: var(--color-gray-900, #1f2937);
+  margin-bottom: var(--space-2, 0.5rem);
+  line-height: var(--lh-snug, 1.3);
+}
+
+.housing-intro__impact-desc {
+  font-size: var(--fs-sm, 0.875rem);
+  color: var(--color-gray-600, #4b5563);
+  line-height: var(--lh-relaxed, 1.5);
+  margin: 0;
+}
+
+/* Hope & Empowerment Card */
+.housing-intro__hope-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(45, 106, 79, 0.08) 0%, rgba(216, 243, 220, 0.4) 100%);
+  border: 1px solid rgba(45, 106, 79, 0.22);
+  border-left: 6px solid var(--color-primary, #2d6a4f);
+  border-radius: var(--radius-xl, 16px);
+  padding: var(--space-6, 1.75rem) var(--space-8, 2.25rem);
+  box-shadow: 0 10px 25px -5px rgba(45, 106, 79, 0.08);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-6, 1.5rem);
   text-align: left;
-  margin-bottom: var(--space-4);
-  transition: all var(--transition-fast);
 }
 
-.housing-intro__toggle-btn:hover {
-  background: rgba(45, 106, 79, 0.08);
-  border-color: var(--color-primary-light);
-}
-
-.housing-intro__toggle-btn:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
-.housing-intro__content h2 {
-  margin-bottom: var(--space-4);
-}
-
-.housing-intro__highlight {
-  font-size: var(--fs-xl);
-  font-weight: var(--fw-bold);
-  margin: var(--space-6) 0;
-  line-height: var(--lh-snug);
-}
-
-@media (min-width: 768px) {
-  .housing-intro__highlight {
-    font-size: var(--fs-2xl);
+@media (max-width: 640px) {
+  .housing-intro__hope-card {
+    flex-direction: column;
+    padding: var(--space-5, 1.25rem);
+    gap: var(--space-4, 1rem);
   }
+}
+
+.housing-intro__hope-icon-wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary-light, #52b788), var(--color-primary, #2d6a4f));
+  color: var(--color-white, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(45, 106, 79, 0.25);
+}
+
+.housing-intro__hope-body {
+  flex-grow: 1;
+}
+
+.housing-intro__hope-headline {
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-weight: 800;
+  margin: 0 0 var(--space-2, 0.5rem);
+  line-height: var(--lh-snug, 1.25);
+}
+
+.housing-intro__hope-text {
+  font-size: var(--fs-base, 1rem);
+  color: var(--color-gray-700, #374151);
+  line-height: var(--lh-relaxed, 1.6);
+  margin: 0 0 var(--space-5, 1.25rem);
+  max-width: 780px;
+}
+
+.housing-intro__hope-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4, 1rem) var(--space-6, 1.5rem);
+}
+
+.housing-intro__phone-callout {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  color: var(--color-primary-dark, #1b4332);
+  text-decoration: none;
+  font-size: var(--fs-sm, 0.925rem);
+  font-weight: 500;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-md, 8px);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(45, 106, 79, 0.22);
+  transition: all 0.2s ease;
+}
+
+.housing-intro__phone-callout:hover {
+  background: var(--color-white, #ffffff);
+  border-color: var(--color-primary, #2d6a4f);
+  color: var(--color-primary, #2d6a4f);
 }
 
 /* --- Situation Filter --- */
@@ -246,51 +400,146 @@
 
 /* --- Eligibility --- */
 .eligibility {
-  max-width: 700px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
 .eligibility h2 {
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
+  text-align: center;
 }
 
-.eligibility__list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  margin-top: var(--space-4);
-}
-
-.eligibility__list li {
-  position: relative;
-  padding-left: var(--space-8);
+.eligibility > p {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto var(--space-6);
+  color: var(--color-gray-600);
   font-size: var(--fs-base);
-  color: var(--color-gray-700);
   line-height: var(--lh-relaxed);
 }
 
-.eligibility__list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 6px;
+/* Responsive Double Column Grid */
+.eligibility__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3) var(--space-5);
+  margin-top: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .eligibility__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+}
+
+/* Individual Entry Card */
+.eligibility__card {
+  position: relative;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  transition: all var(--transition-base, 0.2s ease);
+  outline: none;
+  user-select: none;
+}
+
+.eligibility__card:hover,
+.eligibility__card:focus-visible {
+  border-color: var(--color-primary);
+  background-color: var(--color-off-white, #fbfbf9);
+  box-shadow: 0 4px 14px rgba(46, 125, 50, 0.08);
+  transform: translateY(-1px);
+}
+
+.eligibility__card:focus-visible {
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.25);
+}
+
+/* Card Header Row */
+.eligibility__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Green Gradient Check Badge */
+.eligibility__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 22px;
   height: 22px;
   border-radius: var(--radius-sm);
   background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.eligibility__list li::after {
-  content: '✓';
-  position: absolute;
-  left: 5px;
-  top: 5px;
   color: var(--color-white);
   font-weight: var(--fw-bold);
   font-size: var(--fs-xs);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.eligibility__title {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold, 600);
+  color: var(--color-gray-800);
+  flex-grow: 1;
+  line-height: var(--lh-snug, 1.35);
+}
+
+.eligibility__toggle {
+  font-size: 1.15rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-gray-400);
+  width: 20px;
+  text-align: center;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.eligibility__card:hover .eligibility__toggle,
+.eligibility__card.is-active .eligibility__toggle {
+  color: var(--color-primary);
+}
+
+/* Smooth Accordion Details */
+.eligibility__details {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, margin-top 0.2s ease;
+}
+
+.eligibility__details p {
+  margin: 0;
+  font-size: var(--fs-sm, 0.9rem);
+  line-height: var(--lh-relaxed);
+  color: var(--color-gray-600);
+  padding-left: calc(22px + var(--space-3));
+}
+
+/* Hover expansion on pointer devices */
+@media (hover: hover) {
+  .eligibility__card:hover .eligibility__details {
+    max-height: 120px;
+    opacity: 1;
+    margin-top: var(--space-2);
+  }
+}
+
+/* Click/Tap toggle on touch devices & keyboard */
+.eligibility__card.is-active .eligibility__details {
+  max-height: 140px;
+  opacity: 1;
+  margin-top: var(--space-2);
+}
+
+.eligibility__hint {
+  text-align: center;
+  margin-top: var(--space-5);
+  color: var(--color-gray-500);
+  font-size: var(--fs-sm);
 }
 
 /* --- Other Activities --- */
